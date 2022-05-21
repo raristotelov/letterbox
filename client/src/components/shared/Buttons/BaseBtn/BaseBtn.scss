@@ -1,0 +1,82 @@
+@import '../../variables.scss';
+
+.sign-btn-gray {
+    width: 445px;
+
+    color: #A0A4A8;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    outline: none;
+     
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 0px;
+    border-radius: 36px;
+    background-color: #E8E8E8;
+
+    @media #{$mq-small}{
+        width: 357px;
+    }
+}
+
+.sign-btn-green {
+    width: 445px;
+
+    color:#FAF9F7;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    outline: none;
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 0px;
+    border-radius: 36px;
+    background: #119C59;
+
+    @media #{$mq-small}{
+        width: 357px;
+    }
+}
+
+.sign-btn-outline {
+    display: flex;
+    justify-content: center;
+ 
+    background: transparent;
+    color:#FAF9F7;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    outline: none;
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 2px solid #FAF9F7;
+    box-sizing: border-box;
+    border-radius: 36px;
+}
+
+
+.sign-btn-outline-green {
+    display: flex;
+    justify-content: center;
+    
+    background: transparent;
+    color:#119C59;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    text-transform: uppercase;
+    outline: none;
+    
+    padding: 10px 20px 10px 20px;
+
+    border: 2px solid #119C59;
+    box-sizing: border-box;
+    border-radius: 36px;
+}

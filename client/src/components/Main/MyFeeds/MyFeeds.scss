@@ -1,0 +1,27 @@
+.my-feeds {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin-top: 36px;
+    
+    .my-feeds-title {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        color: #119C59;
+    }
+    
+    .my-feeds-show-more {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        color: #25282B;
+    }
+}

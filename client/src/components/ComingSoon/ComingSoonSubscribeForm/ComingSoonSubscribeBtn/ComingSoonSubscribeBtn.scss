@@ -1,0 +1,30 @@
+@import '../../_variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+.comingsoon-subscribe-button {
+    width: 195px;
+    height: 60px;
+    background-color: #1D1D1F;
+    color: #FFFFFF;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 16px;
+    border:0;
+    font-weight: 800;
+    padding: 24px 51px 26px 51px;
+    margin-left: 20px;
+
+    @media #{$mq-medium} {
+        padding: 4px 51px 6px 51px;
+    }
+
+    @media #{$mq-small} {
+        width: 175px;
+    }
+    
+    @media #{$mq-extra-small} {
+        margin: auto;
+        width: 280px;
+    }
+}

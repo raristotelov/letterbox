@@ -1,0 +1,45 @@
+@import '../../_variables.scss';
+
+.unsubscribed-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @media #{$mq-medium} {
+        margin-bottom: 40px;
+    }
+
+    @media #{$mq-small} {
+        margin-bottom: 0px;
+    }
+
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        font-size: 54px;
+        text-align: center;
+
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        @media #{$mq-large} {
+            font-size: 40px;
+        }
+
+        @media #{$mq-small} {
+            font-size: 32px;
+        }
+    }
+
+    .subscribe-form {
+        align-self: center;
+        padding-bottom: 128px;
+
+        @media #{$mq-medium} {
+            padding-bottom: 40px;
+        }
+    }
+}

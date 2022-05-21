@@ -1,0 +1,72 @@
+@import '../_variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+.subscribe {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 565px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+    @media #{$mq-medium} {
+        width: 480px;
+     }
+  
+     @media #{$mq-small} {
+        flex-wrap: wrap;
+        width: 395px;
+     }
+
+     @media #{$mq-extra-small} {
+        flex-wrap: wrap;
+        width: 280px;
+     }
+
+     .subscribe-message {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        text-align: center;
+        font-size: 20px;
+        line-height: 27px;
+        margin: auto;
+        width: 566px;
+        padding-bottom: 20.5px;
+        white-space: nowrap;
+
+        @media #{$mq-medium} {
+            margin: auto;
+            padding-left: 0px;
+            padding-right: 0px;
+            width: 480px;
+            white-space: pre-line;
+        }
+        @media #{$mq-small} {
+            margin: auto;
+            font-size: 16px;
+            width: 395px;
+        }
+        @media #{$mq-extra-small} {
+            width: 280px;
+        }
+    }
+
+    .subscribe-form {
+        display: flex;
+        flex-wrap: nowrap;
+
+        @media #{$mq-extra-small} {
+            flex-wrap: wrap;
+         }
+         
+    .subscribe-button {
+        margin-left: 20px;
+
+        @media #{$mq-extra-small} {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 15px;
+         }
+    }
+}
+}

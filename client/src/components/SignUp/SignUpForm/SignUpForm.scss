@@ -1,0 +1,59 @@
+@import '../../shared/variables.scss';
+
+.signup-form {
+    width: 445px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    justify-content: center;
+    padding-bottom: 14px;
+    
+    @media #{$mq-medium}{
+        margin-top: 28px;
+    }
+
+    @media #{$mq-small} {
+        width: 357px;
+    }
+
+    h1 {
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 42px;
+        letter-spacing: 1.3px;
+
+        padding-bottom: 32px;
+    }
+
+    a {
+        letter-spacing: 0.5px;
+        color: #75787C;
+        padding-top: 12px;
+        padding-bottom: 43px;
+    }
+    
+    span.policy-agreement-txt {
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 11px;
+        line-height: 14px;
+        letter-spacing: 0.2px;
+        width: 410px;
+        text-align: left;
+        padding-top: 6px;
+
+        @media #{$mq-small} {
+            width: 330px;
+        }
+
+        .second-line {
+            display: block;
+        }
+
+        a {
+            color: #119C59;
+            text-decoration: none;
+        }
+    }
+}

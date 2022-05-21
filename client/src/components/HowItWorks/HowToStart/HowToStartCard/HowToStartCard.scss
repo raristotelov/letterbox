@@ -1,0 +1,27 @@
+.how-to-start-card {
+    display: flex;
+    gap: 16px;
+    width: 285px;
+
+    .how-to-start-card-title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 26px;
+
+        letter-spacing: 0.2px;
+    }
+
+    .how-to-start-card-description {
+        margin-top: 8px;
+        width: 269px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+
+        letter-spacing: 0.1px;
+
+        color: #52575c;
+
+        white-space: break-spaces;
+    }
+}

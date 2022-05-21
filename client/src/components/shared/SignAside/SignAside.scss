@@ -1,0 +1,54 @@
+@import '../variables.scss';
+
+.sign-aside {
+    display: flex;
+    justify-content: center;
+    width: 440px;
+    background: #119C59;
+
+    @media #{$mq-medium}  {
+        width: 100%;
+    }
+
+    .sign-aside-wrapper {
+        align-self: center;
+        text-align: center;
+        color: #FAF9F7;
+    
+        h1 {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 42px;
+            letter-spacing: 0.1px;
+            
+            padding-top: 33px;
+            padding-bottom: 30px;
+        }
+
+        p {
+            width: 274px;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 1.1px;
+
+            margin: auto;
+            padding-bottom: 45px;
+        }
+
+        p span {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .sign-btn-outline {
+            margin: auto;
+            width: 200px;
+
+            @media #{$mq-medium}  {
+                margin-bottom: 34px;
+            }
+        }
+
+    }
+}

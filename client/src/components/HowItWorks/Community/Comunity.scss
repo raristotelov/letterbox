@@ -1,0 +1,43 @@
+.community-container {
+    background: #faf9f7;
+    padding: 120px 100px 158px 102px;
+
+    .title {
+        height: 95px;
+
+        font-weight: 500;
+        font-size: 44px;
+        line-height: 54px;
+        text-align: center;
+        color: #25282b;
+    }
+
+    .content-container {
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-between;
+
+        .description-container {
+            margin-top: 98px;
+
+            .description-title {
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+                color: #119c59;
+            }
+
+            .description {
+                margin-top: 24px;
+                max-width: 520px;
+
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                letter-spacing: 0.2px;
+                color: #25282b;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.main-layout-wrapper {
+    max-width: 1440px;
+    margin: auto;
+    background-color: #faf9f7;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    
+    .main-layout-prime {
+        width: 886px;
+        margin: 0 auto;
+    }
+}

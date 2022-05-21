@@ -1,0 +1,72 @@
+.header {
+    display: flex;
+    justify-content: space-evenly;
+
+    .elements-wrapper {
+        width: 810px;
+        display: flex;
+        justify-content: space-between;
+
+        .search-wrapper {
+            padding-top: 4px;
+        }
+
+        .profile-info {
+            width: 380px;
+            display: flex;
+            justify-content: space-between;
+
+            .email-wrapper {
+                width: 316px;
+                display: flex;
+                justify-content: space-evenly;
+
+                .email-label {
+                    width: 280px;
+                    text-align: right;
+                    color: #52575C;
+                    padding-top: 34px;
+                    font-weight: 500;
+                    font-size: 18px;
+                    letter-spacing: 0.2px;
+                }
+
+                .copy-btn {
+                    padding-top: 4px;
+                    border: none;
+                    background: none;
+                }
+
+                .copy-btn:focus{
+                    outline: none;
+                }
+            }
+
+            .avatar-wrapper {
+                padding-top: 27px;
+
+                .circle {
+                    text-align: center;
+                    font-size: 13px;
+                    color: #FFFFFF;
+                    padding-top: 7px;
+                    width: 30px;
+                    height: 30px;
+                    background-color: #14B86E;
+                    border-radius: 50%;
+                }
+            }
+
+            .avatar-wrapper:hover{
+                cursor: pointer;
+            }
+
+        }
+
+        .settings-container{
+            z-index: 1;
+            position: fixed;
+            margin-left: 530px;
+        }
+    }
+}

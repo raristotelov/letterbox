@@ -1,0 +1,9 @@
+.stars {
+    display: flex;
+    gap: 0px;
+    padding-top: 15px;
+
+    .star-active ~svg{
+        fill:yellow;
+    }
+}

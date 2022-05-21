@@ -1,0 +1,68 @@
+@import '../../_variables.scss';
+
+$bp-small: 600px;
+$bp-medium: 900px; 
+
+$mq-small: "(max-width: #{$bp-small})";
+$mq-medium: "(max-width: #{$bp-medium})";
+
+.subscribed-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto 187px auto;
+
+    @media #{$mq-medium} {
+        margin-bottom: 40px;
+    }
+
+    @media #{$mq-small} {
+        margin-bottom: 0px;
+    }
+
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        font-size: 54px;
+        text-align: center;
+
+
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        @media #{$mq-medium} {
+            font-size: 38px;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        @media #{$mq-small} {
+            font-size: 28px;
+            padding-top: 60px;
+            padding-bottom: 45px;
+        }
+    }
+
+    h2 {
+        font-weight: 400;
+        text-align: center;
+        font-size: 20px;
+        line-height: 27px;
+        padding-bottom: 20.5px;
+
+        @media #{$mq-medium} {
+            margin: auto;
+            width: 345px;
+        }
+        @media #{$mq-small} {
+            margin: auto;
+            font-size: 16px;
+            width: 280px;
+        }
+
+        span {
+            color: #3742FA;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.star {
+    position: relative;
+    cursor: pointer;
+
+    .star-radio-input {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .star-icon {
+        path {
+            stroke: #14B86E;  
+        }
+    }
+
+    .star-icon-active {
+        fill:#14B86E;
+        path {
+            stroke: #14B86E;  
+        }
+    }
+}

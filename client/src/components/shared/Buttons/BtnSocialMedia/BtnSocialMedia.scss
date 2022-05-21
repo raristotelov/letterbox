@@ -1,0 +1,43 @@
+@import '../../variables.scss';
+
+.btn-facebook {
+    width: 445px;
+    height: 58px;
+    
+    border: 0px;
+    border-radius: 36px;
+    background-color: #3B5998;
+    outline: none;
+
+    @media #{$mq-small}{
+        width: 357px;
+    }
+}
+
+.btn-google {
+    width: 445px;
+    height: 58px;
+    
+    border: 0px;
+    border-radius: 36px;
+    background-color: #25282B;
+    outline: none;
+
+    @media #{$mq-small}{
+        width: 357px;
+    }
+}
+
+.btn-twitter {
+    width: 445px;
+    height: 58px;
+    
+    border: 0px;
+    border-radius: 36px;
+    background-color: #4099FF;
+    outline: none;
+
+    @media #{$mq-small}{
+        width: 357px;
+    }
+}

@@ -1,0 +1,22 @@
+@import '../variables';
+
+.comingsoon-header-shadow {
+    filter: drop-shadow(0 5px 20px #747D8C29);
+
+    .comingsoon-header {
+        all: initial;
+        height: 121px;
+        background: #F9FAFC 0% 0% no-repeat padding-box;
+        clip-path: polygon(0% 0%, 100% 0%, 96% 100%, 4% 100%);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 100px;
+
+        @media #{$mq-extra-small} {
+            flex-direction: column;
+            justify-content: space-around;
+        }
+    }
+}

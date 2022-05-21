@@ -1,0 +1,53 @@
+.welcome-to-newsletterapp-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .description-container {
+        margin-left: 144px;
+        .title {
+            height: 84px;
+
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 42px;
+            letter-spacing: 0.1px;
+            color: #25282b;
+        }
+
+        .description {
+            max-width: 451px;
+
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+            color: #25282b;
+            white-space: break-spaces;
+        }
+
+        .login-btn {
+            margin-top: 50px;
+            padding: 20px 73px;
+            outline: none;
+
+            background: #faf9f7;
+            border: 2px solid #119c59;
+            box-sizing: border-box;
+            border-radius: 36px;
+
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: 0.2px;
+
+            color: #119c59;
+            
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                background-color: #119c59;
+                color: white;
+            }
+        }
+    }
+}

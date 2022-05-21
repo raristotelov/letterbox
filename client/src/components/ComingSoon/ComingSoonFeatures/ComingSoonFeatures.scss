@@ -1,0 +1,15 @@
+@import '../_variables.scss';
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media #{$mq-medium} {
+        flex-wrap: wrap;
+    }
+
+    @media #{$mq-extra-small} {
+        width: 190px;
+    }
+}

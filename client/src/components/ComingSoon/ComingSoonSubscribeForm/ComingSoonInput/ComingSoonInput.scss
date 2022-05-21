@@ -1,0 +1,44 @@
+@import '../../_variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+.comingsoon-input-text{
+    font-family: 'Roboto', sans-serif;
+
+     .input-text-field, .invalid-input {
+        width: 345px;
+        height: 59px;
+        background: #FFFFFF;
+        border: 1px solid #E1E5EB;
+        padding-left: 20px;
+        color: #000000;
+        
+        @media #{$mq-medium} {
+            width: 245px;
+        }
+        @media #{$mq-small} {
+            width: 200px;
+        }
+        @media #{$mq-extra-small} {
+            width: 280px;
+            margin-bottom: 15px;
+        }
+    }
+
+    .input-text-field::placeholder {
+        font-size: 11px;
+        color: #7C8CA5;
+    }
+
+    .error {
+        font-weight: 500;
+        font-size: 12px;
+        color: red;
+        margin-top: -52px;
+        padding-left: 20px;
+
+        @media #{$mq-extra-small} {
+            margin-top: -65px;
+            padding-bottom: 50px;
+        }
+    }
+}

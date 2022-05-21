@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import './_variables.scss';
+
+.comingsoon-layout {  
+    max-width: 1440px;
+    margin: 0 auto 0 auto;
+
+    .comingsoon-layout-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 80px 7% 80px 7%;
+        border: 6px solid #313131;
+        border-radius: 12px;
+        box-shadow: 6px;
+
+        @media #{$mq-medium} {
+            margin: 40px 7% 40px 7%;
+        }
+
+        .comingsoon-layout-inner {
+            width: 956px;
+            
+            .features {
+                align-self: center;
+                margin: auto;
+                padding-bottom: 82px;
+            }
+
+            @media #{$mq-large} {
+                width: 710px;
+            }
+
+            @media #{$mq-medium} {
+                width: 500px;
+            }
+            
+            @media #{$mq-small} {
+                width: 400px;
+            }
+        
+            @media #{$mq-extra-small} {
+                width: 290px;
+            }
+        }       
+    }
+}

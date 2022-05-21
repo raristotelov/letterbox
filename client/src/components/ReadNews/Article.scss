@@ -1,0 +1,58 @@
+.article-date-time-comments {
+    padding-bottom: 17px;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.2px;
+    
+    color: #119C59;
+
+    .article-date-time {
+        display: flex;
+
+        .article-read-time {
+            padding-left: 10px;
+        }
+    }
+
+    .comments-show-hide{
+        display: flex;
+        align-items: center;
+        color:#A0A4A8;
+
+        span {
+            padding-right: 10px;
+        }
+    }
+}
+
+.article-title {
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: 0.2px;
+    color: #52575C;
+
+    padding-bottom: 26px;
+}
+
+.article-img {
+    max-width: 590px;
+    display: block;
+    margin: auto;
+    padding-bottom: 33px;
+
+    padding-top: 6px;
+}
+
+.article-content {
+    padding-bottom: 101px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 600px;
+}
+

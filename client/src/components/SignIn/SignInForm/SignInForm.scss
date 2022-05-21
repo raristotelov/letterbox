@@ -1,0 +1,58 @@
+@import '../../shared/variables.scss';
+
+.signIn-form {
+    width: 445px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 75px;
+    padding-bottom: 2px;
+
+    @media #{$mq-medium}{
+        margin-top: 28px;
+    }
+
+    @media #{$mq-small} {
+        width: 100%;
+    }
+    
+    h1 {
+        width: 400px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 42px;
+
+        padding-bottom: 32px;
+    }
+
+    a {
+        letter-spacing: 0.5px;
+        color: #75787C;
+        padding-top: 12px;
+        padding-bottom: 43px;
+    }
+    
+    .sign-btn-gray {
+        margin-top: 6px;
+    }
+
+    .input-end-label::before {
+        position: relative;
+        left: 1rem;
+        display: flex;
+        content: attr(data-content);
+    }
+
+    .input-end-label {
+        display: block;
+        position: relative;
+        max-height: 0;
+        font-weight: 500;
+        pointer-events: none;
+    }
+
+    .input-end-label::before {
+        transform: translate3d(20rem, -2.2rem, 0);
+    }
+}

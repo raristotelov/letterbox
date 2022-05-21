@@ -1,0 +1,57 @@
+.labels {
+    overflow-y: scroll;
+    height: 320px;
+
+    li {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        list-style-type: none;
+        padding: 17px 17px 17px 30px;
+        height: 58px;
+
+        &:hover {
+            background-color: #94DD8B;
+        }
+
+        &:hover .save-txt {
+            display: flex;
+            gap: 15px
+        }
+
+        &:hover .label-title {
+            svg > path {
+                fill: #25282B;
+            }
+        }
+
+        .label-title {
+            display: flex;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.2px;
+            color: #000000;
+
+            svg {
+                margin-right: 15px;
+            }
+        }
+
+        .save-txt {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.1px;
+            color: #000000;
+
+            svg {
+                margin-top: -5px;
+            }
+        }
+    }
+}

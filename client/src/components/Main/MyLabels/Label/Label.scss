@@ -1,0 +1,66 @@
+.label-wrapper {
+        
+    .label-header {
+        display: flex;
+        justify-content: space-between;
+        margin: 3px -7px 0px -45px;
+        padding: 9px 0px 9px 45px;
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+        cursor: pointer;
+
+        .label-title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.1px;
+            color: #25282B;
+        }
+
+        .header-additions {
+            width: 75px;
+            display: flex;
+            justify-content: space-around;
+
+            .label-newsletters-counter {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                letter-spacing: 0.2px;
+                color: #25282B;
+            }
+
+            .label-arrow {
+                margin: 4px 7px 0 0;
+            }
+        }
+    }
+
+    .label-newsletters {
+        display: none;
+    }
+}
+
+.label-wrapper.open {
+    .label-header {
+        background-color: #FFE3B3;
+
+        .label-newsletters-counter {
+            visibility: hidden;
+        }
+
+        .label-arrow {
+            transform: rotate(90deg);
+            margin: 1px 11px 0 0;
+        }
+    }
+    
+    .label-newsletters {
+        display: block;
+
+        div {
+            display: flex;
+            align-items: center;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+@import '../../shared/variables.scss';
+
+.social-media-signup {
+    width: 445px;
+
+    @media #{$mq-small}{
+        width: 357px;
+    }
+
+    p {
+        text-align: center;
+        color:#25282B;
+        padding-bottom: 8px;
+    }
+
+    .btn-twitter{
+        margin-bottom: 16px;
+
+        @media #{$mq-medium}{
+            margin-bottom: 15px;
+        }
+    }
+    .btn-facebook{
+        margin-bottom: 19px;
+
+        @media #{$mq-medium}{
+            margin-bottom: 15px;
+        }
+    }
+    .btn-google{
+        margin-bottom: 20px;
+
+        @media #{$mq-medium}{
+            margin-bottom: 15px;
+        }
+    }
+}

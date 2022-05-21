@@ -1,0 +1,128 @@
+.new-feed-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    .new-feed-container {
+        position: fixed;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        max-width: 308px;
+        background: #faf9f7;
+        border-radius: 9px;
+
+        .new-feed-form {
+            .new-feed-header {
+                display: flex;
+                justify-content: space-between;
+                flex-flow: wrap column;
+                height: 100px;
+                background-color: #FAF9F7;
+                border-radius: 4px 4px 0px 0px;
+
+                .new-feed-close-btn {
+                    position: absolute;
+                    right: 15px;
+                    top: 15px;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                }
+
+                .new-feed-title {
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 24px;
+                    text-align: center;
+                    letter-spacing: 0.2px;
+                    color: #25282B;
+                    padding-top: 34px;
+                }
+            }
+
+            .input-container {
+                text-align: center;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                .name-input-container {
+                    padding-bottom: 18px;
+
+                    .input-field {
+                        width: 88%;
+                        padding-left: 14px;
+                        text-align: left;
+                    }
+
+                    .input-label {
+                        text-align: left;
+                    }
+                }
+
+                .drop-zone {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    align-self: center;
+                    align-items: center;
+
+                    max-width: 270px;
+                    height: 160px;
+                    padding: 25px;
+                    margin-bottom: 36px;
+
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                    letter-spacing: 0.1px;
+                    cursor: pointer;
+                    color: #25282B;
+                    border: 1px dashed #A0A4A8;
+                    border-radius: 10px;
+                    gap: 34px;
+
+
+                    .drop-zone__prompt {
+                        padding-top: 28px;
+                    }
+
+                    .drop-zone__input {
+                        display: none;
+                    }
+                }
+            }
+
+            .new-feed-save-btn {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                height: 58px;
+                background-color: #119C59;
+                border: none;
+                border-radius: 0px 0px 4px 4px;
+
+                .save-btn-txt {
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 24px;
+                    letter-spacing: 0.2px;
+                    color: #FAF9F7;
+                    margin-left: 30px;
+                }
+
+                .save-btn-icon {
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
+}

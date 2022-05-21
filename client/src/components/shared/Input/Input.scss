@@ -1,0 +1,113 @@
+@import '../../shared/variables.scss';
+
+.sign-input,
+.sign-input-error {
+    margin-bottom: 20px;
+
+    .input-field {
+        width: 445px;
+        height: 63px;
+        border: 0px;
+        background: #FAF9F7;
+        border-bottom: 3px solid #A0A4A8;
+        color: #25282B;
+        outline: none;
+        padding-left: 24px;
+        padding-top: 30px;
+        font-size: 16px;
+        line-height: 24px;
+
+        @media #{$mq-small} {
+            width: 357px;
+        }
+    }
+
+    .input-field::placeholder {
+        opacity: 0;
+    }
+
+    .input-field:focus {
+        border-bottom: 3px solid #119C59;
+    }
+
+    .input-label {
+        width: 445px;
+        display: block;
+        position: relative;
+        max-height: 0;
+        font-weight: 500;
+        pointer-events: none;
+
+        @media #{$mq-small} {
+            width: 357px;
+        }
+    }
+
+    .input-label::before {
+        color: #75787C;
+        content: attr(data-content);
+        display: inline-block;
+        backface-visibility: hidden;
+        transform-origin: left top;
+        transition: transform 0.2s ease;
+        left: 1rem;
+        position: relative;
+        outline: none;
+        transform: translate3d(7px, -56px, 0) scale3d(0.82, 0.82, 1);
+    }
+
+    .input-field:placeholder-shown+.input-label::before {
+        transform: translate3d(7px, -28px, 0) scale3d(1, 1, 1);
+        color: #52575C;
+    }
+
+
+    .input-field:focus+.input-label::before {
+        transform: translate3d(7px, -56px, 0) scale3d(0.82, 0.82, 1);
+    }
+
+    .input-field:focus+.input-label::before {
+        color: #75787C;
+    }
+
+    .input-end-label {
+        display: block;
+        position: relative;
+        max-height: 0;
+        pointer-events: none;
+
+        font-family: Montserrat;
+        font-weight: 600;
+        font-size: 20px;
+
+        width: 30%;
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+
+        transform: translate3d(302px, -2.2rem, 0);
+
+        @media #{$mq-small} {
+            font-size: 18px;
+            transform: translate3d(240px, -2.2rem, 0);
+        }
+    }
+}
+
+.sign-input-error {
+    .input-field {
+        border-bottom: 3px solid #EB5757;
+    }
+
+    .input-field:focus {
+        border-bottom: 3px solid #EB5757;
+    }
+
+    .input-label::before {
+        color: #EB5757;
+    }
+
+    .input-field:focus+.input-label::before {
+        color: #EB5757;
+    }
+}

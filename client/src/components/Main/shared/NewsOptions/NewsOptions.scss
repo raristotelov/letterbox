@@ -1,0 +1,23 @@
+.news-options {
+    display: flex;
+    align-items: center;
+    margin-right: 43px;
+    margin-bottom: 12px;
+    gap: 15px;
+
+    .news-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        p {
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.2px;
+            padding-left: 5px;
+        }
+
+        cursor: pointer;
+        user-select: none;
+    }
+}

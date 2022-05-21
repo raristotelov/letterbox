@@ -1,0 +1,66 @@
+.landing-header {
+    height: 700px;
+    background-color: #FFFFFF;
+
+    .landing-header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .describe-box {
+            width: 535px;
+            height: 350px;
+            margin-left: 98px;
+            padding-top: 6px;
+
+            .describe-box-title {
+                font-weight: 300;
+                font-size: 52px;
+                line-height: 64px;
+                display: flex;
+                align-items: flex-end;
+                letter-spacing: 0.2px;
+                color: #25282B;
+            }
+
+            .describe-box-subtitle {
+                width: 420px;
+                margin-top: 22px;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+                color: #119C59;
+            }
+
+            .try-for-free-btn {
+                width: 195px;
+                height: 58px;
+                border: none;
+                background: #219653;
+                border-radius: 36px;
+                margin-top: 83px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 18px;
+                text-align: center;
+                letter-spacing: 0.2px;
+                color: #FFFFFF;
+                text-transform: uppercase;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        .girl-with-monitor {
+            display: inline-block;
+            width: 658px;
+            height: 630px;
+            padding-top: 33px;
+        }
+    }
+}

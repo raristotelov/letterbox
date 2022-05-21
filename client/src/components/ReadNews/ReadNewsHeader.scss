@@ -1,0 +1,42 @@
+.read-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 21px 24px 0 52px;
+
+    .read-header-back{
+        display: flex;
+        cursor: pointer;
+        
+        font-size: 16px;
+        line-height: 24px;
+
+        .read-header-back-text {
+            padding-left: 10px;
+        }
+    }
+
+    .newsletter-circle-logo {
+        display: inline-flex;
+        justify-content: center;
+        width: 42px;
+        background-color: #14B86E;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-radius: 21px ;
+
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        color: #FAF9F7;
+    }
+
+    .read-header-title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        color: #25282B;
+    }
+}

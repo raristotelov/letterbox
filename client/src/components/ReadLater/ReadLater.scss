@@ -1,0 +1,36 @@
+.read-later-main {
+    width: 868px;
+    margin: 0 auto;
+
+    .read-later-title {
+        display: flex;
+        justify-content: space-between;
+        padding: 65px 0px 12px 36px;
+
+        h1 {
+            font-weight: 300;
+            font-size: 52px;
+            line-height: 64px;
+            letter-spacing: 0.2px;
+            color: #25282b;
+
+            display: inline;
+        }
+
+        .change-view-dropdown-container {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 20px;
+            padding-right: 25px;
+        }
+    }
+
+    .read-later-view {
+        margin-left: 34px;
+
+        .mark-read-later-option,
+        #readLater {
+            display: none;
+        }
+    }
+}

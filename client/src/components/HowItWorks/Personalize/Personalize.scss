@@ -1,0 +1,51 @@
+.personalize-container {
+    padding: 100px 100px 43px 151px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url("./assets/background.svg");
+    background-position: 101% 100%;
+    background-repeat: no-repeat;
+
+    .content-container {
+        .title {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 42px;
+            letter-spacing: 0.1px;
+            color: #25282b;
+        }
+
+        .description {
+            margin-top: 27px;
+            width: 451px;
+
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+            color: #25282b;
+        }
+
+        .try-btn {
+            margin-top: 40px;
+            padding: 20px 44px;
+            background: #219653;
+            border: none;
+            outline: none;
+            border-radius: 36px;
+
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: 0.2px;
+
+            color: #ffffff;
+
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                background: #0d7c3d;
+            }
+        }
+    }
+}

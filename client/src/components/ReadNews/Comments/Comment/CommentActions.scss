@@ -1,0 +1,17 @@
+.comment-actions{
+    display:flex;
+    justify-content: start;
+    gap: 25px;
+    padding: 17px 0 63px 0;
+
+    div{
+        display:flex;
+        align-items: center;
+        align-self: center;
+        cursor: pointer;
+        
+        .action-text{
+            padding-left: 10px;
+        }
+    }
+}

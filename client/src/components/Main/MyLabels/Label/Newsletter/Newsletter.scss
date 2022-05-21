@@ -1,0 +1,32 @@
+.label-newsletter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+    margin: 4px 0px 10px 2px;
+    cursor: pointer;
+
+    .label-newsletter-avatar {
+        margin-right: 9px;
+    }
+
+    .label-newsletter-title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        color: #25282B;
+    }
+
+    .label-newsletter-counter {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: 0.2px;
+        color: #25282B;
+    }
+}
+
+.label-newsletter.open * {
+    color: #119C59;
+}

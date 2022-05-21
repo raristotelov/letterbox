@@ -1,0 +1,17 @@
+.social-medias {
+    display: flex;
+    list-style-type: none;
+    .icon {
+        padding-left: 8px;
+    }
+
+    a:hover {
+        .a {
+            fill: #ffffff;
+        }
+
+        .b {
+            fill: #ced6e0;
+        }
+    }
+}

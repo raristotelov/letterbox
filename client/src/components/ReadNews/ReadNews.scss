@@ -1,0 +1,55 @@
+.article {
+    max-width: 1440px;
+    margin:auto;
+    
+    .article-body {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 107px;
+        
+        .article-menu {
+            display: flex;
+            align-items: flex-start;
+            max-width: 400px;
+            min-width: 220px;
+        }
+    
+        .article-main {
+            max-width: 622px;     
+            padding-right: 25px;
+            
+            .loading-text{
+                font-size: 26px;
+                text-align: center;
+                padding-bottom: 50px;
+            }
+
+
+            .article-buttons {
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 160px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 18px;
+                letter-spacing: 0.2px;
+
+                color: #FFFFFF;
+                .sign-btn-outline-green {
+                    width: auto;
+                    padding: 20px 63px 20px 63px;
+                }
+
+                .sign-btn-green {
+                    width: auto;
+                    padding: 20px 56px 20px 56px;
+                }
+            }
+        }
+    
+        .article-chat {
+            max-width: 400px;
+            min-width: 400px;
+        }     
+    } 
+}

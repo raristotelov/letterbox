@@ -1,0 +1,26 @@
+.my-labels-header {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    
+    .my-labels-title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        color: #119C59;
+    }
+
+    .my-labels-btns {
+        display: flex;
+        justify-content: space-between;
+        width: 60px;
+    }
+
+    .add-label-btn,
+    .settings-btn {
+        border: none;
+        background: none;
+        outline: none;
+    }
+}

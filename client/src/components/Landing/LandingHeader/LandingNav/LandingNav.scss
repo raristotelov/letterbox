@@ -1,0 +1,58 @@
+.green-text {
+    color: #14B86E !important;
+}
+
+.landing-nav {
+    display: flex;
+    justify-content: space-between;
+    height: 85px;
+
+    .landing-logo {
+        margin: 28px 102px;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 740px;
+        margin-right: 35px;
+
+        li {
+            list-style-type: none;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: center;
+            letter-spacing: 0.2px;
+            color: #25282B;
+
+            a {
+                text-decoration: none;
+                color: #25282B;
+            }
+
+            .login-btn {
+                border: 2px solid #119C59;
+                border-radius: 36px;
+                outline: none;
+                background: transparent;
+                width: 195px;
+                height: 58px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 18px;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 0.2px;
+                color: #119C59;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: #119C59;
+                    color: white;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,60 @@
+.landing-newsletterapp-description {
+    display: flex;
+    width: 100%;
+    height: 688px;
+
+    
+    .description-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 688px;
+        background-color: #FFFFFF;
+
+        .description-text-content {
+            display: flex;
+            flex-flow: wrap column;
+            width: 450px;
+            margin-bottom: 80px;
+
+            .description-text-title {
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 32px;
+                line-height: 42px;
+                letter-spacing: 0.1px;
+                color: #25282B;
+                margin-top: 40px;
+            }
+    
+            .description-text-read-more {
+                text-decoration: none;
+                text-transform: uppercase;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                letter-spacing: 0.2px;
+                color: #119C59;
+                margin-top: 20px;
+            }
+    
+            .description-text-desc {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                letter-spacing: 0.2px;
+                color: #25282B;
+                margin-top: 30px;
+            }
+        }
+    }
+    
+
+    .description-image {
+        width: 50%;
+        height: 688px;
+        background-image: url('./assets/tablet.png');
+        background-repeat: no-repeat;
+    }
+}

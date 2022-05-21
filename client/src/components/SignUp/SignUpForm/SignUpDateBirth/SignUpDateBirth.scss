@@ -1,0 +1,70 @@
+@import '../../../shared/variables.scss';
+
+.date-of-birth {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &::before {
+        content: attr(data-content);
+        display: inline;
+        position: absolute;
+        color: #52575C;
+        font-size: 11px;
+        font-weight: normal;
+        margin-top: -10px;
+    }
+
+    @media #{$mq-small} {
+        width: 357px;
+    }
+
+    .sign-input, .sign-input-error {
+        width: 32%;
+
+        & input {
+            width: 100%;
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+
+        input[type=number] {
+            -moz-appearance:textfield;
+
+        }
+    }
+
+    .sign-input-error {
+        .input-field {
+            border-bottom: 3px solid #EB5757;
+        }
+        .input-field:focus {
+            border-bottom: 3px solid #EB5757;
+        }
+        .input-label::before {
+            color: #EB5757;
+        }
+        .input-field:focus+.input-label::before {
+            color: #EB5757;
+        }
+    }
+}
+
+.date-error {
+
+    &::before {
+        color: #EB5757;
+    }
+
+    .input-field {
+        border-bottom: 3px solid #EB5757;
+    }
+    .input-field:focus {
+        border-bottom: 3px solid #EB5757;
+    }
+
+}

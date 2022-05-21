@@ -1,0 +1,41 @@
+.add-to-feed-newsletter {
+    cursor: pointer;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    height: 58px;
+    width: 308px;
+
+    img {
+        max-height: 30px;
+    }
+
+    h4 {
+        width: 160px;
+        overflow-wrap: break-word;
+
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.2px;
+
+        color: #000000;
+
+        flex-grow: 1;
+    }
+
+    .add {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+
+        color: #000000;
+    }
+}
+
+.add-to-feed-newsletter:hover {
+    background: #94dd8b;
+}

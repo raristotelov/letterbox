@@ -1,0 +1,37 @@
+.landing-category-card {
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: center;
+    align-items: center;
+    gap: 27px;
+    width: 400px;
+    height: 377px;
+    background-color: #FAF9F7;
+    border-radius: 10px;
+    background-image: url('./assets/card-bg.svg');
+    background-repeat: no-repeat;
+    background-position: bottom right 23px;
+
+    .category-title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+        letter-spacing: 0.2px;
+        color: #14B86E;
+    }
+
+    .category-logo {
+
+    }
+
+    .category-description {
+        width: 325px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 26px;
+        letter-spacing: 0.2px;
+        color: #25282B;
+        margin-left: 32px;
+    }
+}

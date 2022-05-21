@@ -1,0 +1,57 @@
+.single-feed-wrapper {
+    font-family: Montserrat;
+    font-style: normal;
+
+    max-width: 868px;
+    margin: auto;
+    margin-top: 53px;
+
+    .feed-header {
+        .feed-title {
+            font-weight: 300;
+            font-size: 52px;
+            line-height: 64px;
+            letter-spacing: 0.2px;
+            color: #25282b;
+
+            margin: 22px 0 0 29px;
+        }
+
+        .feed-header-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .feed-filter {
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+                color: #119c59;
+
+                margin: 13px 0 0 34px;
+                border: none;
+                background: none;
+                outline: none;
+                border-bottom: 3px solid #119c59;
+            }
+
+            .add-newsletter-btn {
+                margin: 13px 39px 0 0;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                letter-spacing: 0.2px;
+
+                color: #000000;
+                background: none;
+                border: none;
+                outline: none;
+
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+        }
+    }
+}

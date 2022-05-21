@@ -1,0 +1,54 @@
+@import '../shared/variables.scss';
+
+.signup {
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    max-width: 1440px;
+    height: 100vh;
+    margin: auto;
+
+    .signup-container {
+        display: flex;  
+        align-self: stretch;
+        justify-content: flex-end;
+
+        @media #{$mq-medium}  {
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .signup-main {
+            display: flex;  
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-grow: 1;
+
+            .signup-logo-green {
+                width: 100%;
+                padding-left: 53px;
+                padding-top: 41px;
+
+                @media #{$mq-medium}  {
+                    padding-left: 0;
+                    text-align: center;
+                }
+            }  
+
+            .form-wrapper {
+                margin: 0 30px;
+
+                .social-media-signup{
+                    padding-bottom: 0px;
+    
+                    @media #{$mq-medium}{
+                        margin: auto;
+                        padding-bottom: 34px;
+                    }
+                }
+            }
+        }
+    }
+}
