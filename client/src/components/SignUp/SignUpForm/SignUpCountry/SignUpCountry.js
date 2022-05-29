@@ -1,8 +1,9 @@
+import React, { Fragment } from "react";
 import './SignUpCountry.scss';
 
 const SignUpCountry = ({ errState, formData, handleChange, handleValidation, countries }) => {
     return (
-        <>
+        <Fragment>
             {
                 errState.countryErr
                 ?   <div className="sign-select-error">
@@ -19,9 +20,10 @@ const SignUpCountry = ({ errState, formData, handleChange, handleValidation, cou
                                     ? countries.map((country, index) => (
                                             <option
                                                 key={index}
-                                                value={country.alpha2Code}
-                                                label={country.name}>
-                                                    {country.name}
+                                                value={country}
+                                                label={country}
+                                            >
+                                                {country}
                                             </option>
                                             )
                                         )
@@ -54,9 +56,9 @@ const SignUpCountry = ({ errState, formData, handleChange, handleValidation, cou
                                 ? countries.map((country, index) => (
                                         <option
                                             key={index}
-                                            value={country.alpha2Code}
-                                            label={country.name}>
-                                                {country.name}
+                                            value={country}
+                                            label={country}>
+                                                {country}
                                         </option>
                                         )
                                     )
@@ -73,7 +75,7 @@ const SignUpCountry = ({ errState, formData, handleChange, handleValidation, cou
                             data-content="Country/Region"></label>
                     </div>
             }
-        </>
+        </Fragment>
     )
 };
 

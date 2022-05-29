@@ -70,7 +70,7 @@ const dateValidation = (value) => {
 };
 
 const countryValidation = (value) => {
-    const countryPattern = /^([A-Z]){2,3}$/;
+    const countryPattern = /^[a-zA-Z]{2,}$/;
 
     if (!value.match(countryPattern) || value === '') {
         return "Choose a country!";

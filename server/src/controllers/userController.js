@@ -5,8 +5,12 @@ const { userService } = require('../services');
 const verifyIdToken = require('../middlewares/verifyIdToken');
 
 router.post('/signup', async (req, res) => {
-    const userRecord = await userService.signUp(req.body);
-    return res.json(userRecord);
+    try {
+        const userRecord = await userService.signUp(req.body);
+        return res.json(userRecord);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
 });
 
 router.post('/createemailmask', verifyIdToken, async (req, res) => {

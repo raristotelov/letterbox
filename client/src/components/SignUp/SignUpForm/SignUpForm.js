@@ -61,7 +61,6 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
         }));
     }
 
-
     const handleValidation = (e) => {
         if(!e.target.value) {
             clearErrState(e.target.name + 'Err');
@@ -69,7 +68,6 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
         }
 
         setErrValues((currentErrState) => {
-            
             return ({
                 ...currentErrState,
                 [e.target.name + 'Err']: validateField(e.target.name, e.target.value),
@@ -78,7 +76,6 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
     }
 
     const handleChange = (e) => {
-            
         setFormData((currentErrState) => ({
             ...currentErrState,
             [e.target.name]: e.target.value
@@ -88,17 +85,25 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
     const submitForm = async (e) => {
         e.preventDefault();
 
-        if (formData.email && formData.password && formData.firstName
-            && formData.lastName && formData.year && formData.month
-            && formData.day && formData.country) {
+        if (
+            formData.email
+            && formData.password
+            && formData.firstName
+            && formData.lastName
+            && formData.year
+            && formData.month
+            && formData.day
+            && formData.country
+        ) {
                 try {
                     await signUp(formData);
                     await signIn(formData.email, formData.password);
 
-                    history.push('/onboarding');   
+                    history.push('/onboarding');
                 } catch (res) {
-                     alert(res.error);
-                }      
+                    // TODO add error page
+                    alert(res.error);
+                }
         }
     }
 
@@ -107,17 +112,48 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
             
             <h1 className="signup-header">Create Account</h1>
 
-            <SignUpEmail errState={errState} formData={formData} handleChange={handleChange} handleValidation={handleValidation}/>
+            <SignUpEmail
+                errState={errState}
+                formData={formData}
+                handleChange={handleChange}
+                handleValidation={handleValidation}
+            />
 
-            <SignUpPassword errState={errState} formData={formData} handleChange={handleChange} handleValidation={handleValidation}/>
+            <SignUpPassword 
+                errState={errState}
+                formData={formData}
+                handleChange={handleChange}
+                handleValidation={handleValidation}
+            />
             
-            <SignUpNames errState={errState} formData={formData} handleChange={handleChange} handleValidation={handleValidation}/>
+            <SignUpNames 
+                errState={errState}
+                formData={formData}
+                handleChange={handleChange}
+                handleValidation={handleValidation}
+            />
 
-            <SignUpDateBirth errState={errState} formData={formData} handleChange={handleChange} handleValidation={handleValidation} setErrValues={setErrValues}/>
+            <SignUpDateBirth 
+                errState={errState}
+                formData={formData}
+                handleChange={handleChange}
+                handleValidation={handleValidation}
+                setErrValues={setErrValues}
+            />
 
-            <SignUpCountry errState={errState} formData={formData} handleChange={handleChange} handleValidation={handleValidation} setErrValues={setErrValues} countries={countries}/>
+            <SignUpCountry 
+                errState={errState}
+                formData={formData}
+                handleChange={handleChange}
+                handleValidation={handleValidation}
+                setErrValues={setErrValues}
+                countries={countries}
+            />
             
-            <SignUpButton formData={formData} signUpErr={signUpErr}/>
+            <SignUpButton 
+                formData={formData}
+                signUpErr={signUpErr}
+            />
 
             <span className="policy-agreement-txt">
                 By clicking Create account, I agree that I have read and

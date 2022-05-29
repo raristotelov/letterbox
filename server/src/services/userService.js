@@ -3,50 +3,51 @@ const UserModel = require('../models/UserModel');
 const SubscriberModel = require('../models/SubscriberModel');
 const LabelModel = require('../models/LabelModel');
 
-const signUp = ({ email, password, firstName, lastName, year, month, day, country }) => {
+const signUp = async ({ email, password, firstName, lastName, year, month, day, country }) => {
     const displayName = `${firstName} ${lastName}`;
     const birthDate = new Date(year, month - 1, day, 12);
-    return admin.auth().createUser({
-        email,
-        password,
-        displayName
-    })
-        .then(async (userRecord) => {
-            const user = new UserModel({ email, firstName, lastName, birthDate, country });
-            const _id = user._id;
-            await user.save();
 
-            return admin.auth().setCustomUserClaims(userRecord.uid, { _id })
-                .then(() => {
-                    return userRecord;
-                });
-        })
-        .catch((err) => {
-            return { error: err.message };
+    try {
+        const userRecord = await admin.auth().createUser({
+            email,
+            password,
+            displayName
         });
-}
 
+        const user = new UserModel({ email, firstName, lastName, birthDate, country });
+        const _id = user._id;
+
+        await user.save();
+    
+        await admin.auth().setCustomUserClaims(userRecord.uid, { _id, admin: true });
+    
+        return userRecord;
+    } catch (error) {
+        throw new Error('Something went wrong while trying to sign up!');
+    }
+};
 
 const createEmailMask = async (emailMask, _id, uid) => {
     try {
         const currentUser = await UserModel.findById(_id);
+
         if (currentUser.emailMask) {
-            throw 'You already have an email mask.';
+            throw new Error('You already have an email mask!');
         }
 
         const emailMaskTaken = await UserModel.findOne({ emailMask });
+
         if (emailMaskTaken) {
-            throw 'Username is taken.';
+            throw new Error('Username is taken.');
         }
 
         await UserModel.findByIdAndUpdate(_id, { emailMask });
 
-        return admin.auth().setCustomUserClaims(uid, { _id, emailMask })
-            .then(() => {
-                return 'Email mask created.';
-            });
+        await admin.auth().setCustomUserClaims(uid, { _id, emailMask, admin: true });
+
+        return 'Email mask created successfully.';
     } catch (error) {
-        throw error;
+        throw new Error('Something went wrong while trying to crete eamil mask!');
     }
 }
 
@@ -56,13 +57,11 @@ const createDbUser = async (data, uid) => {
         const _id = user._id;
         await user.save();
 
-        return admin.auth().setCustomUserClaims(uid, { _id })
-            .then(() => {
-                return uid;
-            });
+        await admin.auth().setCustomUserClaims(uid, { _id });
 
+        return uid;
     } catch (error) {
-        throw error;
+        throw new Error('Something went wrong while trying to create DB user!');
     }
 }
 

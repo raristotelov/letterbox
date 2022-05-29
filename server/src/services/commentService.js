@@ -12,7 +12,8 @@ const create = async (userId, content, rating, newsId, replyToCommentId) => {
                 $addToSet: {
                     replyes: comment._id
                 }
-            }) 
+            });
+
             comment.isReply = true;
             await comment.save();
         }
@@ -23,17 +24,19 @@ const create = async (userId, content, rating, newsId, replyToCommentId) => {
 }
 
 const edit = async ( userId, content, rating, commentId) => {
-    try {
-        const comment = await CommentModel.findById(commentId).lean();
-        if(comment.author == userId) {
-            const edittedComment = await CommentModel.findByIdAndUpdate(commentId, {content, rating, 'editionDate': Date.now()})
-            await edittedComment.save();
-            return edittedComment
-        }
-        return 
-    } catch (error) {
-        throw error;
-    }
+	try {
+		const comment = await CommentModel.findById(commentId).lean();
+
+		if(comment.author == userId) {
+			const edittedComment = await CommentModel.findByIdAndUpdate(commentId, {content, rating, 'editionDate': Date.now()})
+			await edittedComment.save();
+			return edittedComment
+		}
+
+		return;
+	} catch (error) {
+		throw error;
+	}
 }
 
 const getComments = async (_id, newsId) => {

@@ -9,7 +9,7 @@ import {
 } from './actionTypes';
 import firebase from '../firebase';
 import {
-    signUp as singUpService,
+    signUp as signUpService,
     createDbUser,
     createEmailMask,
     getReadLaterNews,
@@ -53,7 +53,7 @@ export const clearReadLater = () => ({
 })
 
 export const signUp = (data) => async (dispatch) => {
-    const response = await singUpService(data);
+    const response = await signUpService(data);
     const responseJSON = await response.json();
 
     if (responseJSON.error) {
@@ -63,10 +63,17 @@ export const signUp = (data) => async (dispatch) => {
 
 export const signIn = (email, password) => async (dispatch) => {
     const response = await firebase.auth().signInWithEmailAndPassword(email, password);
+
     const user = response.user;
-    const emailMask = (await user.getIdTokenResult(true)).claims.emailMask;
-    const _id = (await user.getIdTokenResult(true)).claims._id;
-    dispatch(signInSuccess({ user, emailMask, _id }))
+
+    const idToken = await user.getIdTokenResult(true);
+    const claims = idToken.claims;
+
+    const emailMask = claims.emailMask;
+    const _id = claims._id;
+    const admin = claims.admin;
+
+    dispatch(signInSuccess({ admin, user, emailMask, _id }))
 }
 
 export const signInWithGoogle = (history) => async (dispatch) => {

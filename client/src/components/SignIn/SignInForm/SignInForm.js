@@ -15,6 +15,7 @@ const SignInForm = ({ signIn }) => {
 
     const handleSignInFilledForm = async (event) => {
         event.preventDefault();
+        
         if (stateForm.email && stateForm.password) {
             try {
                 await signIn(stateForm.email, stateForm.password);
@@ -83,7 +84,7 @@ const SignInForm = ({ signIn }) => {
 }
 
 const mapDispatchToProps = {
-        signIn,
+    signIn,
 }   
     
 export default connect(null, mapDispatchToProps)(SignInForm);
