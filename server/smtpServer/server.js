@@ -8,6 +8,7 @@ const { newsService } = require('../src/services');
 const server = new SMTPServer({
     onData(stream, session, callback) {
         simpleParser(stream, {}, (err, parsed) => {
+            console.log("email")
             if (err) {
                 console.log(err);
             }
