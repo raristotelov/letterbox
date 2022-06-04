@@ -19,7 +19,7 @@ const signUp = async ({ email, password, firstName, lastName, year, month, day, 
 
         await user.save();
     
-        await admin.auth().setCustomUserClaims(userRecord.uid, { _id, admin: true });
+        await admin.auth().setCustomUserClaims(userRecord.uid, { _id });
     
         return userRecord;
     } catch (error) {
@@ -43,7 +43,7 @@ const createEmailMask = async (emailMask, _id, uid) => {
 
         await UserModel.findByIdAndUpdate(_id, { emailMask });
 
-        await admin.auth().setCustomUserClaims(uid, { _id, emailMask, admin: true });
+        await admin.auth().setCustomUserClaims(uid, { _id, emailMask });
 
         return 'Email mask created successfully.';
     } catch (error) {
