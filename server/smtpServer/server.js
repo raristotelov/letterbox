@@ -37,6 +37,7 @@ const server = new SMTPServer({
             }
         });
         stream.on('end', () => {
+            conole.log("Ended");
             let err;
             if (stream.sizeExceeded) {
                 err = new Error('Error: message exceeds fixed maximum message size 10 MB');
