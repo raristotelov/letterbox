@@ -27,6 +27,8 @@ const server = new SMTPServer({
                 image: letter.image ? letter.image : 'https://www.andromo.com/blog/wp-content/uploads/2020/12/news-1.jpg',
             };
 
+            console.log("New email hereeee");
+
             try {
                 newsService.add(letterData, letter.newsletter);
             } catch (error) {
