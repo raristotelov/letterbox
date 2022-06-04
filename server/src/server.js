@@ -25,17 +25,17 @@ app.use(routes);
 const certLocation = process.env.CERT;
 const keyLocation = process.env.KEY;
 
-if (process.env.NODE_ENV == 'production') {
-    const cert = fs.readFileSync(path.resolve(certLocation, './cert.pem'), 'utf8');
-    const key = fs.readFileSync(path.resolve(keyLocation, './privkey.pem'), 'utf8');
-    const credentials = { key, cert };
+// if (process.env.NODE_ENV == 'production') {
+//     const cert = fs.readFileSync(path.resolve(certLocation, './cert.pem'), 'utf8');
+//     const key = fs.readFileSync(path.resolve(keyLocation, './privkey.pem'), 'utf8');
+//     const credentials = { key, cert };
 
-    https.createServer(credentials, app).listen(443, () => console.log('Server is running on port 443'));
+//     https.createServer(credentials, app).listen(443, () => console.log('Server is running on port 443'));
 
-    http.createServer(function (req, res) {
-        res.writeHead(301, { Location: 'https://' + req.headers['host'] + req.url });
-        res.end();
-    }).listen(config.port, () => console.log(`App is running on port ${config.port} with HTTP protocol`));
-} else {
-    app.listen(config.port, console.log(`Server is running on port ${config.port}`));
-}
+//     http.createServer(function (req, res) {
+//         res.writeHead(301, { Location: 'https://' + req.headers['host'] + req.url });
+//         res.end();
+//     }).listen(config.port, () => console.log(`App is running on port ${config.port} with HTTPS protocol`));
+// } else {
+//     app.listen(config.port, console.log(`Server is running on port ${config.port}`));
+// }
