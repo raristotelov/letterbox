@@ -12,6 +12,8 @@ const server = new SMTPServer({
                 console.log(err);
             }
 
+            console.log("we have new data");
+
             const letter = letterService.convertParsedDataToLetter(parsed);
 
             if (!letter) {
