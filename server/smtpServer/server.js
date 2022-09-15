@@ -12,9 +12,10 @@ const server = new SMTPServer({
                 console.log(err);
             }
 
-            console.log("we have new data");
-
             const letter = letterService.convertParsedDataToLetter(parsed);
+
+            // TODO remove this when done with testing
+            console.log(`New email with title ${letter.title} was sent from ${letter.newsletter}`);
 
             if (!letter) {
                 return;
