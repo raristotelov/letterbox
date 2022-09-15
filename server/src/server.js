@@ -25,7 +25,7 @@ app.use(routes);
 const certLocation = process.env.CERT;
 const keyLocation = process.env.KEY;
 
-if (process.env.NODE_ENV == 'production1') {
+if (process.env.NODE_ENV == 'production') {
     const cert = fs.readFileSync(path.resolve(certLocation, './cert.pem'), 'utf8');
     const key = fs.readFileSync(path.resolve(keyLocation, './privkey.pem'), 'utf8');
     const credentials = { key, cert };
