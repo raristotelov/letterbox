@@ -4,6 +4,16 @@ const { commentService } = require('../services')
 
 const verifyIdToken = require('../middlewares/verifyIdToken');
 
+router.get('/', verifyIdToken, async (req, res) => {
+    const newsId  = req.query.newsId;
+    try {
+        const comments = await commentService.getComments(res._id, newsId);
+        return res.json(comments);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 router.post('/', verifyIdToken, async (req, res) => {
     const {content, rating, newsId, replyToCommentId} = req.body;
     try {
@@ -15,7 +25,7 @@ router.post('/', verifyIdToken, async (req, res) => {
     }
 })
 
-router.post('/edit', verifyIdToken, async (req, res) => {
+router.put('/edit', verifyIdToken, async (req, res) => {
     const {content, rating, commentId} = req.body;
     try {
         const response = await commentService.edit(res._id, content, rating, commentId);
@@ -25,16 +35,6 @@ router.post('/edit', verifyIdToken, async (req, res) => {
         return res.status(400).json({ error })
     }
 })
-
-router.get('/', verifyIdToken, async (req, res) => {
-    const newsId  = req.query.newsId;
-    try {
-        const comments = await commentService.getComments(res._id, newsId);
-        return res.json(comments);
-    } catch (error) {
-        return res.status(400).json({ error });
-    }
-});
 
 router.get('/replies', verifyIdToken, async (req, res) => {
     const repliesIds  = req.query.replies;

@@ -1,4 +1,4 @@
-import { ReactComponent as LogoGreen } from '../../../shared/Logo/LogoGreen.svg';
+import { ReactComponent as Logo } from '../../../shared/Logo/LetterboxLogo.svg';
 import { Link } from 'react-router-dom';
 import './LandingNav.scss';
 
@@ -6,7 +6,7 @@ const LandingNav = () => {
     return (
         <nav className="landing-nav">
             <div className="landing-logo">
-                <LogoGreen />
+                <Logo />
             </div>
             <ul className="nav-links">
                 <li>

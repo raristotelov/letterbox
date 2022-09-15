@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import SignInForm from './SignInForm';
 import SignAside from '../shared/SignAside';
-import { ReactComponent as LogoGreen } from '../shared/Logo/LogoGreen.svg';
+import { ReactComponent as Logo } from '../shared/Logo/LetterboxLogo.svg';
 import SocialMediaSignIn from './SocialMediaSignIn/SocialMediaSignIn';
 import './SignIn.scss';
 
@@ -17,7 +17,7 @@ const SignIn = () => {
             <div className='signin-container'>
                 <div className='signin-main'>
                     <div className='signin-logo'>
-                        <LogoGreen />
+                        <Logo />
                     </div>
                     <div>
                         <SignInForm className='signin-form' />

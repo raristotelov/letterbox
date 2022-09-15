@@ -6,7 +6,7 @@ export const createComment = (content, rating, idToken, newsId, user, replyToCom
 }
 
 export const editComment = (content, rating, idToken, commentId) => {
-    return request.post(`${SERVER_ADDRESS}/comment/edit`, {content, rating, commentId}, idToken);
+    return request.put(`${SERVER_ADDRESS}/comment/edit`, {content, rating, commentId}, idToken);
 }
 
 export const getComments = (newsId, idToken) => {

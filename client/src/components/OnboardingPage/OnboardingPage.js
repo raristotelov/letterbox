@@ -1,4 +1,4 @@
-import { ReactComponent as Logo } from '../shared/Logo/LogoGreen.svg';
+import { ReactComponent as Logo } from '../shared/Logo/LetterboxLogo.svg';
 import GenerateMailForm from './GenerateMailForm';
 
 import './OnboardingPage.scss';

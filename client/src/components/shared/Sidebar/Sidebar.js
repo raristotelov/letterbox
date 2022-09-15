@@ -1,11 +1,11 @@
-import { ReactComponent as LogoGreen } from '../Logo/LogoGreen.svg';
+import { ReactComponent as Logo } from '../Logo/Logo.svg';
 import './Sidebar.scss';
 
 const Sidebar = (props) => {
     return (
         <aside className="sidebar">
             <div className="sidebar-logo">
-                <LogoGreen/>
+                <Logo/>
             </div>
             {props.children}
         </aside>

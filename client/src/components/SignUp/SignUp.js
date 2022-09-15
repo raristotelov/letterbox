@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks'; 
 import SignUpForm from './SignUpForm';
 import SocialMediaSignUp from './SocialMediaSignUp';
-import { ReactComponent as LogoGreen } from '../shared/Logo/LogoGreen.svg';
+import { ReactComponent as Logo } from '../shared/Logo/LetterboxLogo.svg';
 import SignAside from '../shared/SignAside';
 
 import './SignUp.scss';
@@ -24,7 +24,7 @@ let history = useHistory();
             <div className='signup-container'>
                 <div className='signup-main'>
                     <div className='signup-logo-green'>
-                        <LogoGreen />
+                        <Logo />
                     </div>
                     <div className="form-wrapper">
                         <SignUpForm countries={countriesOptions} className='signup-form' />

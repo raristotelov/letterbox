@@ -14,6 +14,7 @@ const initialState = {
     newsletters: [],
     newsIdArrayToHide: null,
 }
+
 const newsletterReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_NEWSLETTER:

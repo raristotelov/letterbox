@@ -82,7 +82,7 @@ const removeNewsletterFromAllLabels = async (userId, newsletterId) => {
                 $pull: {
                     newsletters: newsletterId
                 }
-            }) 
+            })
         };
 
         const updatedUser = await UserModel.findById(userId)

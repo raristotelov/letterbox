@@ -8,6 +8,12 @@ const signUp = async ({ email, password, firstName, lastName, year, month, day, 
     const birthDate = new Date(year, month - 1, day, 12);
 
     try {
+        const emailIsTaken = await UserModel.findOne({ email });
+
+        if (emailIsTaken) {
+            throw new Error('email is taken.');
+        }
+
         const userRecord = await admin.auth().createUser({
             email,
             password,
