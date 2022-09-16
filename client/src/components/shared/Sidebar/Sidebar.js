@@ -1,4 +1,4 @@
-import { ReactComponent as Logo } from '../Logo/Logo.svg';
+import { ReactComponent as Logo } from '../Logo/LetterboxLogo.svg';
 import './Sidebar.scss';
 
 const Sidebar = (props) => {
