@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { ReactComponent as Logo } from '../shared/Logo/LetterboxLogo.svg';
 import GenerateMailForm from './GenerateMailForm';
 
@@ -7,7 +9,9 @@ const OnboardingPage = () => {
     return (
         <div className="page">
             <div className="onboarding-logo-conatiner">
-                <Logo />
+                <Link to={'/'}>
+                    <Logo />
+                </Link>
             </div>
 
             <div className="generate-mail-container">

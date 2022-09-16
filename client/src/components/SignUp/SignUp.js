@@ -1,4 +1,5 @@
-import { useHistory } from 'react-router-dom';
+import {useState} from "react";
+import { useHistory, Link } from 'react-router-dom';
 
 import { useFetch } from '../../hooks'; 
 import SignUpForm from './SignUpForm';
@@ -9,28 +10,40 @@ import SignAside from '../shared/SignAside';
 import './SignUp.scss';
 
 const SignUp = () => {
-let history = useHistory();
+    const [countryOptions, setCountryOptions] = useState(null);
+
+    const countriesState = useFetch('https://restcountries.com/v3.1/all', {});
+
+    if (!countryOptions && countriesState?.length) {
+        setCountryOptions(countriesState.map((country) => country.name.common).sort((a, b) => a.localeCompare(b)));
+    }
+
+    let history = useHistory();
 
     const RedirectToSignIn = () => {
         history.push('signin');
     }
-
-    const countriesState = useFetch('https://restcountries.com/v3.1/all', {});
-
-    const countriesOptions = countriesState.map((country) => country.name.common);
 
     return (
         <div className='signup'>
             <div className='signup-container'>
                 <div className='signup-main'>
                     <div className='signup-logo-green'>
-                        <Logo />
+                        <Link to={'/'}>
+                            <Logo />
+                        </Link>
                     </div>
+
                     <div className="form-wrapper">
-                        <SignUpForm countries={countriesOptions} className='signup-form' />
+                        <SignUpForm 
+                            countries={countryOptions?.length ? countryOptions : []}
+                            className='signup-form'
+                        />
+
                         <SocialMediaSignUp className="social-media-signup"/>
                     </div>
                 </div>
+
                 <SignAside 
                     className='sign-aside' 
                     title="Wellcome back!" 

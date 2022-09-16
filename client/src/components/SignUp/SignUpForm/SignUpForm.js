@@ -1,15 +1,18 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signUp, signIn } from '../../../actions/userActions';
 
+
+import { signUp, signIn } from '../../../actions/userActions';
 import { validateField } from '../../../services/formValidationService';
+
 import SignUpEmail from './SignUpEmail/SignUpEmail';
 import SignUpPassword from './SignUpPassword/SignUpPassword';
 import SignUpNames from './SignUpNames/SignUpNames';
 import SignUpDateBirth from './SignUpDateBirth/SignUpDateBirth';
 import SignUpCountry from './SignUpCountry/SignUpCountry';
 import SignUpButton from './SignUpButton/SignUpButton';
+
 import './SignUpForm.scss';
 
 
@@ -61,7 +64,7 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
         }));
     }
 
-    const handleValidation = (e) => {
+    const handleValidation = (e, additionalParam) => {
         if(!e.target.value) {
             clearErrState(e.target.name + 'Err');
             return;
@@ -70,7 +73,7 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
         setErrValues((currentErrState) => {
             return ({
                 ...currentErrState,
-                [e.target.name + 'Err']: validateField(e.target.name, e.target.value),
+                [e.target.name + 'Err']: validateField(e.target.name, e.target.value, additionalParam),
             })
         });
     }
@@ -154,11 +157,6 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
                 formData={formData}
                 signUpErr={signUpErr}
             />
-
-            <span className="policy-agreement-txt">
-                By clicking Create account, I agree that I have read and
-                <span className="second-line">accepted the <a href="/termsofuse">Terms of Use</a> and <a href="/privacypolicy">Privacy Policy</a>.</span>
-            </span>
         </form>
     )
 }

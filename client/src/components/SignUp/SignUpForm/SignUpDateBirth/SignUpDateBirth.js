@@ -80,7 +80,7 @@ const SignUpDateBirth = ({ errState, formData, handleChange, handleValidation, s
                         id="year"
                         type="number"
                         value={formData.year}
-                        placeholder="year"
+                        placeholder="Year"
                         onChange={handleChange}
                         onBlur={(e) => {handleValidation(e); checkDateErr(e);}}/>
             }

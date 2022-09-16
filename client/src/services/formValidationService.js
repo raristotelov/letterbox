@@ -1,5 +1,5 @@
 const emailValidation = (value) => {
-    const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
     if (!value.match(emailPattern)) {
         return "You must enter valid email adress!";
@@ -69,17 +69,17 @@ const dateValidation = (value) => {
 	return isValidDate;
 };
 
-const countryValidation = (value) => {
+const countryValidation = (value, countries) => {
     const countryPattern = /^[a-zA-Z]{2,}$/;
 
-    if (!value.match(countryPattern) || value === '') {
-        return "Choose a country!";
+    if (!value.match(countryPattern) || value === '' || !countries.includes(value)) {
+        return "Choose a valid country or region!";
     } else  {
         return false;
     }
 }
 
-export const validateField = (type, value) => {
+export const validateField = (type, value, additionalParam) => {
     switch (type) {
         case 'email':
             return emailValidation(value);
@@ -96,7 +96,7 @@ export const validateField = (type, value) => {
         case 'day':
             return dayValidation(value);
         case 'country':
-            return countryValidation(value);
+            return countryValidation(value, additionalParam);
         case 'date':
             return !dateValidation(value);
         default:

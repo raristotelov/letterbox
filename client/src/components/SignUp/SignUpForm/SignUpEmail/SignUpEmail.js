@@ -14,7 +14,7 @@ const SignUpEmail = ({ errState, formData, handleChange, handleValidation }) => 
                         value={formData.email}
                         onChange={handleChange}
                         onBlur={handleValidation}
-                        />
+                    />
                 :   <Input
                         id="email"
                         type="email"
@@ -22,7 +22,7 @@ const SignUpEmail = ({ errState, formData, handleChange, handleValidation }) => 
                         placeholder="Enter your email address"
                         onChange={handleChange}
                         onBlur={handleValidation}
-                        />
+                    />
             }
         </div>
     )

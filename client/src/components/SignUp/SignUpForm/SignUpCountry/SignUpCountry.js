@@ -1,4 +1,7 @@
 import React, { Fragment } from "react";
+
+import Input, { InputError } from '../../../shared/Input/Input';
+
 import './SignUpCountry.scss';
 
 const SignUpCountry = ({ errState, formData, handleChange, handleValidation, countries }) => {
@@ -7,72 +10,30 @@ const SignUpCountry = ({ errState, formData, handleChange, handleValidation, cou
             {
                 errState.countryErr
                 ?   <div className="sign-select-error">
-                        <select
-                            name="country"
+                        <InputError 
+                            id='country'
+                            type='text'
                             value={formData.country}
-                            id="country"
-                            onChange={(e) => {handleChange(e); handleValidation(e);}}>
-
-                                <option label="Country/Region" value="0">Select a country ... </option>
-
-                                {
-                                    countries 
-                                    ? countries.map((country, index) => (
-                                            <option
-                                                key={index}
-                                                value={country}
-                                                label={country}
-                                            >
-                                                {country}
-                                            </option>
-                                            )
-                                        )
-                                    :   (
-                                            <option
-                                                value="Loading..."
-                                                label="Loading...">
-                                                    Loading...
-                                            </option>
-                                        )
-                                }
-                        </select>
-
-                        <label
-                            htmlFor="country"
-                            className="select-label"
-                            data-content={errState.countryErr}></label>
+                            placeholder={errState.countryErr}
+                            onChange={handleChange}
+                            onBlur={(e) => handleValidation(e, countries)}
+                            isSelect={true}
+                            selectOptions={countries}
+                            listId='countries'
+                        />
                     </div>
                 :   <div className="country">
-                        <select
-                            name="country"
+                        <Input
+                            id='country'
+                            type='text'
                             value={formData.country}
-                            id="country"
-                            onChange={(e) => {handleChange(e); handleValidation(e);}}>
-
-                            <option label="Country/Region" value="0">Select a country ... </option>
-
-                            {
-                                countries 
-                                ? countries.map((country, index) => (
-                                        <option
-                                            key={index}
-                                            value={country}
-                                            label={country}>
-                                                {country}
-                                        </option>
-                                        )
-                                    )
-                                :   (
-                                        <option value="Loading..." label="Loading...">
-                                            Loading...
-                                        </option>
-                                    )
-                            }
-                        </select>
-                        <label
-                            htmlFor="country"
-                            className="select-label"
-                            data-content="Country/Region"></label>
+                            placeholder={'Country/Region'}
+                            onChange={handleChange}
+                            onBlur={(e) => handleValidation(e, countries)}
+                            isSelect={true}
+                            selectOptions={countries}
+                            listId='countries'
+                        />
                     </div>
             }
         </Fragment>

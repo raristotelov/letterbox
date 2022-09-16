@@ -1,12 +1,16 @@
-import { ReactComponent as Logo } from '../../../shared/Logo/LetterboxLogo.svg';
 import { Link } from 'react-router-dom';
+
+import { ReactComponent as Logo } from '../../../shared/Logo/LetterboxLogo.svg';
+
 import './LandingNav.scss';
 
 const LandingNav = () => {
     return (
         <nav className="landing-nav">
             <div className="landing-logo">
-                <Logo />
+                <Link to={'/'}>
+                    <Logo />
+                </Link>
             </div>
             <ul className="nav-links">
                 <li>
