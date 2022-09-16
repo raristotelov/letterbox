@@ -27,17 +27,28 @@ const App = ({ verifyAuth }) => {
             <Router>
                 <Switch>
                     <Route  path="/" exact component={Landing} />
+
                     <Route exact path="/main/:newsletterId" component={Main} />
-                    <Route path="/signin" component={SignIn} />
-                    <Route path="/signup" component={SignUp} />
+
+                    <Route path="/sign-in" component={SignIn} />
+
+                    <Route path="/sign-up" component={SignUp} />
+
                     <Route path="/onboarding" component={Onboarding} />
+
                     <Route path="/forgotpassword" component={ForgotPassword} />
+
                     <Route path="/signout" component={SignOut} />
+
                     <Route path="/explore-feeds" component={ExploreFeeds} />
+
                     <Route path="/read-later" component={ReadLater} />
+
                     <Route path="/news/:id" component={ReadNews} />
+                    
                     <Route path="/feed/:feedId" component={SingleFeed} />
-                    <Route path="/howitworks" component={HowItWorks} />
+
+                    <Route path="/how-it-works" component={HowItWorks} />
                 </Switch>
             </Router>
         </div>

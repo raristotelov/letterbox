@@ -30,10 +30,6 @@ const LandingSubscribeText = () => {
                         Forget about newsletters emails and focus only in reading.
                     </li>
                 </ul>
-
-                <Link to="/subscribe">
-                    <button className="subscribe-btn">Subscribe</button>
-                </Link>
             </div>
         </div>
     );

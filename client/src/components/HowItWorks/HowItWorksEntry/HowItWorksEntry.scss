@@ -26,27 +26,5 @@
             letter-spacing: 0.2px;
             color: #119c59;
         }
-
-        .how-it-works-btn {
-            max-width: 195px;
-            border: none;
-            outline: none;
-            background: #118d47;
-            border-radius: 36px;
-
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 18px;
-            letter-spacing: 0.2px;
-            text-transform: uppercase;
-            padding: 20px 38px;
-
-            color: #ffffff;
-            
-            transition: all 0.2s ease-in-out;
-            &:hover {
-                background: #0d7c3d;
-            }
-        }
     }
 }

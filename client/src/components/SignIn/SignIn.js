@@ -12,7 +12,7 @@ const SignIn = () => {
     let history = useHistory();
 
     const RedirectToSignUp = () => {
-        history.push('signup');
+        history.push('sign-up');
     }
 
     return (

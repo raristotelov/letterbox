@@ -32,7 +32,7 @@ const Header = ({ emailMask, signOut }) => {
     const handleSignOut = () => {
         closeSettings();
         signOut();
-        history.push('/signin');
+        history.push('/sign-in');
     };
 
     return (

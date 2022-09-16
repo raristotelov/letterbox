@@ -6,9 +6,8 @@ const HowItWorksEntry = () => {
         <div className="how-it-works-entry-container">
             <section className="description-container">
                 <h1 className="title">How it works?</h1>
-                <p className="description">Newsletter-App is a brand new application for newsletters reading.</p>
 
-                <button className="how-it-works-btn">How it Works</button>
+                <p className="description">Newsletter-App is a brand new application for newsletters reading.</p>
             </section>
 
             <section className="image-container">

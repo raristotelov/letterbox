@@ -21,7 +21,7 @@ const SignUp = () => {
     let history = useHistory();
 
     const RedirectToSignIn = () => {
-        history.push('signin');
+        history.push('/sign-in');
     }
 
     return (

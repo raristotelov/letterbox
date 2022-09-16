@@ -29,22 +29,26 @@
 
         .try-btn {
             margin-top: 40px;
-            padding: 20px 44px;
-            background: #219653;
-            border: none;
-            outline: none;
+            width: 195px;
+            height: 54px;
+            
+            background-color: #119C59;
+            color: white;
+            border: 2px solid #119C59;
             border-radius: 36px;
 
-            font-weight: 600;
             font-size: 14px;
+            font-weight: 600;
             line-height: 18px;
+            text-align: center;
+            text-transform: uppercase;
             letter-spacing: 0.2px;
+            transition: all 0.1s ease-in-out;
 
-            color: #ffffff;
-
-            transition: all 0.2s ease-in-out;
             &:hover {
-                background: #0d7c3d;
+                background-color: white;
+                color: #119C59;
+                border: 2px solid #119C59;
             }
         }
     }

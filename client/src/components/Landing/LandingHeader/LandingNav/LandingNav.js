@@ -12,21 +12,18 @@ const LandingNav = () => {
                     <Logo />
                 </Link>
             </div>
+
             <ul className="nav-links">
-                <li>
-                    <Link to="/howitworks">How it works</Link>
+                <li className='page-link'>
+                    <Link to="/how-it-works">How it works</Link>
                 </li>
-                <li>
-                    <Link to="/whynewsletterapp">Why Newsletter-App?</Link>
+
+                <li className='page-link'>
+                    <Link to="/why-letterbox">Why Letterbox?</Link>
                 </li>
+
                 <li>
-                    <Link to="/pricing">Pricing</Link>
-                </li>
-                <li>
-                    <Link to="/blog">Blog</Link>
-                </li>
-                <li>
-                    <Link to="/signin">
+                    <Link to="/sign-in">
                         <button className="login-btn">Login</button>
                     </Link>
                 </li>

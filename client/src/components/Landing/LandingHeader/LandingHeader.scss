@@ -35,23 +35,27 @@
             }
 
             .try-for-free-btn {
+                margin-top: 83px;
                 width: 195px;
                 height: 58px;
-                border: none;
+
                 background: #219653;
+                color: white;
+                border: 2px solid #119C59;
                 border-radius: 36px;
-                margin-top: 83px;
-                font-weight: 600;
+                
                 font-size: 14px;
+                font-weight: 600;
                 line-height: 18px;
                 text-align: center;
-                letter-spacing: 0.2px;
-                color: #FFFFFF;
                 text-transform: uppercase;
-                transition: all 0.3s ease-in-out;
+                letter-spacing: 0.2px;
+                transition: all 0.1s ease-in-out;
 
                 &:hover {
-                    opacity: 0.7;
+                    background-color: white;
+                    color: #119C59;
+                    border: 2px solid #119C59;
                 }
             }
         }

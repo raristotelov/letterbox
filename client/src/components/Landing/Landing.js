@@ -20,11 +20,17 @@ const Landing = ({ user }) => {
         <div className="landing-wrapper">
             <div className="landing">
                 <LandingHeader />
+
                 <LandingFeatures />
+
                 <LandingNewsletterAppDescription />
+
                 <LandingCategories />
+
                 <LandingHappyUsers />
+
                 <LandingSubscribe />
+                
                 <LandingFooter />
             </div>
         </div>

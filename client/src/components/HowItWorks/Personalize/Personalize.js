@@ -16,7 +16,7 @@ const Personalize = () => {
                     Don’t forget the search bar, as well.
                 </p>
 
-                <Link to="/signup">
+                <Link to="/sign-up">
                     <button className="try-btn">
                         TRY FOR FREE
                     </button>

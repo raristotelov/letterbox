@@ -13,7 +13,7 @@ function SignOut({ signOut, user }) {
             {
                 user ?
                     <Link to="/" onClick={handleSignOut}>Sign Out</Link>
-                    : <Link to="/signin">Sign In</Link>
+                    : <Link to="/sign-in">Sign In</Link>
             }
         </div>
     );

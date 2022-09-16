@@ -11,8 +11,10 @@ const LandingHeader = () => {
             <div className="landing-header-content">
                 <div className="describe-box">
                     <h2 className="describe-box-title">Bring back the joy of reading newsletters</h2>
+
                     <h3 className="describe-box-subtitle">Discover, subscribe and manage all your email newsletters in one place.</h3>
-                    <Link to="/signup">
+                    
+                    <Link to="/sign-up">
                         <button className="try-for-free-btn">Try for free</button>
                     </Link>
                 </div>
