@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
 
 import SignOut from './SignOut';
-import ComingSoon from './components/ComingSoon';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import Onboarding from './components/OnboardingPage';
@@ -29,7 +28,6 @@ const App = ({ verifyAuth }) => {
                 <Switch>
                     <Route  path="/" exact component={Landing} />
                     <Route exact path="/main/:newsletterId" component={Main} />
-                    <Route path="/comingsoon" exact component={ComingSoon} />
                     <Route path="/signin" component={SignIn} />
                     <Route path="/signup" component={SignUp} />
                     <Route path="/onboarding" component={Onboarding} />
