@@ -1,5 +1,5 @@
 import AddLabelButton from './AddLabelButton/AddLabelButton';
-import SettingsButton from './SettingsButton/SettingsButton';
+
 import './MyLabelsHeader.scss';
 
 const MyLabelsHeader = ({ setConfirmDialogueIsOpen }) => {
@@ -9,8 +9,6 @@ const MyLabelsHeader = ({ setConfirmDialogueIsOpen }) => {
             
             <div className="my-labels-btns">
                 <AddLabelButton setConfirmDialogueIsOpen={setConfirmDialogueIsOpen} />
-
-                <SettingsButton />
             </div>
         </div>
     );

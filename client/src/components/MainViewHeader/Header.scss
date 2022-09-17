@@ -32,7 +32,8 @@
                 }
 
                 .copy-btn {
-                    padding-top: 4px;
+                    height: 30px;
+                    margin-top: 32px;
                     border: none;
                     background: none;
                 }
@@ -40,10 +41,14 @@
                 .copy-btn:focus{
                     outline: none;
                 }
+
+                .copy-btn:hover {
+                    opacity: 0.7;
+                }
             }
 
             .avatar-wrapper {
-                padding-top: 27px;
+                padding-top: 30px;
 
                 .circle {
                     text-align: center;

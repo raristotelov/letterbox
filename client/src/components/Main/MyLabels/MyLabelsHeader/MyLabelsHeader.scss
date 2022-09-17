@@ -13,14 +13,17 @@
 
     .my-labels-btns {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         width: 60px;
     }
 
-    .add-label-btn,
-    .settings-btn {
+    .add-label-btn {
         border: none;
         background: none;
         outline: none;
+
+        &:hover {
+            opacity: 0.7;
+        }
     }
 }
