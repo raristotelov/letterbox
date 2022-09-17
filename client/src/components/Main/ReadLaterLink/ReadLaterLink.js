@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { ReactComponent as ReadLaterIcon } from './assets/read-later-icon.svg';
 import './ReadLaterLink.scss';
 
-const ReadLaterLink = () => {
+const ReadLaterLink = ({ selected }) => {
     let history = useHistory();
 
     const RedirectToReadLater = () => {
@@ -10,10 +10,10 @@ const ReadLaterLink = () => {
     }
 
     return (
-        <button className="read-later-link" onClick={RedirectToReadLater}>
-            <span className="read-later-title">Read Later</span>
+        <button className='read-later-link' onClick={RedirectToReadLater}>
+            <span className={`read-later-title ${selected ? 'selected' : ''}`}>Read Later</span>
             
-            <div className="read-later-icon">
+            <div className='read-later-icon'>
                 <ReadLaterIcon />
             </div>
         </button>

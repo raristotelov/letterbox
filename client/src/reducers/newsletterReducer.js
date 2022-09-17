@@ -12,7 +12,7 @@ const initialState = {
         news: []
     },
     newsletters: [],
-    newsIdArrayToHide: null,
+    newsIdArrayToHide: null
 }
 
 const newsletterReducer = (state = initialState, action) => {

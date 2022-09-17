@@ -36,6 +36,16 @@
         }
     }
 
+    &:hover {
+        .label-title {
+            opacity: 0.7;
+        }
+
+        .label-arrow {
+            opacity: 0.7;
+        } 
+    }
+
     .label-newsletters {
         display: none;
     }

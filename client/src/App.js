@@ -15,9 +15,11 @@ import ReadLater from './components/ReadLater'
 import ReadNews from './components/ReadNews';
 import SingleFeed from './components/SingleFeed';
 import HowItWorks from './components/HowItWorks';
+import MainLayout from './components/layouts/MainLayout';
+
 import './App.css'
 
-const App = ({ verifyAuth }) => {
+const App = ({ verifyAuth, user }) => {
     useEffect(() => {
         verifyAuth();
     }, [verifyAuth]);
@@ -25,31 +27,33 @@ const App = ({ verifyAuth }) => {
     return (
         <div className="App">
             <Router>
-                <Switch>
-                    <Route  path="/" exact component={Landing} />
+                <MainLayout activeUser={user}>
+                    <Switch>
+                        <Route  path="/" exact component={Landing} />
 
-                    <Route exact path="/main/:newsletterId" component={Main} />
+                        <Route path="/how-it-works" component={HowItWorks} />
 
-                    <Route path="/sign-in" component={SignIn} />
+                        <Route path="/sign-up" component={SignUp} />
 
-                    <Route path="/sign-up" component={SignUp} />
+                        <Route path="/sign-in" component={SignIn} />
 
-                    <Route path="/onboarding" component={Onboarding} />
+                        <Route path="/signout" component={SignOut} />
+                        
+                        <Route path="/onboarding" component={Onboarding} />
 
-                    <Route path="/forgotpassword" component={ForgotPassword} />
+                        <Route path="/forgotten-password" component={ForgotPassword} />
 
-                    <Route path="/signout" component={SignOut} />
+                        <Route path="/explore-feeds" component={ExploreFeeds} />
 
-                    <Route path="/explore-feeds" component={ExploreFeeds} />
+                        <Route path="/feed/:feedId" component={SingleFeed} />
 
-                    <Route path="/read-later" component={ReadLater} />
+                        <Route exact path="/main/:newsletterId" component={Main} />
 
-                    <Route path="/news/:id" component={ReadNews} />
-                    
-                    <Route path="/feed/:feedId" component={SingleFeed} />
+                        <Route path="/news/:id" component={ReadNews} />
 
-                    <Route path="/how-it-works" component={HowItWorks} />
-                </Switch>
+                        <Route path="/read-later" component={ReadLater} />
+                    </Switch>
+                </MainLayout>
             </Router>
         </div>
     );
@@ -59,4 +63,8 @@ const mapDispatchToProps = {
     verifyAuth,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = state => ({
+    user: state.user.user,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

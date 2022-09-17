@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import ChangeViewDropDown from '../Main/ChangeViewDropDown';
 import MagazineView from '../Main/MagazineView';
 import CardView from '../Main/CardView';
 import TitleView from '../Main/TitleView';
 import { getReadLater, clearReadLater } from '../../actions/userActions';
-import MainLayout from '../layouts/MainLayout/MainLayout';
 import transformReadLaterNews from '../../helpers/transformReadLaterNews';
 import { hideNews, markNewsReadLater } from '../../services/userService';
 import { useClean } from '../../hooks';
+import Loader from '../shared/Loader/Loader';
+
 import './ReadLater.scss';
 
 const ReadLater = ({ user, readLaterNews, getReadLater, clearReadLater }) => {
@@ -54,20 +55,30 @@ const ReadLater = ({ user, readLaterNews, getReadLater, clearReadLater }) => {
     const PageView = viewStyle[view];
 
     return (
-        <MainLayout>
+        <Fragment>
             <main className="read-later-main">
                 <section className='read-later-title'>
                     <h1>Read Later</h1>
+
                     <div className="change-view-dropdown-container">
                         <ChangeViewDropDown view={view} setView={setView} className="change-view-dropdown" />
                     </div>
                 </section>
 
-                <section className="read-later-view">
-                    <PageView news={news} onMarkNewsReadLater={onMarkNewsReadLater} />
-                </section>
+                {
+                    news?.size ? (
+                        <section className="read-later-view">
+                            <PageView news={news} onMarkNewsReadLater={onMarkNewsReadLater} />
+                        </section>
+                    ) : (
+                        <div className='loader'>
+                            <Loader />
+                        </div>
+                    )
+                }
+            
             </main>
-        </MainLayout >
+        </Fragment >
     );
 }
 

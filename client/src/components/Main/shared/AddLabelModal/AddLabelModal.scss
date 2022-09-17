@@ -35,6 +35,11 @@
                     background-color: transparent;
                     border: none;
                     outline: none;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.7;
+                    }
                 }
 
                 .add-label-title {
@@ -79,6 +84,16 @@
 
                 .save-btn-icon {
                     margin-right: 30px;
+                }
+
+                &:hover {
+                    .save-btn-icon {
+                        opacity: 0.8;
+                    }
+
+                    .save-btn-txt {
+                        opacity: 0.8;
+                    }
                 }
             }
         }

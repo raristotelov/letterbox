@@ -6,6 +6,7 @@ const Feed = ({ feed }) => {
         <Link to={`/feed/${feed._id}`}>
             <div className="feed">
                 <span className="feed-title">{feed.name}</span>
+                
                 <span className="feed-counter">{feed.newsletters.length}</span>
             </div>
         </Link>

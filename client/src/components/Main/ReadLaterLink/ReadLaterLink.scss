@@ -14,6 +14,14 @@
         line-height: 24px;
         letter-spacing: 0.1px;
         color: #119C59;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    .selected {
+        font-weight: 700;
     }
 
     .read-later-icon {

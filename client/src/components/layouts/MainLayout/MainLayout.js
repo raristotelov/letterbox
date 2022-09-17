@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom"
+
 import MyFeeds from '../../Main/MyFeeds';
 import MyLabels from '../../Main/MyLabels';
 import ReadLaterLink from '../../Main/ReadLaterLink';
@@ -5,23 +7,32 @@ import ReadHistoryLink from '../../Main/ReadHistoryLink';
 import Header from '../../MainViewHeader/Header';
 import Sidebar from '../../shared/Sidebar';
 import { SearchProvider } from '../../../contexts/SearchContext';
+
 import './MainLayout.scss';
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, activeUser }) => {
+    const location = useLocation();
+
+    if (!activeUser) {
+        return children;
+    }
 
     return (
         <SearchProvider>
-            <div className="main-layout-wrapper">
+            <div className='main-layout-wrapper'>
                 <Sidebar>
-                    <div className="sidebar-content-wrapper">
-                        <MyLabels />
-                        <ReadLaterLink />
-                        <ReadHistoryLink />
-                        <MyFeeds />
+                    <div className='sidebar-content-wrapper'>
+                        <MyLabels selected={location.pathname.includes('main')}/>
+
+                        <ReadLaterLink selected={location.pathname.includes('read-later')}/>
+
+                        <ReadHistoryLink selected={location.pathname.includes('read-history')}/>
+
+                        <MyFeeds selected={location.pathname.includes('feed')}/>
                     </div>
                 </Sidebar>
 
-                <div className="main-layout-prime">
+                <div className='main-layout-prime'>
                     <Header />
 
                     {children}

@@ -48,11 +48,12 @@
 
     .img-container {
         margin-left: 16px;
+
         img {
             width: 186px;
             height: 112px;
 
-            object-fit: cover;
+            object-fit: contain;
         }
     }
 }

@@ -3,17 +3,31 @@ import NewsletterCard from './NewsletterCard/NewsletterCard';
 import AddToBoardModal from '../../Main/shared/AddToBoardModal';
 import AddLabelModal from '../../Main/shared/AddLabelModal';
 import { SearchContext } from '../../../contexts/SearchContext';
+import Loader from '../../shared/Loader/Loader';
+
 import './NewsletterList.scss';
 
-const NewsletterList = ({ newsletters }) => {
-    const { search } = useContext(SearchContext);
-    const [filteredNewsletters, setFilterredNewsletters] = useState(newsletters);
+const NewsletterList = ({ newsletters, isLoading }) => {
+    const searchContextObject = useContext(SearchContext);
+    const [filteredNewsletters, setFilterredNewsletters] = useState(null);
     const [addToLabelOpen, setAddToLabelOpen] = useState(false);
     const [createLabelOpen, setCreateLabelOpen] = useState(false);
 
     useEffect(() => {
-        setFilterredNewsletters(newsletters.filter(x => x.name.toLowerCase().includes(search.toLowerCase())));
-    }, [search, setFilterredNewsletters, newsletters]);
+        if (searchContextObject?.search) {
+            setFilterredNewsletters(newsletters.filter(x => x.name.toLowerCase().includes(searchContextObject.search.toLowerCase())));
+        } else {
+            setFilterredNewsletters(newsletters);
+        }
+    }, [searchContextObject?.search, setFilterredNewsletters, newsletters]);
+
+    if (isLoading) {
+        return (
+            <div className='loader'>
+                <Loader />
+            </div>
+        )
+    }
 
     return (
         <div className="newsletter-list-container">
@@ -28,7 +42,20 @@ const NewsletterList = ({ newsletters }) => {
                 onCloseClick={() => setCreateLabelOpen(false)}
             />
 
-            {filteredNewsletters.map(x => <NewsletterCard key={x._id} newsletter={x} setAddToLabelOpen={setAddToLabelOpen} />)}
+            {filteredNewsletters?.length 
+                ? filteredNewsletters
+                    .map(x => (
+                        <NewsletterCard 
+                            key={x._id} 
+                            newsletter={x} 
+                            setAddToLabelOpen={setAddToLabelOpen} 
+                        />
+                    )) : (
+                    <span className='no-information'>
+                        No newslettres are currently added to this feed.  
+                    </span>
+                )
+            }
         </div>
     );
 }

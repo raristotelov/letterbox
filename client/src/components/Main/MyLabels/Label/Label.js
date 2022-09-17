@@ -1,9 +1,9 @@
+import Newsletter from './Newsletter';
 import { ReactComponent as ArrowIcon } from './assets/arrow-icon.svg';
-import New from './Newsletter';
+
 import './Label.scss';
 
 const Label = ({ labelTitle, newsCounter, newsletters }) => {
-
     const handleLabelLabelClick = (e) => {
         const labelsWrapper = e.target.parentElement.parentElement;
 
@@ -23,7 +23,6 @@ const Label = ({ labelTitle, newsCounter, newsletters }) => {
         openLabel(e.currentTarget.parentElement)
     }
 
-
     return (
         <div className="label-wrapper">
             <div className="label-header" onClick={handleLabelLabelClick}>
@@ -31,6 +30,7 @@ const Label = ({ labelTitle, newsCounter, newsletters }) => {
 
                 <div className="header-additions">
                     <span className="label-newsletters-counter">{newsCounter}</span>
+
                     <span className="label-arrow">
                         <ArrowIcon />
                     </span>
@@ -38,15 +38,13 @@ const Label = ({ labelTitle, newsCounter, newsletters }) => {
             </div>
 
             <div className="label-newsletters">
-                {
-                    newsletters && newsletters
-                        .map((newsletter, index) =>
+                {newsletters && newsletters.map((newsletter, index) =>
                         (
-                            <New
+                            <Newsletter
                                 key={newsletter._id}
-                                newsletter={newsletter} />
-                        )
-                        )
+                                newsletter={newsletter}
+                            />
+                        ))
                 }
             </div>
         </div>

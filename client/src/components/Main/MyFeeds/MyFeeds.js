@@ -5,7 +5,7 @@ import { getFeeds } from '../../../actions/feedActions';
 import Feed from './Feed/Feed';
 import './MyFeeds.scss';
 
-const MyFeeds = ({ user, feeds, getFeeds }) => {
+const MyFeeds = ({ user, feeds, getFeeds, selected }) => {
 
     useEffect(() => {
         if (user) {
@@ -16,23 +16,17 @@ const MyFeeds = ({ user, feeds, getFeeds }) => {
     }, [user, getFeeds]);
 
     return (
-        <div className="my-feeds">
-            <Link to="/explore-feeds">
-                <span className="my-feeds-title">Feeds</span>
+        <div className='my-feeds'>
+            <Link to='/explore-feeds'>
+                <span className={`my-feeds-title ${selected ? 'selected' : ''}`}>Feeds</span>
             </Link>
 
-            {
-                feeds
-                    .map((feed) =>
-                    (
+            {feeds.map((feed) =>(
                         <Feed
                             key={feed._id}
-                            feed={feed} />
-                    )
-                    )
-            }
-
-            {/* {<button className="my-feeds-show-more">show more</button>} */}
+                            feed={feed}
+                        />
+                    ))}
         </div>
     );
 }

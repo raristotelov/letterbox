@@ -1,16 +1,23 @@
-import ExampleAvatar from './assets/example-avatar.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 import './Newsletter.scss';
 
+let labelsWrapper = document.querySelector('.my-labels-wrapper');
+
+const closeAllNews = (el, cls) => {
+    if (el && cls) {
+        el.querySelectorAll('.label-newsletter').forEach(x => x.classList.remove(cls));
+    }
+}
+
 const Newsletter = ({ newsletter }) => {
+    const location = useLocation();
+
+    if (!location.pathname.includes('main')) {
+        closeAllNews(labelsWrapper, 'open');
+    }
 
     const handleNewsletterClick = (e) => {
-        let labelsWrapper = document.querySelector('.my-labels-wrapper');
-
-        const closeAllNews = (el, cls) => {
-            el.querySelectorAll('.label-newsletter').forEach(x => x.classList.remove(cls));
-        }
-
         const openNew = (el) => {
             closeAllNews(labelsWrapper, 'open');
 
@@ -24,9 +31,11 @@ const Newsletter = ({ newsletter }) => {
         <Link to={`/main/${newsletter._id}`}>
             <div className="label-newsletter" onClick={handleNewsletterClick}>
                 <div>
-                    <img className="label-newsletter-avatar" src={ExampleAvatar} alt="Example Avatar" />
+                    <div className="circle">{newsletter.name.substring(0, 2).toUpperCase()}</div>
+
                     <span className="label-newsletter-title">{newsletter.name}</span>
                 </div>
+
                 <span className="label-newsletter-counter">{newsletter.news.length} new</span>
             </div>
         </Link>

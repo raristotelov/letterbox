@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import MainLayout from '../layouts/MainLayout/MainLayout';
+
 import ChangeViewDropDown from './ChangeViewDropDown';
 import TitleView from './TitleView';
 import MagazineView from './MagazineView';
@@ -10,6 +10,7 @@ import { getNewsletter, clearNewsletter } from '../../actions/newsletterActions'
 import { hideNews, markNewsReadLater } from '../../services/userService';
 import transformNewsletterNews from '../../helpers/transformNewsletterNews';
 import { useClean } from '../../hooks';
+import Loader from '../shared/Loader/Loader';
 
 import './Main.scss';
 
@@ -73,22 +74,33 @@ const Main = ({ match, user, newsletter, getNewsletter, clearNewsletter, newsIdA
     const PageView = viewStyle[view]
 
     return (
-        <MainLayout>
-            <main className="main-wrapper">
+        <Fragment>
+            <main className='main-wrapper'>
                 <section className='main-title'>
                     <h1>Main Page</h1>
-                    <div className="change-view-dropdown-container">
-                        <ChangeViewDropDown view={view} setView={setView} className="change-view-dropdown" />
+                    
+                    <div className='change-view-dropdown-container'>
+                        <ChangeViewDropDown view={view} setView={setView} className='change-view-dropdown' />
                     </div>
                 </section>
 
-                <h2>{newsletter && newsletter.name}</h2>
+                {newsletter._id 
+                    ? (
+                        <Fragment>
+                            <h2>{newsletter.name}</h2>
 
-                <section className="view-wrapper">
-                    <PageView news={news} onMarkNewsReadLater={onMarkNewsReadLater} />
-                </section>
+                            <section className='view-wrapper'>
+                                <PageView news={news} onMarkNewsReadLater={onMarkNewsReadLater} />
+                            </section>
+                        </Fragment>
+                    ) : (
+                        <div className='loader'>
+                            <Loader />
+                        </div>
+                    )
+                }
             </main>
-        </MainLayout>
+        </Fragment>
     );
 }
 

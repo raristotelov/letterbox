@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { getFeeds } from '../../actions/feedActions';
@@ -6,7 +6,6 @@ import { getFeeds } from '../../actions/feedActions';
 import { ReactComponent as Reorder } from './assets/reorder.svg';
 import { ReactComponent as Create } from './assets/create.svg';
 
-import MainLayout from '../layouts/MainLayout';
 import Feed from './Feed';
 import ExploreFeedsFooter from './ExploreFeedsFooter';
 import FeedFormModal from './FeedFormModal';
@@ -24,7 +23,7 @@ const ExploreFeeds = ({ user, admin, feeds, getFeeds }) => {
     }, [user, getFeeds]);
 
     return (
-        <MainLayout>
+        <Fragment>
             {addFeedOpen && <FeedFormModal action={'add'} setOpen={setOpen} />}
             <div className="view-container">
                 <h1>Feeds</h1>
@@ -53,7 +52,7 @@ const ExploreFeeds = ({ user, admin, feeds, getFeeds }) => {
 
                 <ExploreFeedsFooter />
             </div>
-        </MainLayout>
+        </Fragment>
     );
 };
 

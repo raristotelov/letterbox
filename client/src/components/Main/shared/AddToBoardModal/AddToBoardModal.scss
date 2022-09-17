@@ -39,6 +39,11 @@
                     position: absolute;
                     top: 15px;
                     right: 15px;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.7;
+                    }
                 }
 
                 .attach-to-board-title {
@@ -99,6 +104,16 @@
 
                 .add-btn-icon {
                     margin-right: 30px;
+                }
+
+                &:hover {
+                    .add-btn-icon {
+                        opacity: 0.8;
+                    }
+
+                    .add-btn-txt {
+                        opacity: 0.8;
+                    }
                 }
             }
         }

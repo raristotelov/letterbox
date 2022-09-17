@@ -53,28 +53,30 @@ const AddLabelModal = ({ isOpen, onCloseClick, user, addLabel }) => {
                         <button className="add-label-close-btn" type="button" onClick={onCloseClick}>
                             <CloseIcon />
                         </button>
+
                         <h3 className="add-label-title">New Label</h3>
-                        {
-                            errState.labelTitleErr
-                                ? <InputError
-                                    type="text"
-                                    value={labelName}
-                                    placeholder={errState.labelTitleErr}
-                                    onChange={handleChange}
-                                    onBlur={handleValidation}
-                                />
-                                : <Input
-                                    type="text"
-                                    value={labelName}
-                                    placeholder="Name your label"
-                                    onChange={handleChange}
-                                    onBlur={handleValidation}
-                                />
+
+                        {errState.labelTitleErr
+                            ? <InputError
+                                type="text"
+                                value={labelName}
+                                placeholder={errState.labelTitleErr}
+                                onChange={handleChange}
+                                onBlur={handleValidation}
+                            />
+                            : <Input
+                                type="text"
+                                value={labelName}
+                                placeholder="Name your label"
+                                onChange={handleChange}
+                                onBlur={handleValidation}
+                            />
                         }
                     </div>
 
                     <button className="add-label-save-btn">
                         <span className="save-btn-txt">Save</span>
+                        
                         <span className="save-btn-icon"><SaveIcon /></span>
                     </button>
                 </form>

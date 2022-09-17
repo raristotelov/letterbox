@@ -46,10 +46,9 @@ const AddToBoardModal = ({ isOpen, onCloseClick, setCreateLabelOpen }) => {
                     </div>
 
                     <button className="attach-to-board-add-btn" onClick={() => setCreateLabelOpen(true)}>
-
                         <span className="add-btn-txt">Create label</span>
-                        <span className="add-btn-icon"><AddIcon /></span>
 
+                        <span className="add-btn-icon"><AddIcon /></span>
                     </button>
 
                 </div>

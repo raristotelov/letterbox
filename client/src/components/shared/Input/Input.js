@@ -46,7 +46,7 @@ const Input = ( {
             {isSelect 
                 ? (
                     <datalist id={listId}>
-                        {selectOptions 
+                        {selectOptions?.length 
                             ? selectOptions.map((option, index) => (
                                     <option
                                         key={index}

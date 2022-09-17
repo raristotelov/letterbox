@@ -78,7 +78,7 @@ const SignInForm = ({ signIn }) => {
                     : <BtnFilledGray className="sign-btn-gray" onClick={handleSignInUnFilledForm} >Sign in</BtnFilledGray>
             }
 
-            <Link to="/forgotpassword">Forgot password?</Link>
+            <Link to="/forgotten-password">Forgot password?</Link>
         </form>
     )
 }

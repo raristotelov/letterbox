@@ -26,18 +26,20 @@ const NewsletterCard = ({ user, labels, admin, feed, newsletter, setAddToLabelOp
     return (
         <article className="newsletter-card" data-testid="newsletter-card">
             <section className="newsletter-img-container">
-                <img src="https://www.allianceplast.com/wp-content/uploads/2017/11/no-image.png" alt="logo"></img>
+                <img src="/newsletter.jpg" alt="logo"></img>
             </section>
 
             <section className="newsletter-info-container">
                 <h3 className="newsletter-name" data-testid="newsletter-card-name">{newsletter.name}</h3>
+                
                 <p className="newsletter-description" data-testid="newsletter-card-address">{newsletter.address}</p>
             </section>
 
             <section className="newsletter-subscribe-btn-container">
                 <button
                     onClick={() => setAddToLabelOpen(newsletter._id)}
-                    className={`btn ${subscribed ? 'unsubscribe-btn' : 'subscribe-btn'}`} >
+                    className={`btn ${subscribed ? 'unsubscribe-btn' : 'subscribe-btn'}`}
+                >
                     {subscribed ? 'Unsubscribe' : 'Subscribe'}
                 </button>
 
