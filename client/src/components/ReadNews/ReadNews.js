@@ -73,7 +73,11 @@ const ReadNews = ({ user, match, userId }) => {
   
     return (
         <div className='article'>
-            <ReadNewsHeader newsletterName={news.newsletter.name} yesNoMenuOpenHandler={yesNoMenuOpenHandler} />
+            <ReadNewsHeader
+                newsletterName={news.newsletter.name}
+                yesNoMenuOpenHandler={yesNoMenuOpenHandler}
+            />
+
             <div className='article-body'>
                 <aside className='article-menu'>
                     <ReadNewsOptionsMenu 
@@ -81,6 +85,7 @@ const ReadNews = ({ user, match, userId }) => {
                         commentInputModalOpenHandler={commentInputModalOpenHandler}
                         title={news.title} />
                 </aside>
+
                 <main className='article-main'>
                     <YesNoModal 
                         question={`Are you sure want to unsubscribe from ${news.newsletter.name}?`}
@@ -110,11 +115,18 @@ const ReadNews = ({ user, match, userId }) => {
                         <BtnFilledGreen onClick={()=>{history.push(`/main/${news.newsletter._id}`)}} className='sign-btn-green'>MORE FROM {news.newsletter.name.substring(0,3)}</BtnFilledGreen>
                     </div>
                 </main>
+
                 <aside className='article-chat'>
-                    {
-                        showComments
-                        ?<Comments user={user} newsId={match.params.id} userId={userId} isCommentModalOpen={isCommentModalOpen} replyHandler={replyHandler}/>
-                        :null
+                    {showComments
+                        ? (
+                            <Comments
+                                user={user}
+                                newsId={match.params.id}
+                                userId={userId}
+                                isCommentModalOpen={isCommentModalOpen}
+                                replyHandler={replyHandler}
+                            />
+                        ) : null
                     }
                 </aside>
             </div>

@@ -54,7 +54,7 @@ const MainLayout = ({
         getReadNews
     ]);
 
-    if (!user) {
+    if (!user || location.pathname.includes('/news')) {
         return children;
     }
 
