@@ -28,20 +28,26 @@ const MagazineViewCard = ({ addToSelected, removeFromSelected, news, selected, o
             </section>
 
             <section className="title-container">
-                <Link to={`/news/${news._id}`} className="link-not-decorated"><h3>{news.title}</h3></Link>
-
+                <Link 
+                    to={`/news/${news._id}`}
+                    className="link-not-decorated"
+                >
+                    <h3>{news.title}</h3>
+                </Link>
 
                 <section className="info-container">
                     <p className="date">{new Date(news.date).toDateString().substring(4)}</p>
+
                     <p className="newsletter">{news.newsletter.name}</p>
+
                     <p className="read-time">{news.readTime} min read</p>
 
-                    <CardOptions id={news._id} onMarkNewsReadLater={onMarkNewsReadLater}/>
+                    <CardOptions id={news._id} onMarkNewsReadLater={onMarkNewsReadLater} newsTitle={news.title}/>
                 </section>
             </section>
 
             <section className="img-container">
-                <img src={news.image} alt="" />
+                <img src={news.image} alt="news img" />
             </section>
         </article>
     );

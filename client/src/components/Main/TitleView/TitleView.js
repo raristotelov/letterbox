@@ -1,16 +1,20 @@
+import { Fragment } from 'react';
+
 import TitleNewsPerDay from './TitleNewsPerDay';
 
 const TitleView = ({ news }) => {
 
     return (
-        <>
-            {
-                news && [...news.keys()].map(key => <TitleNewsPerDay
-                    key={key}
-                    publicationDate={key}
-                    news={news.get(key)} />)
+        <Fragment>
+            {news && [...news.keys()].map(key => (
+                    <TitleNewsPerDay
+                        key={key}
+                        publicationDate={key}
+                        news={news.get(key)}
+                    />
+                ))
             }
-        </>
+        </Fragment>
     )
 }
 

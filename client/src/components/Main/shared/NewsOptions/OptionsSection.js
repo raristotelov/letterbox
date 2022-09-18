@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { ReactComponent as Bookmark } from '../assets/bookmark.svg';
 import { ReactComponent as Hide } from '../assets/hide.svg';
@@ -52,6 +52,7 @@ const OptionsSection = ({
             user.getIdToken()
                 .then(async idToken => {
                     await markRead(selectedNews, idToken);
+                    
                     setSelectedNews([]);
                 })
                 .catch(err => console.log(err));
@@ -63,23 +64,55 @@ const OptionsSection = ({
     }
 
     return (
-        <>
-            <article className='news-option mark-read-later-option' onClick={onMarkNewsReadLater}>
-                <Bookmark className='news-option-icon' /> <p>Read Later</p>
-            </article>
-            <article className='news-option' onClick={onHideNews}>
-                <Hide className='news-option-icon' /> <p>Hide</p>
-            </article>
-            <article className='news-option' onClick={onMarkAsRead} >
-                <Openbook className='news-option-icon' /> <p>Mark as read</p>
-            </article>
-            <article className='news-option' onClick={markAll}>
-                {
-                    marked ? <CheckboxChecked className='news-option-icon' />
-                        : <CheckboxUnchecked className='news-option-icon' />
-                } <p>Mark All</p>
-            </article>
-        </>
+        <Fragment>
+            <div 
+                className='news-option mark-read-later-option' 
+                onClick={onMarkNewsReadLater}
+            >
+                <Bookmark 
+                    className='news-option-icon'
+                />
+                
+                <p>Read Later</p>
+            </div>
+
+            <div 
+                className='news-option'
+                onClick={onHideNews}
+            >
+                <Hide 
+                    className='news-option-icon'
+                />
+                
+                <p>Hide</p>
+            </div>
+
+            <div
+                className='news-option'
+                onClick={onMarkAsRead}
+            >
+                <Openbook
+                    className='news-option-icon'
+                />
+                
+                <p>Mark as read</p>
+            </div>
+
+            <div
+                className='news-option'
+                onClick={markAll}
+            >
+				{marked
+					? (
+						<CheckboxChecked className='news-option-icon' />
+					) : (
+						<CheckboxUnchecked className='news-option-icon' />
+					)
+				}
+                
+                <p>Mark All</p>
+            </div>
+        </Fragment>
     )
 }
 

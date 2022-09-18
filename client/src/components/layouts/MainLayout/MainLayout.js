@@ -4,6 +4,7 @@ import MyFeeds from '../../Main/MyFeeds';
 import MyLabels from '../../Main/MyLabels';
 import ReadLaterLink from '../../Main/ReadLaterLink';
 import ReadHistoryLink from '../../Main/ReadHistoryLink';
+import HiddenNewsLink from '../../Main/HiddenNewsLink';
 import Header from '../../MainViewHeader/Header';
 import Sidebar from '../../shared/Sidebar';
 import { SearchProvider } from '../../../contexts/SearchContext';
@@ -27,6 +28,8 @@ const MainLayout = ({ children, activeUser }) => {
                         <ReadLaterLink selected={location.pathname.includes('read-later')}/>
 
                         <ReadHistoryLink selected={location.pathname.includes('read-history')}/>
+
+                        <HiddenNewsLink selected={location.pathname.includes('hidden-news')}/>
 
                         <MyFeeds selected={location.pathname.includes('feed')}/>
                     </div>

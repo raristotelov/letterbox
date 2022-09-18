@@ -19,15 +19,17 @@ const MagazineViewList = ({ binder, news, onMarkNewsReadLater}) => {
 
     return (
         <div className="magazine-view-list">
-
             <header className="magazine-view-list-header">
                 <p className="binder">{binder}</p>
-                {
-                    selectedNews.length > 0 &&
-                    <NewsOptions 
-                        selectedNews={selectedNews}
-                        setSelectedNews={setSelectedNews}
-                        news={news} />
+
+                {selectedNews.length > 0
+                    ? (
+                        <NewsOptions
+                            selectedNews={selectedNews}
+                            setSelectedNews={setSelectedNews}
+                            news={news}
+                        />
+                    ) : null
                 }
             </header>
 
@@ -39,7 +41,8 @@ const MagazineViewList = ({ binder, news, onMarkNewsReadLater}) => {
                         addToSelected={addToSelected}
                         removeFromSelected={removeFromSelected}
                         selected={selectedNews.includes(x._id)} 
-                        onMarkNewsReadLater={onMarkNewsReadLater}/>)
+                        onMarkNewsReadLater={onMarkNewsReadLater}
+                    />)
                 }
             </div>
         </div>

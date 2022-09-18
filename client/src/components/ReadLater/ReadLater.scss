@@ -34,7 +34,16 @@
         }
     }
 
-    .loader {
-        margin-top: 40px;
+    .no-information {
+        display: block;
+        font-size: 18px;
+        color: #119c59;
+        font-weight: 600;
+        margin-left: 40px;
+        margin-top: 20px;
     }
+}
+
+.loader {
+    margin-top: 40px;
 }

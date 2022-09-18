@@ -12,6 +12,11 @@
     letter-spacing: 0.1px;
     color: #25282B;
 
+    .checkbox-container {
+        user-select: none;
+        cursor: pointer;
+    }
+
     .link-not-decorated{
         text-decoration: none;
 

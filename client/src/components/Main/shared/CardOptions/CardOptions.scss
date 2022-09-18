@@ -2,3 +2,8 @@
     display: flex;
     gap: 10px;
 }
+
+.news-option:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}

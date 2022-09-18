@@ -2,7 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 import './Newsletter.scss';
 
-let labelsWrapper = document.querySelector('.my-labels-wrapper');
 
 const closeAllNews = (el, cls) => {
     if (el && cls) {
@@ -11,6 +10,8 @@ const closeAllNews = (el, cls) => {
 }
 
 const Newsletter = ({ newsletter }) => {
+    let labelsWrapper = document.querySelector('.my-labels-wrapper');
+
     const location = useLocation();
 
     if (!location.pathname.includes('main')) {

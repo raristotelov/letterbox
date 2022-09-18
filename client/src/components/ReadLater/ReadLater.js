@@ -15,13 +15,20 @@ import './ReadLater.scss';
 const ReadLater = ({ user, readLaterNews, getReadLater, clearReadLater }) => {
     const [news, setNews] = useState(transformReadLaterNews(readLaterNews));
     const [view, setView] = useState('magazineView');
+    const [isLoading, setIsLoading] = useState(false);
 
     useClean(clearReadLater);
 
     useEffect(() => {
         if (user) {
             user.getIdToken()
-                .then(getReadLater)
+                .then((idToken) => {
+                    setIsLoading(true);
+
+                    return getReadLater(idToken)
+                }).then(() => {
+                    setIsLoading(false);
+                })
                 .catch(err => console.log(err));
         }
     }, [user, getReadLater])
@@ -54,6 +61,14 @@ const ReadLater = ({ user, readLaterNews, getReadLater, clearReadLater }) => {
 
     const PageView = viewStyle[view];
 
+    if (isLoading) {
+        return (
+            <div className='loader'>
+                <Loader />
+            </div>
+        )
+    }
+
     return (
         <Fragment>
             <main className="read-later-main">
@@ -71,12 +86,11 @@ const ReadLater = ({ user, readLaterNews, getReadLater, clearReadLater }) => {
                             <PageView news={news} onMarkNewsReadLater={onMarkNewsReadLater} />
                         </section>
                     ) : (
-                        <div className='loader'>
-                            <Loader />
-                        </div>
+                        <span className='no-information'>
+                            Section is empty.
+                        </span>
                     )
                 }
-            
             </main>
         </Fragment >
     );
