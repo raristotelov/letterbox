@@ -14,7 +14,7 @@ const SettingsDropDown = ({ emailMask, handleSignOut }) => {
                     <span className="logo">Newsletter-App</span>
                     
                     <span className="emailmask">
-                        {emailMask.split('@')[0]}@<span className="underline">newsletterapp.io</span>
+                        {emailMask?.split('@')[0]}@<span className="underline">newsletterapp.io</span>
                     </span>
                 </div>
             </div>
