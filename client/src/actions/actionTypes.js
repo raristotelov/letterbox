@@ -2,16 +2,22 @@ export const SIGNIN = 'SIGNIN';
 export const SIGNOUT = 'SIGNOUT';
 export const VERIFY = 'VERIFY';
 export const SIGNUP = 'SIGNUP';
-export const CREAT_EMAIL_MASK = 'CREAT_EMAIL_MASK';
+export const CREATE_EMAIL_MASK = 'CREATE_EMAIL_MASK';
 export const GET_READ_LATER = 'GET_READ_LATER';
+export const GET_READ_NEWS = 'GET_READ_NEWS';
+
 export const MARK_AS_READ = 'MARK_AS_READ';
 export const CLEAR_READ_LATER = 'CLEAR_READ_LATER';
+export const MARK_AS_READ_LATER = 'MARK_AS_READ_LATER';
 
 export const GET_LABELS = 'GET_LABELS';
 
 export const GET_NEWSLETTER = 'GET_NEWSLETTER';
 export const GET_NEWSLETTERS = 'GET_NEWSLETTERS';
+export const GET_HIDDEN_NEWS = 'GET_HIDDEN_NEWS';
 export const HIDE_NEWS = 'HIDE_NEWS';
+export const UNHIDE_NEWS = 'UNHIDE_NEWS';
+
 export const CLEAR_NEWSLETTER = 'CLEAR_NEWSLETTER';
 
 export const CREATE_FEED = 'CREATE_FEED';

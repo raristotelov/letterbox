@@ -10,14 +10,14 @@ import {
     getAll
 } from '../services/newsletterService';
 
-export const getNewsletterSuccess = (newsletter) => ({
-    type: GET_NEWSLETTER,
-    payload: newsletter
-})
-
 export const getNewslettersSuccess = (newsletters) => ({
     type: GET_NEWSLETTERS,
     payload: newsletters
+})
+
+export const getNewsletterSuccess = (newsletter) => ({
+    type: GET_NEWSLETTER,
+    payload: newsletter
 })
 
 export const setHideNewsIdArray = (newsIdArrayToHide) => ({

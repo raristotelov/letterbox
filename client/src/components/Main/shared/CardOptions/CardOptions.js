@@ -1,17 +1,39 @@
+import { FacebookShareButton } from 'react-share';
+import { connect } from 'react-redux';
+
+import {
+    markNewsAsReadLater,
+} from '../../../../actions/userActions';
+import newsActionOptions from '../../../../helpers/newsActionOptions';
+
 import { ReactComponent as Bookmark } from '../assets/bookmark.svg';
 import { ReactComponent as ShareIcon } from '../assets/share.svg';
 import NewsOptionsDropDown from '../NewsOptionsDropDown';
-import { FacebookShareButton } from 'react-share';
 
 import './CardOptions.scss';
 
-const CardOptions = ({ id, onMarkNewsReadLater, newsTitle }) => {
+const CardOptions = ({ id, user, idToken, markNewsAsReadLater, newsTitle, actions }) => {
+    const onMarkNewsAsReadLater = async (id) => {
+        if (user) {
+            try {
+                const selectedItems = [id];
+
+                await markNewsAsReadLater(selectedItems, idToken);
+            } catch (err) {
+                alert("Something went wrong while trying to mark item for read later!");
+            }
+        }
+    }
 
     return (
         <section className="news-card-options">
-            <div className='news-option'>
-                <Bookmark onClick={()=>{onMarkNewsReadLater({id})}}/>
-            </div>
+            {actions?.includes(newsActionOptions.READ_LATER) 
+                ? (
+                    <div className='news-option'>
+                        <Bookmark onClick={() => onMarkNewsAsReadLater(id)}/>
+                    </div>
+                ) : null
+            }
 
             <div className='news-option'>
                 <FacebookShareButton 
@@ -24,12 +46,22 @@ const CardOptions = ({ id, onMarkNewsReadLater, newsTitle }) => {
             </div>
             
             <div>
-              
-                    <NewsOptionsDropDown id={id} />
-           
+                <NewsOptionsDropDown
+                    id={id}
+                    actions={actions}
+                />
             </div>
         </section>
     );
 }
 
-export default CardOptions;
+const mapStateToProps = state => ({
+    user: state.user.user,
+    idToken: state.user.idToken
+})
+
+const mapDispatchToProps = {
+    markNewsAsReadLater,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardOptions);

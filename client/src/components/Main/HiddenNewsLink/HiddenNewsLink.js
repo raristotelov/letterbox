@@ -1,10 +1,11 @@
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { ReactComponent as Hide } from './assets/hide.svg';
+import { ReactComponent as Unhide } from './assets/unhide.svg';
 
 import './HiddenNewsLink.scss';
 
-const HiddenNewsLink = ({ selected }) => {
+const HiddenNewsLink = ({ hiddenNews, selected }) => {
     let history = useHistory();
 
     const RedirectToReadLater = () => {
@@ -16,12 +17,20 @@ const HiddenNewsLink = ({ selected }) => {
             <span className={`hidden-news-title ${selected ? 'selected' : ''}`}>Hidden news</span>
             
             <div className='hidden-news-icon'>
-                <span className='hidden-news-count'>2</span>
+                {hiddenNews?.length 
+                    ? (
+                        <span className='hidden-news-count'>{hiddenNews?.length}</span>
+                    ): null
+                }
 
-                <Hide />
+                <Unhide />
             </div>
         </button>
     );
 }
 
-export default HiddenNewsLink;
+const mapStateToProps = state => ({
+    hiddenNews: state.user.hiddenNews
+})
+
+export default connect(mapStateToProps, null)(HiddenNewsLink);

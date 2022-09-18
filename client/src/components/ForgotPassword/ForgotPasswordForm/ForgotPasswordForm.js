@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Input from '../../shared/Input';
 import { BtnFilledGray, BtnFilledGreen } from '../../shared/Buttons/BaseBtn/BaseBtn';
-import { resetPassword } from '../../../services/userService';
+import { resetPasswordService } from '../../../services/userService';
 import './ForgotPasswordForm.scss';
 
 const ForgotPasswordForm = () => {
@@ -12,7 +12,7 @@ const ForgotPasswordForm = () => {
         e.preventDefault();
 
         if (email) {
-            const res = await resetPassword(email);
+            const res = await resetPasswordService(email);
             if (res === 'success') {
                 setResult('A password reset link has been sent to your email.');
                 setEmail('');

@@ -4,7 +4,7 @@ import MagazineViewCard from './MagazineViewCard';
 
 import './MagazineViewList.scss';
 
-const MagazineViewList = ({ binder, news, onMarkNewsReadLater}) => {
+const MagazineViewList = ({ binder, news, newsActions}) => {
     const [selectedNews, setSelectedNews] = useState([]);
 
     const addToSelected = (id) => {
@@ -28,6 +28,7 @@ const MagazineViewList = ({ binder, news, onMarkNewsReadLater}) => {
                             selectedNews={selectedNews}
                             setSelectedNews={setSelectedNews}
                             news={news}
+                            actions={newsActions}
                         />
                     ) : null
                 }
@@ -35,14 +36,17 @@ const MagazineViewList = ({ binder, news, onMarkNewsReadLater}) => {
 
             <div className="magazine-view-cards-container">
                 {
-                    news && news.map(x => <MagazineViewCard
-                        key={x._id}
-                        news={x}
-                        addToSelected={addToSelected}
-                        removeFromSelected={removeFromSelected}
-                        selected={selectedNews.includes(x._id)} 
-                        onMarkNewsReadLater={onMarkNewsReadLater}
-                    />)
+                    news && news.map(x => 
+                    (
+                        <MagazineViewCard
+                            key={x._id}
+                            news={x}
+                            addToSelected={addToSelected}
+                            removeFromSelected={removeFromSelected}
+                            selected={selectedNews.includes(x._id)} 
+                            newsActions={newsActions}
+                        />
+                    ))
                 }
             </div>
         </div>

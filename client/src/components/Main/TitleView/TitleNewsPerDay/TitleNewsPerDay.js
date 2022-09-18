@@ -3,7 +3,7 @@ import TitleNewsElement from './TitleNewsElement';
 import NewsOptions from '../../shared/NewsOptions';
 import './TitleNewsPerDay.scss'
 
-const TitleNewsPerDay = ({ publicationDate, news }) => {
+const TitleNewsPerDay = ({ publicationDate, news, newsActions }) => {
     const [selectedNews, setSelectedNews] = useState([]);
 
     const addToCheckedList = (id) => {
@@ -23,6 +23,7 @@ const TitleNewsPerDay = ({ publicationDate, news }) => {
                         <NewsOptions selectedNews={selectedNews}
                             setSelectedNews={setSelectedNews}
                             news={news}
+                            actions={newsActions}
                         />
                     ) : null
                 }
@@ -35,6 +36,7 @@ const TitleNewsPerDay = ({ publicationDate, news }) => {
                                 news={x}
                                 addToCheckedList={addToCheckedList}
                                 selected={selectedNews.includes(x._id)}
+                                newsActions={newsActions}
                             />
                         </li>
                     ))

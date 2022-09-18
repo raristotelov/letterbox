@@ -1,33 +1,37 @@
 import { connect } from 'react-redux';
-import { addNewsletterToLabel, removeNewsletterFromLabel } from '../../../../../actions/labelActions';
+import { addNewsletterToLabel, removeNewsletterFromLabel, getLabels } from '../../../../../actions/labelActions';
 import Label from './Label';
 import './AddToLabel.scss';
 
-const AddToLabel = ({ user, search, labels, addNewsletterToLabel, removeNewsletterFromLabel, newsletterId }) => {
+const AddToLabel = ({ user, search, labels, addNewsletterToLabel, removeNewsletterFromLabel, newsletterId, getLabels }) => {
     return (
         <ul className="labels">
             { !search.byName 
-
                 ? labels && labels.map(label => (
-                    <Label key={label._id}
+                    <Label 
+                        key={label._id}
                         label={label}
                         user={user}
                         addNewsletterToLabel={addNewsletterToLabel}
                         removeNewsletterFromLabel={removeNewsletterFromLabel}
-                        newsletterId={newsletterId} />
+                        newsletterId={newsletterId}
+                        getLabels={getLabels}
+                    />
                 ))
                 : labels && labels
                     .filter(label => label.name.includes(search.byName))
                     .map(label => (
-                        <Label key={label._id}
+                        <Label
+                            key={label._id}
                             label={label}
                             user={user}
                             addNewsletterToLabel={addNewsletterToLabel}
                             removeNewsletterFromLabel={removeNewsletterFromLabel}
-                            newsletterId={newsletterId} />
+                            newsletterId={newsletterId}
+                            getLabels={getLabels}
+                        />
                     ))
             }
-
         </ul>
     );
 }
@@ -39,7 +43,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     addNewsletterToLabel,
-    removeNewsletterFromLabel
+    removeNewsletterFromLabel,
+    getLabels
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddToLabel);

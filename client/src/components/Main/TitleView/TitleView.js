@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 
 import TitleNewsPerDay from './TitleNewsPerDay';
 
-const TitleView = ({ news }) => {
+const TitleView = ({ news, newsActions }) => {
 
     return (
         <Fragment>
@@ -11,6 +11,7 @@ const TitleView = ({ news }) => {
                         key={key}
                         publicationDate={key}
                         news={news.get(key)}
+                        newsActions={newsActions}
                     />
                 ))
             }

@@ -5,7 +5,7 @@ import { BtnFilledGreen, BtnOutlineGreen } from '../shared/Buttons/BaseBtn/BaseB
 import ReadNewsHeader from './ReadNewsHeader';
 import ReadNewsOptionsMenu from './ReadNewsOptionsMenu';
 import { getNews } from '../../services/newsService';
-import { markNewsAsRead, markNewsReadLater } from '../../services/userService';
+import { markNewsAsReadService, markNewsAsReadLaterService } from '../../services/userService';
 import { unsubscribeFromNewsletterInAllLabels } from '../../services/labelService';
 import AddComment from './Comments/AddComment';
 import Article from './Article';
@@ -27,7 +27,7 @@ const ReadNews = ({ user, match, userId }) => {
             user.getIdToken()
             .then(async idToken => {
                     const newsId = match.params.id;
-                    markNewsAsRead(newsId, idToken);
+                    markNewsAsReadService(newsId, idToken);
                     return getNews(newsId, idToken); 
                 })
             .then(res => res.json())
@@ -40,7 +40,7 @@ const ReadNews = ({ user, match, userId }) => {
         if (user) {
             user.getIdToken()
                 .then(async idToken => {
-                    await markNewsReadLater([match.params.id], idToken);
+                    await markNewsAsReadLaterService([match.params.id], idToken);
                 })
                 .catch(err => console.log(err));
         }

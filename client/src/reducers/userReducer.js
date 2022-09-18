@@ -2,16 +2,24 @@ import {
     SIGNIN,
     SIGNOUT,
     VERIFY,
-    CREAT_EMAIL_MASK,
+    CREATE_EMAIL_MASK,
     GET_READ_LATER,
+    MARK_AS_READ_LATER,
+    CLEAR_READ_LATER,
+    GET_READ_NEWS,
     MARK_AS_READ,
-    CLEAR_READ_LATER
+    GET_HIDDEN_NEWS,
+    HIDE_NEWS,
+    UNHIDE_NEWS
 } from '../actions/actionTypes';
 
 const initialState = {
     user: null,
     emailMask: '',
+    idToken: '',
     readLaterNews: [],
+    readNews: [],
+    hiddenNews: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -22,7 +30,8 @@ const userReducer = (state = initialState, action) => {
                 user: action.payload.user,
                 emailMask: action.payload.emailMask,
                 userId: action.payload._id,
-                admin: action.payload.admin
+                admin: action.payload.admin,
+                idToken: action.payload.idToken
             }
         case SIGNOUT:
             return {
@@ -32,7 +41,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
             };
-        case CREAT_EMAIL_MASK:
+        case CREATE_EMAIL_MASK:
             return {
                 ...state,
                 emailMask: action.payload.emailMask,
@@ -40,17 +49,44 @@ const userReducer = (state = initialState, action) => {
         case GET_READ_LATER:
             return {
                 ...state,
-                readLaterNews: action.payload,
+                readLaterNews: action.payload ? action.payload : [],
             };
-        case MARK_AS_READ:
+        case MARK_AS_READ_LATER:
             return {
                 ...state,
-                readLaterNews: state.readLaterNews.filter((x) => !action.payload.includes(x._id)),
-            };
+                readLaterNews: action.payload ? action.payload : [],
+            }
         case CLEAR_READ_LATER:
             return {
                 ...state,
                 readLaterNews: initialState.readLaterNews
+            }
+        case GET_READ_NEWS:
+            return {
+                ...state,
+                readNews: action.payload ? action.payload : [],
+            };
+        case MARK_AS_READ:
+            return {
+                ...state,
+                readLaterNews: action.payload.readLaterNews ? action.payload.readLaterNews : [],
+                readNews: action.payload.readNews ? action.payload.readNews : []
+            };
+        case GET_HIDDEN_NEWS:
+            return {
+                ...state,
+                hiddenNews: action.payload ? action.payload : [],
+            };
+        case HIDE_NEWS:
+            return {
+                ...state,
+                readLaterNews: action.payload.readLaterNews ?  action.payload.readLaterNews : [],
+                hiddenNews: action.payload.hiddenNews ?  action.payload.hiddenNews : []
+            }
+        case UNHIDE_NEWS:
+            return {
+                ...state,
+                hiddenNews: action.payload.hiddenNews ? action.payload.hiddenNews : []
             }
         default:
             return {

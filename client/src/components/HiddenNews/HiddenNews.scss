@@ -1,9 +1,8 @@
-.main-wrapper {
+.hidden-news-main {
     width: 868px;
-    margin-left: auto;
-    margin-right: 110px;
+    margin: 0 auto;
 
-    .main-title {
+    .hidden-news-title {
         display: flex;
         justify-content: space-between;
         padding: 65px 0px 12px 36px;
@@ -26,22 +25,8 @@
         }
     }
 
-    h2 {
-        display: inline;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 26px;
-        letter-spacing: 0.2px;
-        margin-left: 41px;
-        padding-bottom: 3px;
-        color: #119c59;
-
-        border-bottom: 3px solid #119c59;
-    }
-
-    .news-wrapper {
-        margin-top: 41px;
-        background-color: gray;
+    .hidden-news-view {
+        margin-left: 34px;
     }
 
     .no-information {
@@ -56,8 +41,4 @@
 
 .loader {
     margin-top: 40px;
-}
-
-.view-wrapper {
-    margin: 0px 0 0 34px;
 }

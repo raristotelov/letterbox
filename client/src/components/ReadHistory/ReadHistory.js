@@ -1,9 +1,10 @@
 import { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { getReadLaterNews } from '../../actions/userActions';
 import transformReadLaterNews from '../../helpers/transformReadLaterNews';
 import newsActionOptions from '../../helpers/newsActionOptions';
+import { getReadNews } from '../../actions/userActions';
+import { markNewsAsReadLaterService } from '../../services/userService';
 
 import ChangeViewDropDown from '../Main/ChangeViewDropDown';
 import MagazineView from '../Main/MagazineView';
@@ -11,12 +12,12 @@ import CardView from '../Main/CardView';
 import TitleView from '../Main/TitleView';
 import Loader from '../shared/Loader/Loader';
 
-import './ReadLater.scss';
+import './ReadHistory.scss';
 
-const newsActions = [newsActionOptions.HIDE, newsActionOptions.MARK_AS_READ];
+const newsActions = [newsActionOptions.READ_LATER, newsActionOptions.HIDE];
 
-const ReadLater = ({ user, idToken, readLaterNews, getReadLaterNews, hiddenNews }) => {
-    const [news, setNews] = useState(transformReadLaterNews(readLaterNews));
+const ReadHistory = ({ user, idToken, readNews, hiddenNews, getReadNews }) => {
+    const [readHistoryNews, setReadHistoryNews] = useState(transformReadLaterNews(readNews));
     const [view, setView] = useState('magazineView');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -24,18 +25,18 @@ const ReadLater = ({ user, idToken, readLaterNews, getReadLaterNews, hiddenNews 
         if (user && idToken) {
             setIsLoading(true);
 
-            getReadLaterNews(idToken)
+            getReadNews(idToken)
             .then(() => {
                 setIsLoading(false);
             })
             .catch((err) => {
-                alert("Something went wrong while trying to fetch news to read later!");
+                alert("Something went wrong while trying to fetch read history!");
             });
         }
-    }, [user, idToken, getReadLaterNews])
+    }, [user, idToken, getReadNews])
 
     useEffect(() => {
-        const filteredNews = readLaterNews?.filter((newsItem) => {
+        const filteredNews = readNews?.filter((newsItem) => {
             if (hiddenNews.find((hiddenNewsItem) => hiddenNewsItem._id === newsItem._id)) {
                 return false;
             }
@@ -45,8 +46,8 @@ const ReadLater = ({ user, idToken, readLaterNews, getReadLaterNews, hiddenNews 
 
         const data = transformReadLaterNews(filteredNews);
 
-        setNews(data);
-    }, [readLaterNews, hiddenNews])
+        setReadHistoryNews(data);
+    }, [readNews, hiddenNews])
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -70,9 +71,9 @@ const ReadLater = ({ user, idToken, readLaterNews, getReadLaterNews, hiddenNews 
 
     return (
         <Fragment>
-            <main className="read-later-main">
-                <section className='read-later-title'>
-                    <h1>Read Later</h1>
+            <main className="read-history-main">
+                <section className='read-history-title'>
+                    <h1>Read History</h1>
 
                     <div className="change-view-dropdown-container">
                         <ChangeViewDropDown view={view} setView={setView} className="change-view-dropdown" />
@@ -80,11 +81,11 @@ const ReadLater = ({ user, idToken, readLaterNews, getReadLaterNews, hiddenNews 
                 </section>
 
                 {
-                    news?.size ? (
-                        <section className="read-later-view">
+                    readHistoryNews?.size ? (
+                        <section className="read-history-view">
                             <PageView
-                                news={news}
-                                newsActions={newsActions}
+                                news={readHistoryNews}
+                                newsActions={newsActions} 
                             />
                         </section>
                     ) : (
@@ -101,12 +102,12 @@ const ReadLater = ({ user, idToken, readLaterNews, getReadLaterNews, hiddenNews 
 const mapStateToProps = state => ({
     user: state.user.user,
     idToken: state.user.idToken,
-    readLaterNews: state.user.readLaterNews,
+    readNews: state.user.readNews,
     hiddenNews: state.user.hiddenNews
 })
 
 const mapDispatchToProps = {
-    getReadLaterNews
+    getReadNews
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReadLater);
+export default connect(mapStateToProps, mapDispatchToProps)(ReadHistory);

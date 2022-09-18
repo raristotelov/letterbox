@@ -6,7 +6,7 @@ import { ReactComponent as CheckboxChecked } from '../../../shared/assets/checkb
 
 import './TitleNewsElement.scss';
 
-const TitleNewsElement = ({ news, addToCheckedList, selected }) => {
+const TitleNewsElement = ({ news, addToCheckedList, selected, newsActions }) => {
     const [checked, setChecked] = useState(selected);
 
     useEffect(() => {
@@ -45,9 +45,12 @@ const TitleNewsElement = ({ news, addToCheckedList, selected }) => {
                 </section>
 
                 <section
-                    className='expectedReadingTime'
+                    className='card-options'
                 >
-                    <CardOptions id={news._id} />
+                    <CardOptions
+                        id={news._id}
+                        actions={newsActions}
+                    />
                 </section>
             </article>
         ) : (

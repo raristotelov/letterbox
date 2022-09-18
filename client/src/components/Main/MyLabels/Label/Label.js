@@ -3,7 +3,7 @@ import { ReactComponent as ArrowIcon } from './assets/arrow-icon.svg';
 
 import './Label.scss';
 
-const Label = ({ labelTitle, newsCounter, newsletters }) => {
+const Label = ({ labelTitle, newslettersCounter, newsletters }) => {
     const handleLabelLabelClick = (e) => {
         const labelsWrapper = e.target.parentElement.parentElement;
 
@@ -29,7 +29,7 @@ const Label = ({ labelTitle, newsCounter, newsletters }) => {
                 <span className="label-title">{labelTitle}</span>
 
                 <div className="header-additions">
-                    <span className="label-newsletters-counter">{newsCounter}</span>
+                    <span className="label-newsletters-counter">{newslettersCounter}</span>
 
                     <span className="label-arrow">
                         <ArrowIcon />

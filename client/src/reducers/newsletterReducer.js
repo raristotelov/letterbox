@@ -11,8 +11,7 @@ const initialState = {
         name: '',
         news: []
     },
-    newsletters: [],
-    newsIdArrayToHide: null
+    newsletters: []
 }
 
 const newsletterReducer = (state = initialState, action) => {
@@ -22,11 +21,11 @@ const newsletterReducer = (state = initialState, action) => {
                 ...state,
                 newsletter: action.payload
             }
-        case HIDE_NEWS:
-            return {
-                ...state,
-                newsIdArrayToHide: action.payload
-            }
+        // case HIDE_NEWS:
+        //     return {
+        //         ...state,
+        //         newsIdArrayToHide: action.payload
+        //     }
         case GET_NEWSLETTERS:
             return {
                 ...state,

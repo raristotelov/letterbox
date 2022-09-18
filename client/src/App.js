@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { verifyAuth } from './actions/userActions';
 
 import SignOut from './SignOut';
@@ -11,7 +12,9 @@ import ForgotPassword from './components/ForgotPassword';
 import Main from './components/Main';
 import Landing from './components/Landing';
 import ExploreFeeds from './components/ExploreFeeds';
-import ReadLater from './components/ReadLater'
+import ReadLater from './components/ReadLater';
+import ReadHistory from './components/ReadHistory';
+import HiddenNews from './components/HiddenNews';
 import ReadNews from './components/ReadNews';
 import SingleFeed from './components/SingleFeed';
 import HowItWorks from './components/HowItWorks';
@@ -52,6 +55,10 @@ const App = ({ verifyAuth, user }) => {
                         <Route path="/news/:id" component={ReadNews} />
 
                         <Route path="/read-later" component={ReadLater} />
+
+                        <Route path="/read-history" component={ReadHistory} />
+
+                        <Route path="/hidden-news" component={HiddenNews} />
                     </Switch>
                 </MainLayout>
             </Router>
@@ -63,8 +70,4 @@ const mapDispatchToProps = {
     verifyAuth,
 };
 
-const mapStateToProps = state => ({
-    user: state.user.user,
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

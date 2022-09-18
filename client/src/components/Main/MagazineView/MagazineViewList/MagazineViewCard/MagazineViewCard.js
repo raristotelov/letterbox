@@ -5,7 +5,7 @@ import { ReactComponent as CheckedIcon } from '../../../shared/assets/checkbox-c
 import CardOptions from '../../../shared/CardOptions';
 import './MagazineViewCard.scss';
 
-const MagazineViewCard = ({ addToSelected, removeFromSelected, news, selected, onMarkNewsReadLater }) => {
+const MagazineViewCard = ({ addToSelected, removeFromSelected, news, selected, newsActions }) => {
     const [checked, setChecked] = useState(selected);
 
     useEffect(() => {
@@ -42,7 +42,11 @@ const MagazineViewCard = ({ addToSelected, removeFromSelected, news, selected, o
 
                     <p className="read-time">{news.readTime} min read</p>
 
-                    <CardOptions id={news._id} onMarkNewsReadLater={onMarkNewsReadLater} newsTitle={news.title}/>
+                    <CardOptions 
+                        id={news._id}
+                        newsTitle={news.title}
+                        actions={newsActions}
+                    />
                 </section>
             </section>
 

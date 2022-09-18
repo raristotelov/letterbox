@@ -31,7 +31,7 @@ const AddToBoardModal = ({ isOpen, onCloseClick, setCreateLabelOpen }) => {
                             <Input
                                 id="labelTitle"
                                 type="text"
-                                placeholder="Find board"
+                                placeholder="Find label"
                                 onChange={handleOnChange}
                             />
                         </div>
@@ -50,11 +50,8 @@ const AddToBoardModal = ({ isOpen, onCloseClick, setCreateLabelOpen }) => {
 
                         <span className="add-btn-icon"><AddIcon /></span>
                     </button>
-
                 </div>
-
             </div>
-
         </div>
     );
 }

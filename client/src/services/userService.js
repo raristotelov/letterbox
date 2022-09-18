@@ -4,28 +4,22 @@ import { SERVER_ADDRESS, DOMAIN_ADDRESS } from '../env';
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-export const signUp = (data) => {
-    return request.post(`${SERVER_ADDRESS}/user/signup`, data);
+export const signUpService = (data) => {
+    return request.post(`${SERVER_ADDRESS}/user/sign-up`, data);
 }
 
-export const createEmailMask = (username, idToken) => {
+export const createEmailMaskService = (username, idToken) => {
     const emailMask = `${username}@newsletterapp.io`;
-    return request.post(`${SERVER_ADDRESS}/user/createemailmask`, { emailMask }, idToken);
+    return request.post(`${SERVER_ADDRESS}/user/create-email-mask`, { emailMask }, idToken);
 }
 
-export const createDbUser = (data, idToken) => {
-    return request.post(`${SERVER_ADDRESS}/user/createdbuser`, data, idToken);
+export const createDbUserService = (data, idToken) => {
+    return request.post(`${SERVER_ADDRESS}/user/create-db-user`, data, idToken);
 }
 
-export const subscribe = async (email) => {
-    const data = await request.post(`${SERVER_ADDRESS}/user/subscribe`, { email });
-
-    return data;
-}
-
-export const resetPassword = (email) => {
+export const resetPasswordService = (email) => {
     const actionCodeSettings = {
-        url: `${DOMAIN_ADDRESS}/signin`
+        url: `${DOMAIN_ADDRESS}/sign-in`
     };
 
     return firebase.auth().sendPasswordResetEmail(email, actionCodeSettings)
@@ -37,34 +31,30 @@ export const resetPassword = (email) => {
         });
 }
 
-export const markNewsReadLater = (selectedNews, idToken) => {
-    return request.post(`${SERVER_ADDRESS}/user/readlater`, { selectedNews }, idToken)
-        .then(res => res.json())
-        .then(data => {
-            if (data.error) {
-                throw data.error
-            }
-            return data;
-        })
-        .catch(err => alert(err));
+export const getReadLaterNewsService = (idToken) => {
+    return request.get(`${SERVER_ADDRESS}/user/read-later`, null, idToken);
 }
 
-export const markNewsAsRead = (selectedNews, idToken) => {
-    return request.post(`${SERVER_ADDRESS}/user/markread`, { selectedNews }, idToken);
+export const markNewsAsReadLaterService = (selectedNews, idToken) => {
+    return request.post(`${SERVER_ADDRESS}/user/read-later`, { selectedNews }, idToken);
 }
 
-export const getReadLaterNews = (idToken) => {
-    return request.get(`${SERVER_ADDRESS}/user/readlater`, null, idToken);
+export const getReadNewsService = (idToken) => {
+    return request.get(`${SERVER_ADDRESS}/user/read-news`, null, idToken);
 }
 
-export const hideNews = (selectedNews, idToken) => {
-    return request.post(`${SERVER_ADDRESS}/user/hide-news`, { selectedNews }, idToken)
-        .then(res => res.json())
-        .then(data => {
-            if (data.error) {
-                throw data.error;
-            }
-            return data;
-        })
-        .catch(err => alert(err));
+export const markNewsAsReadService = (selectedNews, idToken) => {
+    return request.post(`${SERVER_ADDRESS}/user/mark-read`, { selectedNews }, idToken);
+}
+
+export const getHiddenNewsService = (idToken) => {
+    return request.get(`${SERVER_ADDRESS}/user/hidden-news`, null, idToken);
+}
+
+export const hideNewsService = (selectedNews, idToken) => {
+    return request.post(`${SERVER_ADDRESS}/user/hide-news`, { selectedNews }, idToken);
+}
+
+export const unhideNewsService = (selectedNews, idToken) => {
+    return request.post(`${SERVER_ADDRESS}/user/unhide-news`, { selectedNews }, idToken);
 }

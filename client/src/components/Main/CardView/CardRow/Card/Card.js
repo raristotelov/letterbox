@@ -5,7 +5,7 @@ import { ReactComponent as UncheckedIcon } from '../../../shared/assets/checkbox
 import { ReactComponent as CheckedIcon } from '../../../shared/assets/checkbox-checked.svg';
 import './Card.scss';
 
-function Card({ news, addToSelected, removeFromSelected , selected, onMarkNewsReadLater}) {
+function Card({ news, addToSelected, removeFromSelected , selected, newsActions}) {
     const [checked, setChecked] = useState(selected);
 
     useEffect(() => {
@@ -44,7 +44,10 @@ function Card({ news, addToSelected, removeFromSelected , selected, onMarkNewsRe
                     {checked ? <CheckedIcon /> : <UncheckedIcon />}
                 </div>
 
-                <CardOptions id={news._id} onMarkNewsReadLater={onMarkNewsReadLater} />
+                <CardOptions
+                    id={news._id}
+                    actions={newsActions}
+                />
             </div>
         </article>
     );

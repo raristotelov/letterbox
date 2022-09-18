@@ -1,10 +1,11 @@
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { ReactComponent as ReadLaterIcon } from './assets/read-later-icon.svg';
 
 import './ReadLaterLink.scss';
 
-const ReadLaterLink = ({ selected }) => {
+const ReadLaterLink = ({ readLaterNews, selected }) => {
     let history = useHistory();
 
     const RedirectToReadLater = () => {
@@ -16,7 +17,11 @@ const ReadLaterLink = ({ selected }) => {
             <span className={`read-later-title ${selected ? 'selected' : ''}`}>Read Later</span>
             
             <div className='read-later-icon'>
-                <span className='read-later-count'>2</span>
+                {readLaterNews?.length 
+                    ? (
+                        <span className='read-later-count'>{readLaterNews?.length}</span>
+                    ) : null
+                }
 
                 <ReadLaterIcon />
             </div>
@@ -24,4 +29,8 @@ const ReadLaterLink = ({ selected }) => {
     );
 }
 
-export default ReadLaterLink;
+const mapStateToProps = state => ({
+    readLaterNews: state.user.readLaterNews
+})
+
+export default connect(mapStateToProps, null)(ReadLaterLink);

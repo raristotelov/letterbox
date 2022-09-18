@@ -1,9 +1,8 @@
-.main-wrapper {
+.read-history-main {
     width: 868px;
-    margin-left: auto;
-    margin-right: 110px;
+    margin: 0 auto;
 
-    .main-title {
+    .read-history-title {
         display: flex;
         justify-content: space-between;
         padding: 65px 0px 12px 36px;
@@ -26,22 +25,13 @@
         }
     }
 
-    h2 {
-        display: inline;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 26px;
-        letter-spacing: 0.2px;
-        margin-left: 41px;
-        padding-bottom: 3px;
-        color: #119c59;
+    .read-history-view {
+        margin-left: 34px;
 
-        border-bottom: 3px solid #119c59;
-    }
-
-    .news-wrapper {
-        margin-top: 41px;
-        background-color: gray;
+        .mark-read-history-option,
+        #readHistory {
+            display: none;
+        }
     }
 
     .no-information {
@@ -56,8 +46,4 @@
 
 .loader {
     margin-top: 40px;
-}
-
-.view-wrapper {
-    margin: 0px 0 0 34px;
 }

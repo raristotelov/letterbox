@@ -2,7 +2,7 @@ import { ReactComponent as StarDarkIcon } from '../../../../shared/assets/star-d
 import { ReactComponent as MiniLogoGreenIcon } from '../../../../shared/assets/lb-logo-mini-green.svg';
 import { useEffect, useState } from 'react';
 
-const Label = ({ user, label, addNewsletterToLabel, removeNewsletterFromLabel, newsletterId }) => {
+const Label = ({ user, label, addNewsletterToLabel, removeNewsletterFromLabel, newsletterId, getLabels }) => {
     const [subscribed, setSubscribed] = useState(false);
 
     useEffect(() => {
@@ -19,8 +19,12 @@ const Label = ({ user, label, addNewsletterToLabel, removeNewsletterFromLabel, n
 
             if (subscribed) {
                 await removeNewsletterFromLabel(newsletterId, label._id, idToken);
+
+                await getLabels(idToken);
             } else {
                 await addNewsletterToLabel(newsletterId, label._id, idToken);
+
+                await getLabels(idToken);
             }
         }
     }

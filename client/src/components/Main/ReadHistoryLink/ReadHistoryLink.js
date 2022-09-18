@@ -1,11 +1,10 @@
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import { ReactComponent as ReadHistoryIcon } from './assets/read-history-icon.svg';
 
 import './ReadHistoryLink.scss';
 
-const ReadHistoryLink = ({ selected, user }) => {
+const ReadHistoryLink = ({ selected }) => {
     let history = useHistory();
 
     const RedirectToReadHistory = () => {
@@ -17,16 +16,10 @@ const ReadHistoryLink = ({ selected, user }) => {
             <span className={`read-history-title ${selected ? 'selected' : ''}`}>Read History</span>
             
             <div className='read-history-icon'>
-                <span className='read-history-count'>2</span>
-
                 <ReadHistoryIcon />
             </div>
         </button>
     );
 }
 
-const mapStateToProps = state => ({
-    user: state.user.user
-})
-
-export default connect(mapStateToProps, null)(ReadHistoryLink);
+export default ReadHistoryLink;

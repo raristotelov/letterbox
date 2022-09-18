@@ -2,25 +2,33 @@ import { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import { getNewsletter } from '../../actions/newsletterActions';
+import transformNewsletterNews from '../../helpers/transformNewsletterNews';
+import newsActionOptions from '../../helpers/newsActionOptions';
+
 import ChangeViewDropDown from './ChangeViewDropDown';
 import TitleView from './TitleView';
 import MagazineView from './MagazineView';
 import CardView from './CardView';
-import { getNewsletter, clearNewsletter } from '../../actions/newsletterActions';
-import { hideNews, markNewsReadLater } from '../../services/userService';
-import transformNewsletterNews from '../../helpers/transformNewsletterNews';
-import { useClean } from '../../hooks';
 import Loader from '../shared/Loader/Loader';
 
 import './Main.scss';
 
-const Main = ({ match, user, newsletter, getNewsletter, clearNewsletter, newsIdArrayToHide }) => {
-    const { newsletterId } = match.params;
+const newsActions = [newsActionOptions.READ_LATER, newsActionOptions.HIDE, newsActionOptions.MARK_AS_READ];
+
+const Main = ({
+    match,
+    user,
+    idToken,
+    newsletter,
+    hiddenNews,
+    getNewsletter
+}) => {
     const [news, setNews] = useState(null);
-
     const [view, setView] = useState('magazineView');
+    const [isLoading, setIsLoading] = useState(false);
 
-    useClean(clearNewsletter);
+    const { newsletterId } = match.params;
 
     let history = useHistory();
 
@@ -29,41 +37,32 @@ const Main = ({ match, user, newsletter, getNewsletter, clearNewsletter, newsIdA
     }
 
     useEffect(() => {
-        if (user) {
-            clearNewsletter()
-            user.getIdToken()
-                .then(idToken => getNewsletter(newsletterId, idToken))
-                .catch(console.log);
+        if (user && idToken) {
+            setIsLoading(true);
+
+            getNewsletter(newsletterId, idToken)
+            .then(() => {
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                alert("Something went wrong while trying to fetch newsletter!")
+            });
         }
-    }, [newsletterId, user, getNewsletter, clearNewsletter]);
+    }, [newsletterId, user, getNewsletter, idToken]);
 
     useEffect(() => {
-        const data = transformNewsletterNews(newsletter.news);
+        const filteredNews = newsletter?.news?.filter((newsItem) => {
+            if (hiddenNews.find((hiddenNewsItem) => hiddenNewsItem._id === newsItem._id)) {
+                return false;
+            }
+    
+            return true;
+        })
+
+        const data = transformNewsletterNews(filteredNews);
+
         setNews(data);
-    }, [newsletter]);
-
-    useEffect(() => {
-        if (user) {
-            user.getIdToken()
-                .then(async idToken => {
-                    if (newsIdArrayToHide) {
-                        await hideNews(newsIdArrayToHide, idToken);
-                        await getNewsletter(newsletterId, idToken);
-                    }
-                })
-                .catch(err => console.log(err));
-        }
-    }, [newsIdArrayToHide, user, getNewsletter, newsletterId]);
-
-    const onMarkNewsReadLater = ({ id }) => {
-        if (user) {
-            user.getIdToken()
-                .then(async idToken => {
-                    await markNewsReadLater([id], idToken);
-                })
-                .catch(err => console.log(err));
-        }
-    }
+    }, [newsletter, hiddenNews]);
 
     const viewStyle = {
         magazineView: MagazineView,
@@ -72,6 +71,14 @@ const Main = ({ match, user, newsletter, getNewsletter, clearNewsletter, newsIdA
     }
 
     const PageView = viewStyle[view]
+
+    if (isLoading) {
+        return (
+            <div className='loader'>
+                <Loader />
+            </div>
+        )
+    }
 
     return (
         <Fragment>
@@ -84,19 +91,22 @@ const Main = ({ match, user, newsletter, getNewsletter, clearNewsletter, newsIdA
                     </div>
                 </section>
 
-                {newsletter._id 
+                {news?.size
                     ? (
                         <Fragment>
                             <h2>{newsletter.name}</h2>
 
                             <section className='view-wrapper'>
-                                <PageView news={news} onMarkNewsReadLater={onMarkNewsReadLater} />
+                                <PageView
+                                    news={news}
+                                    newsActions={newsActions}
+                                />
                             </section>
                         </Fragment>
                     ) : (
-                        <div className='loader'>
-                            <Loader />
-                        </div>
+                        <span className='no-information'>
+                            Section is empty.
+                        </span>
                     )
                 }
             </main>
@@ -106,13 +116,13 @@ const Main = ({ match, user, newsletter, getNewsletter, clearNewsletter, newsIdA
 
 const mapStateToProps = state => ({
     user: state.user.user,
-    newsletter: state.newsletter.newsletter,
-    newsIdArrayToHide: state.newsletter.newsIdArrayToHide,
+    idToken: state.user.idToken,
+    hiddenNews: state.user.hiddenNews,
+    newsletter: state.newsletter.newsletter
 })
 
 const mapDispatchToProps = {
-    getNewsletter,
-    clearNewsletter
+    getNewsletter
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

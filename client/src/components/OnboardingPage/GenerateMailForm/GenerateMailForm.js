@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { BtnFilledGray, BtnFilledGreen } from '../../shared/Buttons/BaseBtn/BaseBtn';
 import Input, { InputError } from '../../shared/Input/Input';
-import { createEmailMaskAction } from '../../../actions/userActions';
+import { createEmailMask } from '../../../actions/userActions';
 
 import './GenerateMailForm.scss';
 import { useForm } from '../../../hooks';
 
-const GenerateMailForm = ({ user, createEmailMaskAction }) => {
+const GenerateMailForm = ({ user, createEmailMask }) => {
     const history = useHistory();
 
     const [stateInput, setUsernameValue] = useForm({ username: '' });
@@ -21,7 +21,7 @@ const GenerateMailForm = ({ user, createEmailMaskAction }) => {
         if (stateInput.username && validated && user) {
             const idToken = await user.getIdToken(true);
             try {
-                await createEmailMaskAction(stateInput.username, idToken, user);
+                await createEmailMask(stateInput.username, idToken, user);
                 history.push('/explore-feeds');
             } catch (res) {
                 alert(res.error);
@@ -99,7 +99,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    createEmailMaskAction,
+    createEmailMask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GenerateMailForm);

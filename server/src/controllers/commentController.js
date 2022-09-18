@@ -20,7 +20,6 @@ router.post('/', verifyIdToken, async (req, res) => {
         const response = await commentService.create(res._id, content, rating, newsId, replyToCommentId);
         return res.json(response);
     } catch(error) {
-        console.log(error)
         return res.status(400).json({ error })
     }
 })
@@ -31,7 +30,6 @@ router.put('/edit', verifyIdToken, async (req, res) => {
         const response = await commentService.edit(res._id, content, rating, commentId);
         return res.json(response);
     } catch(error) {
-        console.log(error)
         return res.status(400).json({ error })
     }
 })

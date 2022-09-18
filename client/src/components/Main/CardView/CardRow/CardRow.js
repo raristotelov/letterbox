@@ -3,7 +3,7 @@ import NewsOptions from '../../shared/NewsOptions';
 import Card from './Card';
 import './CardRow.scss';
 
-function CardRow({ binder, news, onMarkNewsReadLater }) {
+function CardRow({ binder, news, newsActions }) {
     const [selectedNews, setSelectedNews] = useState([]);
 
     const addToSelected = (id) => {
@@ -24,19 +24,24 @@ function CardRow({ binder, news, onMarkNewsReadLater }) {
                     selectedNews.length > 0
                     && <NewsOptions selectedNews={selectedNews}
                         setSelectedNews={setSelectedNews}
-                        news={news} />
+                        news={news}
+                        actions={newsActions}
+                    />
                 }
             </div>
 
             <div className="card-container">
                 {
-                    news && news.map(x => <Card
-                        key={x._id}
-                        news={x}
-                        addToSelected={addToSelected}
-                        removeFromSelected={removeFromSelected}
-                        selected={selectedNews.includes(x._id)} 
-                        onMarkNewsReadLater={onMarkNewsReadLater}/>)
+                    news && news.map(x => (
+                        <Card
+                            key={x._id}
+                            news={x}
+                            addToSelected={addToSelected}
+                            removeFromSelected={removeFromSelected}
+                            selected={selectedNews.includes(x._id)} 
+                            newsActions={newsActions}
+                        />
+                    ))
                 }
             </div>
         </div>

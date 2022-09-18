@@ -2,9 +2,21 @@ import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { removeNewsletter } from '../../../../actions/feedActions';
 import { ReactComponent as RemoveIcon } from '../../assets/remove-icon.svg';
+import { removeNewsletterFromLabel, getLabels } from '../../../../actions/labelActions';
+
 import './NewsletterCard.scss';
 
-const NewsletterCard = ({ user, labels, admin, feed, newsletter, setAddToLabelOpen, removeNewsletter }) => {
+const NewsletterCard = ({
+    user,
+    labels,
+    admin,
+    feed,
+    newsletter,
+    setAddToLabelOpen,
+    removeNewsletter,
+    removeNewsletterFromLabel,
+    getLabels
+}) => {
     const [subscribed, setSubscribed] = useState(false);
 
     useEffect(() => {
@@ -23,6 +35,26 @@ const NewsletterCard = ({ user, labels, admin, feed, newsletter, setAddToLabelOp
         }
     }
 
+    const unsubscribeFromNewsletter = async (newsletterId) => {
+        const idToken = await user.getIdToken();
+
+        const promises = [];
+
+        for (let i = 0; i < labels.length; i += 1) {
+            const currLabel = labels[i];
+
+            if (currLabel?.newsletters?.find((newsletter) => newsletter._id === newsletterId)) {
+                promises.push(removeNewsletterFromLabel(newsletterId, currLabel._id, idToken));
+            }
+        }
+
+        await Promise.all(promises);
+
+        await getLabels(idToken);
+    }
+
+    const buttonAction = subscribed ? () => unsubscribeFromNewsletter(newsletter._id) : () => setAddToLabelOpen(newsletter._id);
+
     return (
         <article className="newsletter-card" data-testid="newsletter-card">
             <section className="newsletter-img-container">
@@ -37,7 +69,7 @@ const NewsletterCard = ({ user, labels, admin, feed, newsletter, setAddToLabelOp
 
             <section className="newsletter-subscribe-btn-container">
                 <button
-                    onClick={() => setAddToLabelOpen(newsletter._id)}
+                    onClick={buttonAction}
                     className={`btn ${subscribed ? 'unsubscribe-btn' : 'subscribe-btn'}`}
                 >
                     {subscribed ? 'Unsubscribe' : 'Subscribe'}
@@ -57,7 +89,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    removeNewsletter
+    removeNewsletter,
+    removeNewsletterFromLabel,
+    getLabels
 }
 
 export { NewsletterCard };

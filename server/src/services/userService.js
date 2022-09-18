@@ -1,6 +1,5 @@
 const admin = require('../config/firebase');
 const UserModel = require('../models/UserModel');
-const SubscriberModel = require('../models/SubscriberModel');
 const LabelModel = require('../models/LabelModel');
 
 const signUp = async ({ email, password, firstName, lastName, year, month, day, country }) => {
@@ -71,28 +70,17 @@ const createDbUser = async (data, uid) => {
     }
 }
 
-const subscribe = ({ email }) => {
-    let subscriber = new SubscriberModel({ email });
-
-    return subscriber.save();
-}
-
-const hideNews = async (_id, selectedNews) => {
+const getReadLaterNews = async (_id) => {
     try {
-        await UserModel.findByIdAndUpdate(_id, {
-            $addToSet: {
-                hiddenNews: selectedNews
-            }
-        })
+        const userEntry = await UserModel.findById(_id).populate('readLaterNews');
 
-        return 'Success';
-
+        return userEntry.readLaterNews.reverse();
     } catch (error) {
         throw error;
     }
 }
 
-const markNewsReadLater = async (_id, selectedNews) => {
+const markNewsAsReadLater = async (_id, selectedNews) => {
     try {
         await UserModel.findByIdAndUpdate(_id, {
             $addToSet: {
@@ -100,29 +88,17 @@ const markNewsReadLater = async (_id, selectedNews) => {
             }
         });
 
-        return 'Success';
+        return getReadLaterNews(_id);
     } catch (error) {
         throw error;
     }
 }
 
-const getReadLaterNews = async (_id) => {
+const getReadNews = async (_id) => {
     try {
-        const userEntry = await UserModel.findById(_id).populate('readLaterNews');
-        return userEntry.readLaterNews.reverse();
-    } catch (error) {
-        throw error;
-    }
-}
-
-const pullFromReadLater = async (_id, selectedNews) => {
-    try {
-        await UserModel.findByIdAndUpdate(_id, {
-            $pull: {
-                readLaterNews: { $in: selectedNews }
-            }
-        });
-        return 'Success';
+        const userEntry = await UserModel.findById(_id).populate('readNews');
+        
+        return userEntry.readNews.reverse();
     } catch (error) {
         throw error;
     }
@@ -135,7 +111,74 @@ const markNewsAsRead = async (_id, selectedNews) => {
                 readNews: selectedNews 
             }
         });
-        return 'Success';
+
+        await UserModel.findByIdAndUpdate(_id, {
+            $pull: {
+                readLaterNews: {
+                    $in: selectedNews
+                }
+            }
+        });
+
+        const readNews = await getReadNews(_id);
+
+        const readLaterNews = await getReadLaterNews(_id);
+
+        return { readNews, readLaterNews };
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getHiddenNews = async (_id) => {
+    try {
+        const userEntry = await UserModel.findById(_id).populate('hiddenNews');
+        
+        return userEntry.hiddenNews.reverse();
+    } catch (error) {
+        throw error;
+    }
+}
+
+const hideNews = async (_id, selectedNews) => {
+    try {
+        await UserModel.findByIdAndUpdate(_id, {
+            $addToSet: {
+                hiddenNews: selectedNews
+            }
+        })
+
+        await UserModel.findByIdAndUpdate(_id, {
+            $pull: {
+                readLaterNews: {
+                    $in: selectedNews
+                }
+            }
+        });
+
+        const hiddenNews = await getHiddenNews(_id);
+
+        const readLaterNews = await getReadLaterNews(_id);
+
+        return { hiddenNews, readLaterNews };
+
+        return 
+    } catch (error) {
+        throw error;
+    }
+}
+
+const unhideNews = async (_id, selectedNews) => {
+    try {
+        await UserModel.findByIdAndUpdate(_id, {
+            $pull: {
+                hiddenNews: {
+                    $in: selectedNews
+                }
+            }
+        })
+
+        return getHiddenNews(_id);
     } catch (error) {
         throw error;
     }
@@ -145,10 +188,11 @@ module.exports = {
     signUp,
     createEmailMask,
     createDbUser,
-    subscribe,
-    hideNews,
-    markNewsReadLater,
-    pullFromReadLater,
     getReadLaterNews,
-    markNewsAsRead
+    markNewsAsReadLater,
+    getReadNews,
+    markNewsAsRead,
+    getHiddenNews,
+    hideNews,
+    unhideNews
 }

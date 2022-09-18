@@ -1,7 +1,7 @@
 import './MagazineView.scss';
 import MagazineViewList from './MagazineViewList';
 
-const MagazineView = ({ news, onMarkNewsReadLater }) => {
+const MagazineView = ({ news, newsActions }) => {
     return (
         <div className="magazine-view-container">
             {
@@ -9,8 +9,8 @@ const MagazineView = ({ news, onMarkNewsReadLater }) => {
                     <MagazineViewList
                         key={key}
                         binder={key}
-                        news={news.get(key)} 
-                        onMarkNewsReadLater={onMarkNewsReadLater}
+                        news={news.get(key)}
+                        newsActions={newsActions}
                     />
                 ))
             }

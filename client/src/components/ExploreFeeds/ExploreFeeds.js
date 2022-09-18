@@ -46,8 +46,22 @@ const ExploreFeeds = ({ user, admin, feeds, getFeeds }) => {
 
                 <div className="feeds-container">
                     {admin
-                        ? feeds.map((f) => <Feed key={f._id} feedProps={f} img=""></Feed>)
-                        : feeds.filter((f) => !f.hidden).map((f) => <Feed key={f._id} feedProps={f} img=""></Feed>)}
+                        ? feeds.map((f) => 
+                        (
+                            <Feed 
+                                key={f._id}
+                                feedProps={f}
+                                img=""
+                            />
+                        )) : feeds.filter((f) => !f.hidden).map((f) => 
+                        (
+                            <Feed
+                                key={f._id}
+                                feedProps={f}
+                                img=""
+                            />
+                        ))
+                    }
                 </div>
 
                 <ExploreFeedsFooter />
