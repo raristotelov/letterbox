@@ -1,10 +1,10 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, Fragment, useContext } from 'react';
 import { connect } from 'react-redux';
 
 import transformReadLaterNews from '../../helpers/transformReadLaterNews';
 import newsActionOptions from '../../helpers/newsActionOptions';
 import { getReadNews } from '../../actions/userActions';
-import { markNewsAsReadLaterService } from '../../services/userService';
+import { ViewContext } from '../../contexts/ViewContext';
 
 import ChangeViewDropDown from '../Main/ChangeViewDropDown';
 import MagazineView from '../Main/MagazineView';
@@ -18,8 +18,9 @@ const newsActions = [newsActionOptions.READ_LATER, newsActionOptions.HIDE];
 
 const ReadHistory = ({ user, idToken, readNews, hiddenNews, getReadNews }) => {
     const [readHistoryNews, setReadHistoryNews] = useState(transformReadLaterNews(readNews));
-    const [view, setView] = useState('magazineView');
     const [isLoading, setIsLoading] = useState(false);
+
+    const viewContextObject = useContext(ViewContext);
 
     useEffect(() => {
         if (user && idToken) {
@@ -59,7 +60,7 @@ const ReadHistory = ({ user, idToken, readNews, hiddenNews, getReadNews }) => {
         titleOnlyView: TitleView,
     }
 
-    const PageView = viewStyle[view];
+    const PageView = viewStyle[viewContextObject.selectedView];
 
     if (isLoading) {
         return (
@@ -76,7 +77,9 @@ const ReadHistory = ({ user, idToken, readNews, hiddenNews, getReadNews }) => {
                     <h1>Read History</h1>
 
                     <div className="change-view-dropdown-container">
-                        <ChangeViewDropDown view={view} setView={setView} className="change-view-dropdown" />
+                        <ChangeViewDropDown
+                            className="change-view-dropdown"
+                        />
                     </div>
                 </section>
 

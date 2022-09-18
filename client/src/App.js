@@ -19,6 +19,7 @@ import ReadNews from './components/ReadNews';
 import SingleFeed from './components/SingleFeed';
 import HowItWorks from './components/HowItWorks';
 import MainLayout from './components/layouts/MainLayout';
+import { SelectedViewProvider } from './contexts/ViewContext';
 
 import './App.css'
 
@@ -30,37 +31,39 @@ const App = ({ verifyAuth, user }) => {
     return (
         <div className="App">
             <Router>
-                <MainLayout activeUser={user}>
-                    <Switch>
-                        <Route  path="/" exact component={Landing} />
+                <SelectedViewProvider>
+                    <MainLayout activeUser={user}>
+                        <Switch>
+                            <Route  path="/" exact component={Landing} />
 
-                        <Route path="/how-it-works" component={HowItWorks} />
+                            <Route path="/how-it-works" component={HowItWorks} />
 
-                        <Route path="/sign-up" component={SignUp} />
+                            <Route path="/sign-up" component={SignUp} />
 
-                        <Route path="/sign-in" component={SignIn} />
+                            <Route path="/sign-in" component={SignIn} />
 
-                        <Route path="/signout" component={SignOut} />
-                        
-                        <Route path="/onboarding" component={Onboarding} />
+                            <Route path="/signout" component={SignOut} />
+                            
+                            <Route path="/onboarding" component={Onboarding} />
 
-                        <Route path="/forgotten-password" component={ForgotPassword} />
+                            <Route path="/forgotten-password" component={ForgotPassword} />
 
-                        <Route path="/explore-feeds" component={ExploreFeeds} />
+                            <Route path="/explore-feeds" component={ExploreFeeds} />
 
-                        <Route path="/feed/:feedId" component={SingleFeed} />
+                            <Route path="/feed/:feedId" component={SingleFeed} />
 
-                        <Route exact path="/main/:newsletterId" component={Main} />
+                            <Route exact path="/main/:newsletterId" component={Main} />
 
-                        <Route path="/news/:id" component={ReadNews} />
+                            <Route path="/news/:id" component={ReadNews} />
 
-                        <Route path="/read-later" component={ReadLater} />
+                            <Route path="/read-later" component={ReadLater} />
 
-                        <Route path="/read-history" component={ReadHistory} />
+                            <Route path="/read-history" component={ReadHistory} />
 
-                        <Route path="/hidden-news" component={HiddenNews} />
-                    </Switch>
-                </MainLayout>
+                            <Route path="/hidden-news" component={HiddenNews} />
+                        </Switch>
+                    </MainLayout>
+                </SelectedViewProvider>
             </Router>
         </div>
     );

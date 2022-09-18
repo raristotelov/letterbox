@@ -1,10 +1,11 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useContext } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { getNewsletter } from '../../actions/newsletterActions';
 import transformNewsletterNews from '../../helpers/transformNewsletterNews';
 import newsActionOptions from '../../helpers/newsActionOptions';
+import { ViewContext } from '../../contexts/ViewContext';
 
 import ChangeViewDropDown from './ChangeViewDropDown';
 import TitleView from './TitleView';
@@ -27,6 +28,8 @@ const Main = ({
     const [news, setNews] = useState(null);
     const [view, setView] = useState('magazineView');
     const [isLoading, setIsLoading] = useState(false);
+
+    const viewContextObject = useContext(ViewContext);
 
     const { newsletterId } = match.params;
 
@@ -70,7 +73,7 @@ const Main = ({
         titleOnlyView: TitleView,
     }
 
-    const PageView = viewStyle[view]
+    const PageView = viewStyle[viewContextObject.selectedView]
 
     if (isLoading) {
         return (

@@ -1,9 +1,10 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, Fragment, useContext } from 'react';
 import { connect } from 'react-redux';
 
 import transformReadLaterNews from '../../helpers/transformReadLaterNews';
 import newsActionOptions from '../../helpers/newsActionOptions';
 import { getHiddenNews } from '../../actions/userActions';
+import { ViewContext } from '../../contexts/ViewContext';
 
 import ChangeViewDropDown from '../Main/ChangeViewDropDown';
 import MagazineView from '../Main/MagazineView';
@@ -17,8 +18,9 @@ const newsActions = [newsActionOptions.UNHIDE]
 
 const HiddenNews = ({ user, idToken, hiddenNews, getHiddenNews }) => {
     const [readHistoryNews, setReadHistoryNews] = useState(transformReadLaterNews(hiddenNews));
-    const [view, setView] = useState('magazineView');
     const [isLoading, setIsLoading] = useState(false);
+
+    const viewContextObject = useContext(ViewContext);
 
     useEffect(() => {
         if (user && idToken) {
@@ -50,7 +52,7 @@ const HiddenNews = ({ user, idToken, hiddenNews, getHiddenNews }) => {
         titleOnlyView: TitleView,
     }
 
-    const PageView = viewStyle[view];
+    const PageView = viewStyle[viewContextObject.selectedView];
 
     if (isLoading) {
         return (
@@ -67,7 +69,9 @@ const HiddenNews = ({ user, idToken, hiddenNews, getHiddenNews }) => {
                     <h1>Hidden news</h1>
 
                     <div className="change-view-dropdown-container">
-                        <ChangeViewDropDown view={view} setView={setView} className="change-view-dropdown" />
+                        <ChangeViewDropDown
+                            className="change-view-dropdown"
+                        />
                     </div>
                 </section>
 

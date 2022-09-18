@@ -34,7 +34,9 @@ function Card({ news, addToSelected, removeFromSelected , selected, newsActions}
 
                 <div className="info-container">
                     <p className="date">{new Date(news.date).toDateString().substring(4)}</p>
+
                     <p className="newsletter">{news.newsletter.name}</p>
+                    
                     <p className="read-time">{news.readTime} min read</p>
                 </div>
             </div>
