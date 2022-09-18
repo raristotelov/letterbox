@@ -4,6 +4,7 @@ const NewsModel = require('../models/NewsModel');
 const calculateReadTime = require('./helpers/CalculateReadTime');
 
 const add = async (newsData, newsletterName) => {
+    console.log("in add func");
     let newsletter = await NewsletterModel.findOne({ name: newsletterName });
 
     if (newsletter == null) {
@@ -17,6 +18,8 @@ const add = async (newsData, newsletterName) => {
   
     let news = new NewsModel({ ...newsData, readTime: timeToRead, newsletter: newsletter._id });
     newsletter.news.push(news._id);
+
+    console.log("adding news");
 
     await newsletter.save();
     return news.save();

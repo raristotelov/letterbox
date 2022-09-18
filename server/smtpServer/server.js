@@ -17,6 +17,8 @@ const server = new SMTPServer({
             // TODO remove this when done with testing
             console.log(`New email with title ${letter.title} was sent from ${letter.newsletter}`);
 
+            console.log("letter", letter);
+
             if (!letter) {
                 return;
             }
@@ -29,6 +31,8 @@ const server = new SMTPServer({
                 date: letter.date,
                 image: letter.image ? letter.image : 'https://www.andromo.com/blog/wp-content/uploads/2020/12/news-1.jpg',
             };
+
+            console.log("newservice add");
 
             try {
                 newsService.add(letterData, letter.newsletter);
