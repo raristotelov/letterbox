@@ -3,6 +3,7 @@ import {
     GET_NEWSLETTERS,
     HIDE_NEWS,
     CLEAR_NEWSLETTER,
+    SIGNOUT
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -36,6 +37,10 @@ const newsletterReducer = (state = initialState, action) => {
                 ...state,
                 newsletter: initialState.newsletter
             }
+        case SIGNOUT:
+            return {
+                ...initialState,
+            };
         default:
             return { ...state }
     }

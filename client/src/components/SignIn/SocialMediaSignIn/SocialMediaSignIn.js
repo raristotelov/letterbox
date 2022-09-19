@@ -1,10 +1,12 @@
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import { signInWithGoogle, signInWithFacebook, signInWithTwitter } from '../../../actions/userActions';
 import { BtnFacebook, BtnGoogle, BtnTwitter } from '../../shared/Buttons/BtnSocialMedia/BtnSocialMedia';
-import { signInWithGoogle, signInWithFacebook } from '../../../actions/userActions';
+
 import './SocialMediaSignIn.scss';
 
-const SocialMediaSignIn = ({ signInWithGoogle, signInWithFacebook }) => {
+const SocialMediaSignIn = ({ signInWithGoogle, signInWithFacebook, signInWithTwitter }) => {
     const history = useHistory();
 
     const handleGoogle = async () => {
@@ -15,13 +17,19 @@ const SocialMediaSignIn = ({ signInWithGoogle, signInWithFacebook }) => {
         await signInWithFacebook(history);
     }
 
+    const handleTwitter = async () => {
+        await signInWithTwitter(history);
+    }
+
     return (
         <section className="social-media-signin">
             <p>or use account</p>
-            <BtnTwitter className="btn-twitter" onClick={() => { }} />
-            <BtnFacebook className="btn-facebook" onClick={handleFacebook} />
-            <BtnGoogle className="btn-google" onClick={handleGoogle} />
+            
+            <BtnTwitter className="btn-twitter" onClick={handleTwitter} />
 
+            <BtnFacebook className="btn-facebook" onClick={handleFacebook} />
+
+            <BtnGoogle className="btn-google" onClick={handleGoogle} />
         </section>
     )
 }
@@ -30,6 +38,7 @@ const SocialMediaSignIn = ({ signInWithGoogle, signInWithFacebook }) => {
 const mapDispatchToProps = {
     signInWithGoogle,
     signInWithFacebook,
+    signInWithTwitter
 }   
 
 export default connect(null, mapDispatchToProps)(SocialMediaSignIn);

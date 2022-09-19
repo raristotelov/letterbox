@@ -20,7 +20,7 @@ const SettingsDropDown = ({ emailMask, handleSignOut }) => {
             </div>
 
             <ul className="settings-menu-content">
-                <li onClick={() => handleSignOut()}>
+                <li onClick={handleSignOut}>
                     <LogOut />
 
                     <span>Log out</span>

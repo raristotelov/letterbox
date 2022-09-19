@@ -1,5 +1,6 @@
 import {
-    GET_LABELS
+    GET_LABELS,
+    SIGNOUT
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -13,6 +14,10 @@ const labelReducer = (state = initialState, action) => {
                 ...state,
                 labels: action.payload
             }
+        case SIGNOUT:
+            return {
+                ...initialState,
+            };
         default:
             return {
                 ...state

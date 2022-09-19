@@ -1,4 +1,14 @@
-import { CREATE_FEED, EDIT_FEED, DELETE_FEED, GET_ALL_FEEDS, GET_FEED, ADD_NEWSLETTER, REMOVE_NEWSLETTER, CLEAR_FEED } from '../actions/actionTypes';
+import {
+    CREATE_FEED,
+    EDIT_FEED,
+    DELETE_FEED,
+    GET_ALL_FEEDS,
+    GET_FEED,
+    ADD_NEWSLETTER,
+    REMOVE_NEWSLETTER,
+    CLEAR_FEED,
+    SIGNOUT
+} from '../actions/actionTypes';
 
 const initialState = {
     feed: {
@@ -56,6 +66,10 @@ const feedReducer = (state = initialState, action) => {
             return {
                 ...state,
                 feed: initialState.feed,
+            };
+        case SIGNOUT:
+            return {
+                ...initialState,
             };
         default:
             return { ...state };

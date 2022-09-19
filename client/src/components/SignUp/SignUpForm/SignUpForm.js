@@ -100,12 +100,12 @@ const SignUpForm = ({ countries, signUp, signIn }) => {
         ) {
                 try {
                     await signUp(formData);
+
                     await signIn(formData.email, formData.password);
 
                     history.push('/onboarding');
                 } catch (res) {
-                    // TODO add error page
-                    alert(res.error);
+                    alert('Something went wrong while trying to sign up!');
                 }
         }
     }

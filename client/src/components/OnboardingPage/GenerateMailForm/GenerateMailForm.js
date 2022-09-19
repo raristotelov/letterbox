@@ -20,11 +20,13 @@ const GenerateMailForm = ({ user, createEmailMask }) => {
 
         if (stateInput.username && validated && user) {
             const idToken = await user.getIdToken(true);
+
             try {
                 await createEmailMask(stateInput.username, idToken, user);
+
                 history.push('/explore-feeds');
             } catch (res) {
-                alert(res.error);
+                alert('Something went wrong while trying to set up email mask!');
             }
         }
     };

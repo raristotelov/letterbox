@@ -8,13 +8,14 @@ export const signUpService = (data) => {
     return request.post(`${SERVER_ADDRESS}/user/sign-up`, data);
 }
 
-export const createEmailMaskService = (username, idToken) => {
-    const emailMask = `${username}@newsletterapp.io`;
-    return request.post(`${SERVER_ADDRESS}/user/create-email-mask`, { emailMask }, idToken);
+export const createDbUserService = (data) => {
+    return request.post(`${SERVER_ADDRESS}/user/create-db-user`, data);
 }
 
-export const createDbUserService = (data, idToken) => {
-    return request.post(`${SERVER_ADDRESS}/user/create-db-user`, data, idToken);
+export const createEmailMaskService = (username, idToken) => {
+    const emailMask = `${username}@newsletterapp.io`;
+    
+    return request.post(`${SERVER_ADDRESS}/user/create-email-mask`, { emailMask }, idToken);
 }
 
 export const resetPasswordService = (email) => {

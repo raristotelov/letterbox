@@ -29,9 +29,10 @@ const Header = ({ emailMask, signOut }) => {
         setState(false);
     };
 
-    const handleSignOut = () => {
+    const handleSignOut = async () => {
         closeSettings();
-        signOut();
+        await signOut();
+
         history.push('/sign-in');
     };
 
@@ -60,7 +61,10 @@ const Header = ({ emailMask, signOut }) => {
 
                 {settingsState ? (
                     <div className="settings-container">
-                        <SettingsDropDown emailMask={emailMask} handleSignOut={handleSignOut} />
+                        <SettingsDropDown
+                            emailMask={emailMask}
+                            handleSignOut={handleSignOut}
+                        />
                     </div>
                 ) : (
                         ''

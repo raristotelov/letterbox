@@ -1,3 +1,4 @@
+import firebase from '../firebase';
 import {
     SIGNIN,
     SIGNOUT,
@@ -12,7 +13,6 @@ import {
     HIDE_NEWS,
     UNHIDE_NEWS
 } from './actionTypes';
-import firebase from '../firebase';
 import {
     signUpService,
     createEmailMaskService,
@@ -26,8 +26,9 @@ import {
     unhideNewsService
 } from '../services/userService';
 
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+const twitterProvider = new firebase.auth.TwitterAuthProvider ();
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 export const signInSuccess = (userData) => ({
     type: SIGNIN,
@@ -88,11 +89,16 @@ export const unhideNewsSuccess = (hiddenNews) => ({
 })
 
 export const signUp = (data) => async (dispatch) => {
-    const response = await signUpService(data);
-    const responseJSON = await response.json();
+    try {
+        const res = await signUpService(data);
 
-    if (responseJSON.error) {
-        throw { error: responseJSON.error }
+        const responeJSON = await res.json();
+
+        if (responeJSON.error) {
+            throw responeJSON.error;
+        }
+    } catch (err) {
+        alert('Something went wrong while trying to sign up user!');
     }
 }
 
@@ -116,51 +122,153 @@ export const signIn = (email, password) => async (dispatch) => {
 export const signInWithGoogle = (history) => async (dispatch) => {
     try {
         const user = await firebase.auth().signInWithPopup(googleProvider);
+
         const isNewUser = user.additionalUserInfo.isNewUser;
+        
+        const idToken = await user.user.getIdTokenResult(true);
+        const claims = idToken.claims;
+
         if (isNewUser) {
             const email = user.additionalUserInfo.profile.email;
             const firstName = user.additionalUserInfo.profile.given_name;
             const lastName = user.additionalUserInfo.profile.family_name;
-            const idToken = await user.user.getIdToken();
+            const uid = user.user.uid;
+
             try {
-                const res = await createDbUserService({ email, firstName, lastName }, idToken);
+                await createDbUserService({ uid,  email, firstName, lastName });
+                
+                firebase.auth().onAuthStateChanged(async (user) => {
+                    if (user) {
+                        const claims = (await user.getIdTokenResult(true)).claims;
+
+                        const { admin, _id } = claims;
+
+                        const currUserIdToken = await user.getIdToken();
+
+                        dispatch(signInSuccess({ admin, _id, user, idToken: currUserIdToken }));
+                    }
+                });
             } catch (err) {
-                throw err;
+                alert("Something went wrong while trying to create user!");
             }
+            
             history.push('/onboarding');
         } else {
-            history.push('/main');
+            const admin = claims.admin;
+            const _id = claims._id;
+            const emailMask = claims.emailMask;
+            const currUserIdToken = await user.user.getIdToken();
+
+            dispatch(signInSuccess({  admin, user: user.user, emailMask, _id, idToken: currUserIdToken }))
+
+            history.push('/explore-feeds');
         }
     } catch (err) {
-        console.log(err)
+        alert('Something went wrong while trying to sign up with google!');
     }
 }
 
 export const signInWithFacebook = (history) => async (dispatch) => {
     try {
         const user = await firebase.auth().signInWithPopup(facebookProvider);
+
         const isNewUser = user.additionalUserInfo.isNewUser;
+        
+        const idToken = await user.user.getIdTokenResult(true);
+        const claims = idToken.claims;
+
         if (isNewUser) {
             const email = user.additionalUserInfo.profile.email;
             const firstName = user.additionalUserInfo.profile.first_name;
             const lastName = user.additionalUserInfo.profile.last_name;
-            const idToken = await user.user.getIdToken();
+            const uid = user.user.uid;
+
             try {
-                const res = await createDbUserService({ email, firstName, lastName }, idToken);
+                await createDbUserService({ uid, email, firstName, lastName });
+                
+                firebase.auth().onAuthStateChanged(async (user) => {
+                    if (user) {
+                        const claims = (await user.getIdTokenResult(true)).claims;
+
+                        const { admin, _id } = claims;
+
+                        const currUserIdToken = await user.getIdToken();
+
+                        dispatch(signInSuccess({ admin, _id, user, idToken: currUserIdToken }));
+                    }
+                });
             } catch (err) {
-                throw err;
+                alert("Something went wrong while trying to create user!");
             }
+            
             history.push('/onboarding');
         } else {
-            history.push('/main');
+            const admin = claims.admin;
+            const _id = claims._id;
+            const emailMask = claims.emailMask;
+            const currUserIdToken = await user.user.getIdToken();
+
+            dispatch(signInSuccess({  admin, user: user.user, emailMask, _id, idToken: currUserIdToken }))
+
+            history.push('/explore-feeds');
         }
     } catch (err) {
-        console.log(err)
+        alert('Something went wrong while trying to sign up with facebook!');
+    }
+}
+
+export const signInWithTwitter = (history) => async (dispatch) => {
+    try {
+        const user = await firebase.auth().signInWithPopup(twitterProvider);
+
+        const isNewUser = user.additionalUserInfo.isNewUser;
+        
+        const idToken = await user.user.getIdTokenResult(true);
+        const claims = idToken.claims;
+
+        if (isNewUser) {
+            const email = user.additionalUserInfo.profile.email;
+            const firstName = user.additionalUserInfo.profile.first_name;
+            const lastName = user.additionalUserInfo.profile.last_name;
+            const uid = user.user.uid;
+
+            try {
+                await createDbUserService({ uid, email, firstName, lastName });
+                
+                firebase.auth().onAuthStateChanged(async (user) => {
+                    if (user) {
+                        const claims = (await user.getIdTokenResult(true)).claims;
+
+                        const { admin, _id } = claims;
+
+                        const currUserIdToken = await user.getIdToken();
+
+                        dispatch(signInSuccess({ admin, _id, user, idToken: currUserIdToken }));
+                    }
+                });
+            } catch (err) {
+                alert("Something went wrong while trying to create user!");
+            }
+            
+            history.push('/onboarding');
+        } else {
+            const admin = claims.admin;
+            const _id = claims._id;
+            const emailMask = claims.emailMask;
+            const currUserIdToken = await user.user.getIdToken();
+
+            dispatch(signInSuccess({  admin, user: user.user, emailMask, _id, idToken: currUserIdToken }))
+
+            history.push('/explore-feeds');
+        }
+    } catch (err) {
+        alert('Something went wrong while trying to sign up with twitter!');
     }
 }
 
 export const signOut = () => async (dispatch) => {
     await firebase.auth().signOut();
+
     dispatch(signOutSuccess());
 }
 
@@ -181,15 +289,21 @@ export const verifyAuth = () => (dispatch) => {
 }
 
 export const createEmailMask = (username, idToken, user) => async (dispatch) => {
-    const response = await createEmailMaskService(username, idToken);
-    const responseJSON = await response.json();
+    try {
+        const response = await createEmailMaskService(username, idToken);
+        const data = await response.json();
 
-    if (responseJSON.error) {
-        throw { error: responseJSON.error }
+        if (data.error) {
+            throw data.error;
+        }
+
+        const emailMask = (await user.getIdTokenResult(true)).claims.emailMask;
+
+        dispatch(emailMaskSuccess({ emailMask }));
+    } catch (error) {
+        alert('Something went wrong while trying to create email mask!');
     }
 
-    const emailMask = (await user.getIdTokenResult(true)).claims.emailMask;
-    dispatch(emailMaskSuccess({ emailMask }));
 }
 
 export const getReadLaterNews = (idToken) => async (dispatch) => {
@@ -203,7 +317,7 @@ export const getReadLaterNews = (idToken) => async (dispatch) => {
 
         dispatch(getReadLaterSuccess(data));
     } catch (error) {
-        alert(error);
+        alert('Something went wrong while trying to get read later news!');
     }
 }
 
@@ -218,7 +332,7 @@ export const markNewsAsReadLater = (selectedNews, idToken) => async (dispatch) =
 
         dispatch(markAsReadLaterNewsSuccess(data));
     } catch (error) {
-        alert("Something went wrong while trying to mark the news for read later!");
+        alert('Something went wrong while trying to mark the news for read later!');
     }
 }
 
@@ -233,7 +347,7 @@ export const getReadNews = (idToken) => async (dispatch) => {
 
         dispatch(getReadNewsSuccess(data));
     } catch (error) {
-        alert(error);
+        alert('Something went wrong while trying ti get read history!');
     }
 }
 
@@ -248,7 +362,7 @@ export const markNewsAsRead = (selectedNews, idToken) => async (dispatch) => {
 
         dispatch(markAsReadSuccess(data));
     } catch (error) {
-        alert("Something went wrong while trying to mark the news as read!");
+        alert('Something went wrong while trying to mark the news as read!');
     }
 }
 
@@ -263,7 +377,7 @@ export const getHiddenNews = (idToken) => async (dispatch) => {
 
         dispatch(getHiddenNewsSuccess(data));
     } catch (error) {
-        alert(error);
+        alert('Something went wrong while trying to get hidden news!');
     }
 }
 
@@ -278,7 +392,7 @@ export const hideNews = (selectedNews, idToken) => async (dispatch) => {
 
         dispatch(hideNewsSuccess(data));
     } catch (error) {
-        alert("Something went wrong while trying to hide the news!");
+        alert('Something went wrong while trying to hide the news!');
     }
 }
 
@@ -293,6 +407,6 @@ export const unhideNews = (selectedNews, idToken) => async (dispatch) => {
 
         dispatch(unhideNewsSuccess(data));
     } catch (error) {
-        alert("Something went wrong while trying to unhide the news!");
+        alert('Something went wrong while trying to unhide the news!');
     }
 }

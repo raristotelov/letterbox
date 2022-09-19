@@ -56,15 +56,19 @@ const createEmailMask = async (emailMask, _id, uid) => {
     }
 }
 
-const createDbUser = async (data, uid) => {
+const createDbUser = async (data) => {
     try {
+        const uid = data.uid;
+
         const user = new UserModel(data);
+
         const _id = user._id;
+
         await user.save();
 
         await admin.auth().setCustomUserClaims(uid, { _id });
 
-        return uid;
+        return _id;
     } catch (error) {
         throw new Error('Something went wrong while trying to create DB user!');
     }
@@ -161,8 +165,6 @@ const hideNews = async (_id, selectedNews) => {
         const readLaterNews = await getReadLaterNews(_id);
 
         return { hiddenNews, readLaterNews };
-
-        return 
     } catch (error) {
         throw error;
     }

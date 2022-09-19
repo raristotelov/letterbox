@@ -14,19 +14,19 @@ router.post('/sign-up', async (req, res) => {
     }
 });
 
-router.post('/create-email-mask', verifyIdToken, async (req, res) => {
+router.post('/create-db-user', async (req, res) => {
     try {
-        const status = await userService.createEmailMask(req.body.emailMask, res._id, res.uid);
+        const data = await userService.createDbUser(req.body);
 
-        return res.json(status);
+        return res.json(data);
     } catch (error) {
         return res.status(400).json({ error });
     }
 });
 
-router.post('/create-db-user', verifyIdToken, async (req, res) => {
+router.post('/create-email-mask', verifyIdToken, async (req, res) => {
     try {
-        const status = await userService.createDbUser(req.body, res.uid);
+        const status = await userService.createEmailMask(req.body.emailMask, res._id, res.uid);
 
         return res.json(status);
     } catch (error) {
