@@ -22,10 +22,16 @@
     .comments-show-hide{
         display: flex;
         align-items: center;
-        color:#A0A4A8;
+        color:#25282B;
 
         span {
             padding-right: 10px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            user-select: none;
+            opacity: 0.7;
         }
     }
 }
@@ -50,7 +56,7 @@
 }
 
 .article-content {
-    padding-bottom: 101px;
+    padding-bottom: 60px;
     text-overflow: ellipsis;
     overflow: hidden;
     width: 600px;

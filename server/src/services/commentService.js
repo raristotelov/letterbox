@@ -10,7 +10,7 @@ const create = async (userId, content, rating, newsId, replyToCommentId) => {
         if(replyToCommentId){
             const replyToComment = await CommentModel.findByIdAndUpdate(replyToCommentId, {
                 $addToSet: {
-                    replyes: comment._id
+                    replies: comment._id
                 }
             });
 
@@ -48,7 +48,7 @@ const getComments = async (_id, newsId) => {
     }
 }
 
-const getReplyes = async (_id, repliesIds) => {
+const getReplies = async (_id, repliesIds) => {
     repliesIdsArray = repliesIds.split(',');
     
     try {
@@ -76,7 +76,7 @@ const addLike = async (_id, commentId) => {
 module.exports = {
     create,
     getComments,
-    getReplyes,
+    getReplies,
     addLike,
     edit,
 }

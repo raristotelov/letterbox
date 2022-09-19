@@ -1,74 +1,114 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { BtnFilledGreen, BtnOutlineGreen } from '../shared/Buttons/BaseBtn/BaseBtn';
+
+import { getNews } from '../../services/newsService';
+import { unsubscribeFromNewsletterInAllLabels } from '../../actions/labelActions';
+import { markNewsAsRead, markNewsAsReadLater } from '../../actions/userActions';
+
 import ReadNewsHeader from './ReadNewsHeader';
 import ReadNewsOptionsMenu from './ReadNewsOptionsMenu';
-import { getNews } from '../../services/newsService';
-import { markNewsAsReadService, markNewsAsReadLaterService } from '../../services/userService';
-import { unsubscribeFromNewsletterInAllLabels } from '../../services/labelService';
 import AddComment from './Comments/AddComment';
 import Article from './Article';
 import YesNoModal from '../shared/YesNoModal';
 import Comments from './Comments/Comments';
+import Loader from '../shared/Loader/Loader';
 
 import './ReadNews.scss';
 
-const ReadNews = ({ user, match, userId }) => {
+const ReadNews = ({
+    user,
+    idToken,
+    match,
+    userId,
+    markNewsAsRead,
+    markNewsAsReadLater,
+    unsubscribeFromNewsletterInAllLabels
+}) => {
     const [news, setNews] = useState({title:'', content:'', readingTime:'', newsletter: {name:''}});
-    const [replyToCommentId, setReplyToCommentId] = useState(false)
+    const [replyToCommentId, setReplyToCommentId] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
     const [isCommentModalOpen, setIsCommentModalOpen] = useState(false)
     const [showComments, setShowComments] = useState(true)
+    const [isLoading, setIsLoading] = useState(false);
+
     const history = useHistory();
 
     useEffect(() => {
-        if(user) {
-            user.getIdToken()
-            .then(async idToken => {
-                    const newsId = match.params.id;
-                    markNewsAsReadService(newsId, idToken);
-                    return getNews(newsId, idToken); 
-                })
-            .then(res => res.json())
-            .then(setNews)
-                .catch(err => console.log(err));
-        }
-    }, [user, match]);
+        if(user && idToken) {
+			const newsId = match.params.id;
 
-     const onMarkNewsReadLater = () => {
+			setIsLoading(true);
+
+            markNewsAsRead([newsId], idToken)
+            .then(() => {
+				return getNews(newsId, idToken); 
+            })
+			.then((res) => {
+				return res.json();
+			})
+            .then((result) => {
+				setNews(result);
+
+				setIsLoading(false);
+			})
+            .catch((err) => {
+				alert("Something went wrong while trying to fetch news!");
+			});
+        }
+    }, [user, match, idToken, markNewsAsRead]);
+
+	const onMarkNewsAsReadLater = async () => {
         if (user) {
-            user.getIdToken()
-                .then(async idToken => {
-                    await markNewsAsReadLaterService([match.params.id], idToken);
-                })
-                .catch(err => console.log(err));
+            try {
+				const selectedNews = [match.params.id];
+
+                await markNewsAsReadLater(selectedNews, idToken);
+            } catch (err) {
+                alert("Something went wrong while trying to mark news for read later!");
+            }
         }
     }
+
     const replyHandler = (commentId) => {
         setReplyToCommentId(commentId);
-        setIsCommentModalOpen(!isCommentModalOpen);
+        setIsCommentModalOpen(true);
     }
+
     const yesNoMenuOpenHandler = () => {
         setIsOpen(!isOpen);
     }
 
     const commentInputModalOpenHandler = () => {
-        setIsCommentModalOpen(!isCommentModalOpen);
+        setIsCommentModalOpen(true);
+    }
+
+    const commentsInputModalCloseHandler = () => {
+        if (replyToCommentId) {
+            setReplyToCommentId(null)
+        }
+
+        setIsCommentModalOpen(false);
     }
 
     const showHideCommentsHandler = () => {
         setShowComments(!showComments);
     }
 
-    const confirmUnsubscribeHandler = () => {
-        if(user) {
-            user.getIdToken()
-                .then(async idToken => {
-                    await unsubscribeFromNewsletterInAllLabels(news.newsletter._id, idToken);
-                })
+    const confirmUnsubscribeHandler = async () => {
+        if(user && idToken) {
+			await unsubscribeFromNewsletterInAllLabels(news.newsletter._id, idToken);
         }
+
         history.push('/explore-feeds');
+    }
+
+    if (isLoading) {
+        return (
+            <div className='loader'>
+                <Loader />
+            </div>
+        )
     }
   
     return (
@@ -81,16 +121,17 @@ const ReadNews = ({ user, match, userId }) => {
             <div className='article-body'>
                 <aside className='article-menu'>
                     <ReadNewsOptionsMenu 
-                        onMarkNewsReadLater={onMarkNewsReadLater} 
+                        onMarkNewsReadLater={onMarkNewsAsReadLater} 
                         commentInputModalOpenHandler={commentInputModalOpenHandler}
-                        title={news.title} />
+                        title={news.title}
+					/>
                 </aside>
 
                 <main className='article-main'>
                     <YesNoModal 
                         question={`Are you sure want to unsubscribe from ${news.newsletter.name}?`}
-                        firstBtnText='Unsubscribe'
-                        secondBtnText='Stay Subscribed'
+                        firstBtnText='Confirm'
+                        secondBtnText='Cancel'
                         isOpen={isOpen}
                         yesNoMenuOpenHandler={yesNoMenuOpenHandler}
                         confirmHandler={confirmUnsubscribeHandler} 
@@ -98,21 +139,32 @@ const ReadNews = ({ user, match, userId }) => {
 
                     <AddComment
                         isCommentModalOpen={isCommentModalOpen}
-                        commentInputModalOpenHandler={commentInputModalOpenHandler}
+                        commentsInputModalCloseHandler={commentsInputModalCloseHandler}
                         newsId={match.params.id}
                         user={user}
+                        idToken={idToken}
                         replyToCommentId={replyToCommentId}
                     />
 
-                    {
-                        (news.title && news.contentHtml)
-                        ? <Article news = {news} showHideCommentsHandler={showHideCommentsHandler}/>
-                        : <div className='loading-text'>Loading ...</div>
-                    }
+					<Article
+						news={news}
+						showHideCommentsHandler={showHideCommentsHandler}
+					/>
 
                     <div className='article-buttons'>
-                        <BtnOutlineGreen onClick={()=>{history.push("/explore-feeds")}}>BACK TO FEEDS</BtnOutlineGreen>
-                        <BtnFilledGreen onClick={()=>{history.push(`/main/${news.newsletter._id}`)}} className='sign-btn-green'>MORE FROM {news.newsletter.name.substring(0,3)}</BtnFilledGreen>
+                        <button
+							className='btn back-btn'
+							onClick={()=>{history.push("/explore-feeds")}}
+						>
+							BACK TO FEEDS
+						</button>
+
+                        <button
+							onClick={()=>{history.push(`/main/${news.newsletter._id}`)}}
+							className='btn more-btn'
+						>
+							MORE FROM {news.newsletter.name.substring(0,2).toUpperCase()}
+						</button>
                     </div>
                 </main>
 
@@ -123,6 +175,7 @@ const ReadNews = ({ user, match, userId }) => {
                                 user={user}
                                 newsId={match.params.id}
                                 userId={userId}
+                                idToken={idToken}
                                 isCommentModalOpen={isCommentModalOpen}
                                 replyHandler={replyHandler}
                             />
@@ -136,7 +189,14 @@ const ReadNews = ({ user, match, userId }) => {
 
 const mapStateToProps = state => ({
     user: state.user.user,
-    userId: state.user.userId
+    idToken: state.user.idToken,
+    userId: state.user.userId,
 });
 
-export default connect(mapStateToProps, null)(ReadNews);
+const mapDispatchToProps = {
+    markNewsAsRead,
+	markNewsAsReadLater,
+    unsubscribeFromNewsletterInAllLabels
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReadNews);

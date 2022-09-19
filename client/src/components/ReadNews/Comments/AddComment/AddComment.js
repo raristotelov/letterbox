@@ -1,11 +1,21 @@
+import { useEffect, useState } from 'react';
+
+import { createComment } from '../../../../services/commentService'
+
 import StarRating from '../shared/StarRating';
 import { ReactComponent as SaveIcon } from '../../../shared/Icons/Save.svg';
 import { ReactComponent as CircleX } from '../../../shared/Icons/CircleX.svg'; 
-import { useEffect, useState } from 'react';
-import { createComment } from '../../../../services/commentService'
+
 import './AddComment.scss';
 
-const AddComment = ({ isCommentModalOpen, commentInputModalOpenHandler, newsId, user, replyToCommentId }) => {
+const AddComment = ({
+    isCommentModalOpen,
+    commentsInputModalCloseHandler,
+    newsId,
+    user,
+    idToken,
+    replyToCommentId
+}) => {
     const [content, setContent] = useState('');
     const [rating, setRating] = useState(null);
 
@@ -20,41 +30,64 @@ const AddComment = ({ isCommentModalOpen, commentInputModalOpenHandler, newsId, 
     
     const sendComment = async (e) => {
         e.preventDefault();
-        if(rating && content && user){
-            const idToken = await user.getIdToken(true);
+
+        if (rating && content && user){
             try {
                 await createComment(content, rating, idToken, newsId, user, replyToCommentId);
 
-                commentInputModalOpenHandler();
+                commentsInputModalCloseHandler();
             } catch(res) {
-                alert(res.error);
+                alert("Something went wrong while trying to add a comment!");
             }
         }
     }
 
     return (
-        <div className={
-            isCommentModalOpen
-                ? 'add-comment-modal open'
-                : 'add-comment-modal'
-        }>
+        <div 
+            className={
+                isCommentModalOpen
+                    ? 'add-comment-modal open'
+                    : 'add-comment-modal'
+            }
+        >
             <div className='add-comment-content'>
                 <div className='add-comment-box'>
-                    <div className='add-comment-close' onClick={()=>{commentInputModalOpenHandler()}}><CircleX /></div>
+                    <div
+                        className='add-comment-close'
+                        onClick={commentsInputModalCloseHandler}
+                    >
+                        <CircleX />
+                    </div>
+
                     <h1>My Comment</h1>
+
                     <form>
-                        <label className='add-comment-textarea-label' >Write your comment</label>
-                        <textarea className='add-comment-area' rows='4' cols='43' name='content' value={content} onChange={(e)=>setContent(e.target.value)}/>
+                        <label
+                            className='add-comment-textarea-label'
+                        >
+                            Write your comment
+                        </label>
+
+                        <textarea
+                            className='add-comment-area'
+                            rows='4'
+                            cols='43'
+                            name='content'
+                            value={content}
+                            onChange={(e)=>setContent(e.target.value)}
+                        />
                     </form>
 
                     <div className='feed-rating'>
                         <h2 className='feed-rating-head'>How would you rate the feed</h2>
+
                         <span className='feed-rating-star-group'>
                             <StarRating starRatingHandler={starRatingHandler}/>
                         </span>
                     </div>
                         <button className='add-comment-btn' onClick={sendComment}>
                             <div className='add-comment-btn-text'>Save</div> 
+                            
                             <SaveIcon className='add-comment-btn-icon'/>
                         </button>
                 </div>

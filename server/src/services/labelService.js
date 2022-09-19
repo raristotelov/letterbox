@@ -1,6 +1,16 @@
 const LabelModel = require('../models/LabelModel');
 const UserModel = require('../models/UserModel');
 
+const getAllLabels = async (userId) => {
+    try {
+        const userEntry = await UserModel.findById(userId).populate({ path: 'labels', populate: { path: 'newsletters' } });
+
+        return userEntry.labels;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const create = async (userId, name) => {
     try {
         const label = new LabelModel({ name });
@@ -11,18 +21,8 @@ const create = async (userId, name) => {
                 labels: label._id
             }
         });
-        const user = await UserModel.findById(userId)
-            .populate({ path: 'labels', populate: { path: 'newsletters' } });
-        return user.labels;
-    } catch (error) {
-        throw error;
-    }
-}
 
-const getAll = async (userId) => {
-    try {
-        const userEntry = await UserModel.findById(userId).populate({ path: 'labels', populate: { path: 'newsletters' } });
-        return userEntry.labels;
+        return getAllLabels(userId);
     } catch (error) {
         throw error;
     }
@@ -41,10 +41,7 @@ const addNewsletter = async (userId, newsletterId, labelId) => {
             }
         });
 
-        const updatedUser = await UserModel.findById(userId)
-            .populate({ path: 'labels', populate: { path: 'newsletters' } });
-
-        return updatedUser.labels;
+        return getAllLabels(userId);
     } catch (error) {
         throw error;
     }
@@ -63,10 +60,7 @@ const removeNewsletter = async (userId, newsletterId, labelId) => {
             }
         });
 
-        const updatedUser = await UserModel.findById(userId)
-            .populate({ path: 'labels', populate: { path: 'newsletters' } });
-
-        return updatedUser.labels;
+        return getAllLabels(userId);
     } catch (error) {
         throw error;
     }
@@ -85,10 +79,7 @@ const removeNewsletterFromAllLabels = async (userId, newsletterId) => {
             })
         };
 
-        const updatedUser = await UserModel.findById(userId)
-            .populate({ path: 'labels', populate: { path: 'newsletters' } });
-
-        return updatedUser.labels;
+        return getAllLabels(userId);
     } catch (error) {
         throw error;
     }
@@ -96,7 +87,7 @@ const removeNewsletterFromAllLabels = async (userId, newsletterId) => {
 
 module.exports = {
     create,
-    getAll,
+    getAllLabels,
     addNewsletter,
     removeNewsletter,
     removeNewsletterFromAllLabels,

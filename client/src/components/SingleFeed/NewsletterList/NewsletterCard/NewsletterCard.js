@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+
 import { removeNewsletter } from '../../../../actions/feedActions';
 import { ReactComponent as RemoveIcon } from '../../assets/remove-icon.svg';
-import { removeNewsletterFromLabel, getLabels } from '../../../../actions/labelActions';
+import { removeNewsletterFromLabel, getLabels, unsubscribeFromNewsletterInAllLabels } from '../../../../actions/labelActions';
 
 import './NewsletterCard.scss';
 
 const NewsletterCard = ({
     user,
+    idToken,
     labels,
     admin,
     feed,
@@ -15,7 +17,8 @@ const NewsletterCard = ({
     setAddToLabelOpen,
     removeNewsletter,
     removeNewsletterFromLabel,
-    getLabels
+    getLabels,
+    unsubscribeFromNewsletterInAllLabels
 }) => {
     const [subscribed, setSubscribed] = useState(false);
 
@@ -27,30 +30,14 @@ const NewsletterCard = ({
         }
     }, [labels, newsletter]);
 
-    const handleRemove = () => {
-        if (user) {
-            user.getIdToken()
-                .then(async (idToken) => await removeNewsletter(newsletter._id, feed._id, idToken))
-                .catch(console.log);
+    const handleRemove = async () => {
+        if (user && idToken) {
+            await removeNewsletter(newsletter._id, feed._id, idToken);
         }
     }
 
     const unsubscribeFromNewsletter = async (newsletterId) => {
-        const idToken = await user.getIdToken();
-
-        const promises = [];
-
-        for (let i = 0; i < labels.length; i += 1) {
-            const currLabel = labels[i];
-
-            if (currLabel?.newsletters?.find((newsletter) => newsletter._id === newsletterId)) {
-                promises.push(removeNewsletterFromLabel(newsletterId, currLabel._id, idToken));
-            }
-        }
-
-        await Promise.all(promises);
-
-        await getLabels(idToken);
+       await unsubscribeFromNewsletterInAllLabels(newsletterId, idToken);
     }
 
     const buttonAction = subscribed ? () => unsubscribeFromNewsletter(newsletter._id) : () => setAddToLabelOpen(newsletter._id);
@@ -83,6 +70,7 @@ const NewsletterCard = ({
 
 const mapStateToProps = (state) => ({
     user: state.user.user,
+    idToken: state.user.idToken,
     labels: state.label.labels,
     admin: state.user.admin,
     feed: state.feed.feed
@@ -91,7 +79,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     removeNewsletter,
     removeNewsletterFromLabel,
-    getLabels
+    getLabels,
+    unsubscribeFromNewsletterInAllLabels
 }
 
 export { NewsletterCard };

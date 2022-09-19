@@ -29,7 +29,7 @@ const CommentSchema = new mongoose.Schema({
         type: 'ObjectId',
         ref: 'News'
     },
-    replyes: [{
+    replies: [{
         type: 'ObjectId',
         ref: 'Comments'
     }],

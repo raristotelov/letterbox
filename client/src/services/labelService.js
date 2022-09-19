@@ -17,6 +17,6 @@ export const unsubscribeFromNewsletter = (newsletterId, labelId, idToken) => {
     return request.post(`${SERVER_ADDRESS}/label/${labelId}/remove-newsletter/${newsletterId}`, { newsletterId, labelId }, idToken);
 }
 
-export const unsubscribeFromNewsletterInAllLabels = (newsletterId, idToken) => {
+export const unsubscribeFromNewsletterInAllLabelsService = (newsletterId, idToken) => {
     return request.post(`${SERVER_ADDRESS}/label/remove-newsletter/${newsletterId}`, { newsletterId }, idToken);
 }

@@ -18,13 +18,33 @@ const Article = ({ news, showHideCommentsHandler }) => {
         <div>
             <div className='article-date-time-comments'>
                 <div className='article-date-time'>
-                    <div className='article-date'>{new Date(news.date).toDateString().substring(4)}</div>
-                    <div className='article-read-time'>{news.readTime} min to read</div>
+                    <span className='article-date'>
+                        {new Date(news.date).toDateString().substring(4)}
+                    </span>
+
+                    <span className='article-read-time'>
+                        {news.readTime} min to read
+                    </span>
                 </div>
-                <div className='comments-show-hide' onClick={handleShowHideComments}><span>Comments</span> {showComments?<Hide />:<Show />}</div>
+                
+                <div
+                    className='comments-show-hide'
+                    onClick={handleShowHideComments}
+                >
+                    <span>Comments</span> {showComments ? <Hide /> : <Show />}
+                </div>
             </div>
-            <div className='article-title'>{news.title}</div>
-            <div className='article-content' dangerouslySetInnerHTML={{__html:sanitizedContent}}></div>
+
+            <span className='article-title'>
+                {news.title}
+            </span>
+
+            <div
+                className='article-content'
+                dangerouslySetInnerHTML={{__html: sanitizedContent}}
+            >
+
+            </div>
         </div>
     )
 }

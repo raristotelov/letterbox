@@ -30,9 +30,9 @@ const SignInForm = ({ signIn }) => {
     }
 
     const emailValidation = () => {
-        const pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-        if (!stateForm.email.match(pattern)) {
+        if (!stateForm.email.match(emailPattern)) {
             setErrValues((currentErrState) => ({
                 ...currentErrState,
                 emailErr: "You must enter valid email adress!"

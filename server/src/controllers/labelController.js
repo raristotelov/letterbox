@@ -6,9 +6,9 @@ const { labelService } = require('../services');
 
 router.get('/', verifyIdToken, async (req, res) => {
     try {
-        const labels = await labelService.getAll(res._id);
+        const response = await labelService.getAllLabels(res._id);
 
-        return res.json(labels);
+        return res.json(response);
     } catch (error) {
         return res.status(400).json({ error });
     }

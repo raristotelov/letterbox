@@ -37,7 +37,7 @@ router.put('/edit', verifyIdToken, async (req, res) => {
 router.get('/replies', verifyIdToken, async (req, res) => {
     const repliesIds  = req.query.replies;
     try {
-        const replies = await commentService.getReplyes(res._id, repliesIds);
+        const replies = await commentService.getReplies(res._id, repliesIds);
         return res.json(replies);
     } catch (error) {
         return res.status(400).json({ error });

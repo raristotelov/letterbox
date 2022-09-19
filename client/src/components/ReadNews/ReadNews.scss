@@ -24,32 +24,59 @@
                 padding-bottom: 50px;
             }
 
-
             .article-buttons {
+                color: #FFFFFF;
+
                 display: flex;
                 justify-content: space-between;
                 padding-bottom: 160px;
-                font-weight: 600;
-                font-size: 14px;
-                line-height: 18px;
-                letter-spacing: 0.2px;
 
-                color: #FFFFFF;
-                .sign-btn-outline-green {
-                    width: auto;
-                    padding: 20px 63px 20px 63px;
+                .btn {
+                    width: 180px;
+                    height: 60px;
+                    outline: none;
+                    border-radius: 36px;
+        
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 18px;
+                    letter-spacing: 0.2px;
                 }
-
-                .sign-btn-green {
-                    width: auto;
-                    padding: 20px 56px 20px 56px;
+        
+                .back-btn {
+                    border: 2px solid #119c59;
+                    background: white;
+                    color: #119c59;
+                    transition: all 0.1s;
+        
+                    &:hover {
+                        border: 2px solid #119c59;
+                        background: #119c59;
+                        color: white; 
+                    }
+                }
+        
+                .more-btn {
+                    background: #119c59;
+                    border: 2px solid #119c59;
+                    color: white;
+                    transition: all 0.1s;
+        
+                    &:hover {
+                        border: 2px solid #119c59;
+                        background: white;
+                        color: #119c59; 
+                    }
                 }
             }
         }
     
         .article-chat {
-            max-width: 400px;
-            min-width: 400px;
+            width: 500px;
         }     
     } 
+}
+
+.loader {
+    margin-top: 40px;
 }

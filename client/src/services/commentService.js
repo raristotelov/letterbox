@@ -13,7 +13,7 @@ export const getComments = (newsId, idToken) => {
     return request.get(`${SERVER_ADDRESS}/comment?newsId=${newsId}`, null, idToken);
 }
 
-export const getReplyes = (replies, idToken) => {
+export const getReplies = (replies, idToken) => {
     return request.get(`${SERVER_ADDRESS}/comment/replies?replies=${replies}`, null, idToken);
 }
 

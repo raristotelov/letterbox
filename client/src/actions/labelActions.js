@@ -6,7 +6,8 @@ import {
     getLabels as getAllLabels,
     createLabel,
     subscribeToNewsletter,
-    unsubscribeFromNewsletter
+    unsubscribeFromNewsletter,
+    unsubscribeFromNewsletterInAllLabelsService
 } from '../services/labelService';
 
 export const getLabelsSucces = (labels) => ({
@@ -62,6 +63,21 @@ export const addNewsletterToLabel = (newsletterId, labelId, idToken) => async (d
 export const removeNewsletterFromLabel = (newsletterId, labelId, idToken) => async (dispatch) => {
     try {
         const res = await unsubscribeFromNewsletter(newsletterId, labelId, idToken);
+        const data = await res.json();
+
+        if (data.error) {
+            throw data.error;
+        }
+
+        dispatch(getLabelsSucces(data));
+    } catch (error) {
+        alert(error);
+    }
+}
+
+export const unsubscribeFromNewsletterInAllLabels = (newsletterId, labelId, idToken) => async (dispatch) => {
+    try {
+        const res = await unsubscribeFromNewsletterInAllLabelsService(newsletterId, labelId, idToken);
         const data = await res.json();
 
         if (data.error) {

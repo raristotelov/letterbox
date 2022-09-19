@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+
+import { getComments, getReplies } from '../../../services/commentService';
+
 import Comment from './Comment';
-import { getComments, getReplyes } from '../../../services/commentService';
 import EditComment from './EditComment';
 
-const Comments = ({user, newsId, userId, isCommentModalOpen, replyHandler, replyes}) => {
+const Comments = ({user, idToken, newsId, userId, isCommentModalOpen, replyHandler, replies, isReply}) => {
     const [comments, setComments] = useState(null);
     const [commentId, setCommentId] = useState(null);
     const [currentContent, setCurrentContent] = useState('');
@@ -11,74 +13,93 @@ const Comments = ({user, newsId, userId, isCommentModalOpen, replyHandler, reply
     const [isCommentEditModalOpen, setIsCommentEditModalOpen] = useState(false)
 
     useEffect(() => {
-        if (!replyes) {
-            if (user) {
-                user.getIdToken()
-                    .then(async idToken => {
-                        return getComments(newsId, idToken);
-                    })
-                    .then(res => res.json())
-                    .then(setComments)
-                    .catch(err => console.log(err))
+        if (!replies) {
+            if (user && idToken) {
+                getComments(newsId, idToken)
+                .then(res => res.json())
+                .then(setComments)
+                .catch((err) => {
+                    alert("Something went wrong while trying to fecth comments!");
+                });
             }
         }
-    }, [user, isCommentEditModalOpen, isCommentModalOpen])
+    }, [user, isCommentEditModalOpen, isCommentModalOpen, idToken, newsId, replies])
 
     useEffect(() => {
-        if (replyes) {
-            if (user) {
-                user.getIdToken()
-                    .then(async idToken => {
-                        return getReplyes(replyes, idToken);
-                    })
-                    .then(res => res.json())
-                    .then(setComments)
-                    .catch(err => console.log(err))
+        if (replies) {
+            if (user && idToken) {
+                getReplies(replies, idToken)
+                .then(res => res.json())
+                .then(setComments)
+                .catch((err) => {
+                    alert("Something went wrong while trying to fecth comments!");
+                })
             }
         }
-    }, [replyes])
+    }, [replies, idToken, user])
 
-    const commentEditHandler = async (props) => {  
-        setCommentId(props.commentId)
-        setCurrentContent(props.content)
-        setCurrentRating(props.rating)
-        setIsCommentEditModalOpen(!isCommentEditModalOpen)
+    const commentEditHandler = (props) => { 
+        setCommentId(props.commentId);
+        setCurrentContent(props.content);
+        setCurrentRating(props.rating);
+        setIsCommentEditModalOpen(!isCommentEditModalOpen);
     }
    
-    const commentCloseEditModal = () => {  
+    const commentCloseEditModal = () => {
+        if (replies) {
+            if (user && idToken) {
+                getReplies(replies, idToken)
+                .then(res => res.json())
+                .then(setComments)
+                .catch((err) => {
+                    alert("Something went wrong while trying to fecth comments!");
+                })
+            }
+        } else {
+            if (user && idToken) {
+                getComments(newsId, idToken)
+                .then(res => res.json())
+                .then(setComments)
+                .catch((err) => {
+                    alert("Something went wrong while trying to fecth comments!");
+                });
+            }
+        }
+
         setIsCommentEditModalOpen(!isCommentEditModalOpen)
     }
 
     return(
         <main className='article-main'>
-
             <EditComment
                 isCommentModalOpen={isCommentEditModalOpen}
                 commentEditModalOpenHandler={commentCloseEditModal}
                 user={user}
+                idToken={idToken}
                 commentId={commentId}
                 content={currentContent}
                 rating={currentRating}
             />
-            { 
-                comments && comments.map(x => { 
-    
-                    return <Comment 
-                        commentId={x._id}
-                        key={x._id}
-                        authorId = {x.author._id}
-                        author={`${x.author.firstName} ${x.author.lastName}`}
-                        publicationDate={x.publicationDate}
-                        content={x.content}
-                        likes={x.likes ? x.likes : '0'}
-                        rating={x.rating}
-                        avatar={`${x.author.firstName.substring(0,1)}${x.author.lastName.substring(0,1)}`}
+
+            {comments 
+                ? comments.map((comment) => (
+                    <Comment
+                        commentId={comment._id}
+                        key={comment._id}
+                        authorId = {comment.author._id}
+                        author={`${comment.author.firstName} ${comment.author.lastName}`}
+                        publicationDate={comment.publicationDate}
+                        content={comment.content}
+                        likes={comment.likes ? comment.likes : '0'}
+                        rating={comment.rating}
+                        avatar={`${comment.author.firstName.substring(0,1)}${comment.author.lastName.substring(0,1)}`}
                         userId={userId}
-                        editionDate={x.editionDate}
-                        replyes={x.replyes}
+                        editionDate={comment.editionDate}
+                        replies={comment.replies}
                         commentEditHandler={commentEditHandler}
                         replyHandler={replyHandler}
-                />})
+                        isReply={isReply}
+                    />)) : null
             }
         </main>
     )

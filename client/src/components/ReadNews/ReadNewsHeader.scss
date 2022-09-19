@@ -4,15 +4,19 @@
     align-items: center;
     padding: 21px 24px 0 52px;
 
-    .read-header-back{
+    .read-header-back {
         display: flex;
-        cursor: pointer;
         
         font-size: 16px;
         line-height: 24px;
 
         .read-header-back-text {
             padding-left: 10px;
+        }
+
+        &:hover {
+            opacity: 0.7;
+            cursor: pointer;
         }
     }
 
@@ -38,5 +42,30 @@
         line-height: 24px;
         letter-spacing: 0.1px;
         color: #25282B;
+    }
+
+    .btn {
+        width: 138px;
+        height: 40px;
+        outline: none;
+        border-radius: 36px;
+
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 16px;
+        letter-spacing: 0.2px;
+    }
+
+    .unsubscribe-btn {
+        background: #faf9f7;
+        border: 2px solid #A0A4A8;
+        color: #A0A4A8;
+        transition: all 0.1s;
+
+        &:hover {
+            border: 2px solid #A0A4A8;
+            background: #A0A4A8;
+            color: white; 
+        }
     }
 }

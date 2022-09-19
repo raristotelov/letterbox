@@ -9,7 +9,8 @@
         justify-content: center;
         align-items: center;
         border-radius: 20px;
-        box-shadow: 0px 7px 15px -7px #000000;
+        color: #FAF9F7;
+        font-weight: 500;
     }
 
     .comment-content-wrapper{
@@ -17,9 +18,11 @@
         flex-direction: column;
         padding-left: 9px;
 
-        .comment-header{
+        .comment-header {
             display: flex;
             justify-content: space-between;
+            width: 320px;
+            
             .comment-user-name{
                 display: inline-block;
                 font-weight: 500;
@@ -39,10 +42,15 @@
 
             .comment-edit-icon {
                 margin-top: -6px;
+
+                &:hover {
+                    opacity: 0.7;
+                    cursor: pointer;
+                }
             }
             
-            .comment-edit-icon-date{
-                padding-right: 24px;
+            .comment-edit-icon-date {
+                margin-left: 10px;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
@@ -50,28 +58,33 @@
         }
 
         .comment-content {
-            font-size: 12px;
+            font-size: 16px;
             line-height: 16px;
             letter-spacing: 0.2px;
             padding-top: 12px;
+            width: 320px;
 
             color: #25282B;
         }
     }
 }
 
-    .newsletter-circle-logo {
-        display: inline-flex;
-        justify-content: center;
-        width: 42px;
-        background-color: #14B86E;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        border-radius: 21px ;
+.newsletter-circle-logo {
+    display: inline-flex;
+    justify-content: center;
+    width: 42px;
+    background-color: #14B86E;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 21px ;
 
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 18px;
-        letter-spacing: 0.1px;
-        color: #FAF9F7;
-    }
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+    color: #FAF9F7;
+}
+
+.comment-reply {
+    margin-left: 50px;
+}
