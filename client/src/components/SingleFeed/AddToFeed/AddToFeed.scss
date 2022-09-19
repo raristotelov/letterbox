@@ -15,20 +15,31 @@
         max-width: 308px;
         background: #faf9f7;
         border-radius: 9px;
+        height: 500px;
 
         font-family: Montserrat, sans-serif;
         font-style: normal;
 
         .add-to-feed-header {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            flex-flow: wrap column;
+            height: 100px;
+            background-color: #FAF9F7;
+            border-radius: 4px 4px 0px 0px;
 
             .close-btn {
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                background-color: transparent;
                 border: none;
                 outline: none;
-                background: none;
 
-                position: absolute;
-                right: 11px;
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.7;
+                }
             }
 
             .title {
@@ -36,12 +47,21 @@
                 font-size: 18px;
                 line-height: 24px;
                 text-align: center;
-                margin-top: 12px;
+                letter-spacing: 0.2px;
+                color: #25282B;
+                padding-top: 34px;
             }
+        }
+
+        .input-container {
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
 
             .search-container {
-                position: relative;
-                width: 100%;
+                padding-bottom: 18px;
 
                 &::after {
                     content: url("../../Main/shared/assets/search.svg");
@@ -51,7 +71,7 @@
                 }
 
                 .input-field {
-                    width: 92.8%;
+                    width: 88%;
                     padding-left: 14px;
                     text-align: left;
                 }
@@ -63,19 +83,28 @@
         }
 
         .add-to-feed-body {
-            max-height: 340px;
-
+            height: 260px;
             overflow-y: auto;
+            
             p {
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 16px;
                 letter-spacing: 0.2px;
-
                 color: #52575c;
-
                 margin-left: 24px;
             }
+        }
+
+        .new-feed-save-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 58px;
+            background-color: #119C59;
+            border: none;
+            border-radius: 0px 0px 4px 4px;
         }
 
         .add-to-feed-body::-webkit-scrollbar {

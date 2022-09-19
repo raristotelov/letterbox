@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
+import {
+    removeNewsletterFromLabel,
+    getLabels,
+    unsubscribeFromNewsletterInAllLabels
+} from '../../../../actions/labelActions';
 import { removeNewsletter } from '../../../../actions/feedActions';
-import { ReactComponent as RemoveIcon } from '../../assets/remove-icon.svg';
-import { removeNewsletterFromLabel, getLabels, unsubscribeFromNewsletterInAllLabels } from '../../../../actions/labelActions';
+
+import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg';
 
 import './NewsletterCard.scss';
 
@@ -62,7 +67,16 @@ const NewsletterCard = ({
                     {subscribed ? 'Unsubscribe' : 'Subscribe'}
                 </button>
 
-                {admin && <button className="newsletter-remove-btn" onClick={handleRemove}><RemoveIcon /></button>}
+                {admin 
+                    ? (
+                        <button
+                            className="newsletter-remove-btn"
+                            onClick={handleRemove}
+                        >
+                            <RemoveIcon />
+                        </button>
+                    ) : null
+                }
             </section>
         </article>
     );

@@ -6,43 +6,55 @@ import { addFeed, changeFeed } from '../../../actions/feedActions';
 
 import { ReactComponent as CloseIcon } from './assets/close-icon.svg';
 import { ReactComponent as SaveIcon } from './assets/save-icon.svg';
-import { ReactComponent as UploadIcon } from './assets/upload.svg';
 
 import Input from '../../shared/Input';
 
 import './FeedFormModal.scss';
 
-const FeedFormModal = ({ action, setOpen, user, addFeed, changeFeed, feed }) => {
+const FeedFormModal = ({ action, setIsFeedModalOpen, user, idToken, addFeed, changeFeed, feed }) => {
     const [stateInput, setFeedName] = useForm({ feedName: feed ? feed.name : '' });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setOpen(false);
 
         if (action === 'add') {
             if (user) {
-                user.getIdToken()
-                    .then((idToken) => addFeed(stateInput.feedName, idToken))
-                    .catch(console.log);
+                addFeed(stateInput.feedName, idToken)
+                    .catch((err) => {
+                        alert('Something went wron while trying to add feed!');
+                    });
             }
         } else if (action === 'edit') {
             if (user) {
-                user.getIdToken()
-                    .then((idToken) => changeFeed(feed._id, stateInput.feedName, idToken))
-                    .catch(console.log);
+                changeFeed(feed._id, stateInput.feedName, idToken)
+                    .catch((err) => {
+                        alert('Something went wron while trying to edit feed!');
+                    });
             }
         }
+
+        setIsFeedModalOpen(false);
     };
 
     return (
         <div className="new-feed-wrapper">
             <div className="new-feed-container">
-                <form className="new-feed-form" onSubmit={handleSubmit}>
+                <form
+                    className="new-feed-form"
+                    onSubmit={handleSubmit}
+                >
                     <div className="new-feed-header">
-                        <button className="new-feed-close-btn" type="button" onClick={() => setOpen(false)}>
+                        <button
+                            type="button"
+                            onClick={() => setIsFeedModalOpen(false)}
+                            className="new-feed-close-btn"
+                        >
                             <CloseIcon />
                         </button>
-                        <h3 className="new-feed-title">{action === 'add' ? 'New Feed' : 'Edit Feed'}</h3>
+
+                        <h3 className="new-feed-title">
+                            {action === 'add' ? 'New Feed' : 'Edit Feed'}
+                        </h3>
                     </div>
 
                     <div className="input-container">
@@ -55,18 +67,11 @@ const FeedFormModal = ({ action, setOpen, user, addFeed, changeFeed, feed }) => 
                                 onChange={setFeedName}
                             />
                         </div>
-
-                        <div className="drop-zone">
-                            <span className="drop-zone__prompt">Drag and drop files here or upload</span>
-                            <input type="file" name="myFile" className="drop-zone__input" />
-                            <div className="icon-container">
-                                <UploadIcon />
-                            </div>
-                        </div>
                     </div>
 
                     <button className="new-feed-save-btn">
                         <span className="save-btn-txt">Save</span>
+
                         <span className="save-btn-icon">
                             <SaveIcon />
                         </span>
@@ -79,6 +84,7 @@ const FeedFormModal = ({ action, setOpen, user, addFeed, changeFeed, feed }) => 
 
 const mapStateToProps = (state) => ({
     user: state.user.user,
+    idToken: state.user.idToken,
     feeds: state.feed.feeds,
 });
 

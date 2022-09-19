@@ -18,6 +18,7 @@ const MagazineViewCard = ({ addToSelected, removeFromSelected, news, selected, n
         } else {
             addToSelected(news._id);
         }
+
         setChecked(!checked);
     }
 
@@ -51,7 +52,7 @@ const MagazineViewCard = ({ addToSelected, removeFromSelected, news, selected, n
             </section>
 
             <section className="img-container">
-                <img src={news.image} alt="news img" />
+                <img src={'/asen.jpg'} alt="news img" />
             </section>
         </article>
     );

@@ -86,7 +86,7 @@ const userReducer = (state = initialState, action) => {
         case UNHIDE_NEWS:
             return {
                 ...state,
-                hiddenNews: action.payload.hiddenNews ? action.payload.hiddenNews : []
+                hiddenNews: action.payload ? action.payload : []
             }
         default:
             return {

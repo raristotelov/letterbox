@@ -51,6 +51,10 @@
                 display: flex;
                 align-items: center;
                 gap: 6px;
+
+                &:hover {
+                    opacity: 0.7;
+                }
             }
         }
     }

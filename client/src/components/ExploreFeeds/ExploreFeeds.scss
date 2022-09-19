@@ -32,7 +32,7 @@
         .admin-icons-container {
             width: 214px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding-right: 20px;
 
             li {
@@ -52,6 +52,7 @@
 
             li:hover {
                 cursor: pointer;
+                opacity: 0.7;
             }
         }
     }

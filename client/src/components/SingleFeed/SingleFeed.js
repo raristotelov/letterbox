@@ -13,7 +13,7 @@ import Loader from '../shared/Loader/Loader';
 import './SingleFeed.scss';
 
 const SingleFeed = ({ user, idToken, admin, feed, getFeed, clearFeed, match }) => {
-    const [open, setOpen] = useState(false);
+    const [isAddToFeedModalOpen, setIsAddToFeedModalOpen] = useState(false);
     const [isLoadingFeed, setIsLoadingFeed] = useState(false);
 
     const searchContextObject = useContext(SearchContext);
@@ -37,10 +37,18 @@ const SingleFeed = ({ user, idToken, admin, feed, getFeed, clearFeed, match }) =
 
     return (
         <Fragment>
-            {open && <AddToFeed open={open} setOpen={setOpen} />}
+            {isAddToFeedModalOpen 
+                ? (
+                    <AddToFeed
+                        open={isAddToFeedModalOpen}
+                        setOpen={setIsAddToFeedModalOpen}
+                    />
+                ) : null
+            }
 
             <div className='single-feed-wrapper'>
-                {!isLoadingFeed ? (
+                {!isLoadingFeed
+                    ? (
                         <Fragment>
                             <div className='feed-header'>
                                 <h1 className='feed-title'>{feed.name}</h1>
@@ -48,7 +56,17 @@ const SingleFeed = ({ user, idToken, admin, feed, getFeed, clearFeed, match }) =
                                 <div className='feed-header-nav'>
                                     <button className='feed-filter'>All</button>
             
-                                    {admin && <button className='add-newsletter-btn' onClick={() => setOpen(true)}><AddIcon /> Add</button>}
+                                    {admin 
+                                        ? (
+                                            <button
+                                                className='add-newsletter-btn'
+                                                onClick={() => setIsAddToFeedModalOpen(true)}
+                                            >
+                                                <AddIcon /> Add
+                                            </button>
+                                        ) : null
+                                    }
+                                    
                                 </div>
                             </div>
     
@@ -60,7 +78,6 @@ const SingleFeed = ({ user, idToken, admin, feed, getFeed, clearFeed, match }) =
                         </div>
                     )
                 }
-              
             </div>
         </Fragment>
     );

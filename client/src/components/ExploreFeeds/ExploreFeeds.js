@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getFeeds } from '../../actions/feedActions';
 import { SearchContext } from '../../contexts/SearchContext';
 
-import { ReactComponent as Reorder } from './assets/reorder.svg';
 import { ReactComponent as Create } from './assets/create.svg';
 
 import Feed from './Feed';
@@ -14,7 +13,7 @@ import FeedFormModal from './FeedFormModal';
 import './ExploreFeeds.scss';
 
 const ExploreFeeds = ({ user, idToken, admin, feeds, getFeeds }) => {
-    const [addFeedOpen, setOpen] = useState(false);
+    const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
 
     const searchContextObject = useContext(SearchContext);
 
@@ -31,20 +30,26 @@ const ExploreFeeds = ({ user, idToken, admin, feeds, getFeeds }) => {
 
     return (
         <Fragment>
-            {addFeedOpen && <FeedFormModal action={'add'} setOpen={setOpen} />}
+            {isFeedModalOpen 
+                ? (
+                    <FeedFormModal
+                        action={'add'}
+                        setIsFeedModalOpen={setIsFeedModalOpen}
+                    />
+                ) : null 
+            }
+
             <div className="view-container">
                 <h1>Feeds</h1>
+
                 <div className="second-header">
                     <h2>All</h2>
 
                     {admin && (
                         <div className="admin-icons-container">
-                            <li>
-                                <Reorder />
-                                <span>Reorder</span>
-                            </li>
-                            <li onClick={() => setOpen(true)}>
+                            <li onClick={() => setIsFeedModalOpen(true)}>
                                 <Create />
+
                                 <span>Create</span>
                             </li>
                         </div>

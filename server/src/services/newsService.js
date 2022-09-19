@@ -12,8 +12,7 @@ const add = async (newsData, newsletterName) => {
         newsletter = await newsletter.save();
     }
 
-    // const timeToRead = calculateReadTime(newsData.contentText);
-    const timeToRead = 2;
+    const timeToRead = calculateReadTime(newsData.contentText);
   
     let news = new NewsModel({ ...newsData, readTime: timeToRead, newsletter: newsletter._id });
     newsletter.news.push(news._id);

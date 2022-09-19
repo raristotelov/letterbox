@@ -13,7 +13,7 @@ import FeedFormModal from '../FeedFormModal';
 import './Feed.scss';
 
 const Feed = ({ feedProps, user, admin, toggleHiddenState, removeFeed }) => {
-    const [editFeedOpen, setOpen] = useState(false);
+    const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
     const { _id, name, hidden, newsletters } = feedProps;
 
     const singleFeedUrl = `/feed/${_id}`;
@@ -36,7 +36,16 @@ const Feed = ({ feedProps, user, admin, toggleHiddenState, removeFeed }) => {
 
     return (
         <div className="feed-container">
-            {editFeedOpen && <FeedFormModal action={'edit'} setOpen={setOpen} feed={feedProps} />}
+            {isFeedModalOpen 
+                ? (
+                    <FeedFormModal
+                        action={'edit'}
+                        setIsFeedModalOpen={setIsFeedModalOpen}
+                        feed={feedProps}
+                    />
+                ) : null
+            }
+
             <Link to={singleFeedUrl}>
                 <div className="img-container">
                     <img src="/feed-logo.jpg" alt="logo"></img>
@@ -52,9 +61,11 @@ const Feed = ({ feedProps, user, admin, toggleHiddenState, removeFeed }) => {
                     {admin && (
                         <div className="admin-actions">
                             <li>
-                                <Edit onClick={() => setOpen(true)} />
+                                <Edit onClick={() => setIsFeedModalOpen(true)} />
                             </li>
+
                             <li>{hidden ? <Unhide onClick={handleHiddenStateToggle} /> : <Hide onClick={handleHiddenStateToggle} />}</li>
+
                             <li>
                                 <Delete onClick={handleDelete} />
                             </li>
