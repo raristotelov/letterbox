@@ -4,7 +4,7 @@ import './Comunity.scss';
 const Community = () => {
     return (
         <div className="community-container">
-            <h2 className="title">Be part of Newsletter-App community!</h2>
+            <h2 className="title">Be part of Letterbox community!</h2>
 
             <section className="content-container">
                 <CommunityImage />
@@ -19,7 +19,7 @@ const Community = () => {
                         Invite all your friends and colleagues to join us and enjoy this unique experience.
                         <br></br>
                         <br></br>
-                        Be a valuable member of our Newsletter-App community.
+                        Be a valuable member of our Letterbox community.
                     </p>
                 </section>
             </section>

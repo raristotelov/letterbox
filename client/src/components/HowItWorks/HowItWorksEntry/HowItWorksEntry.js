@@ -7,7 +7,7 @@ const HowItWorksEntry = () => {
             <section className="description-container">
                 <h1 className="title">How it works?</h1>
 
-                <p className="description">Newsletter-App is a brand new application for newsletters reading.</p>
+                <p className="description">Letterbox is a brand new application for newsletters reading.</p>
             </section>
 
             <section className="image-container">

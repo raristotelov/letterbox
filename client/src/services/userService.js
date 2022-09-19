@@ -1,8 +1,6 @@
 import request from './requester';
 import firebase from '../firebase';
 import { SERVER_ADDRESS, DOMAIN_ADDRESS } from '../env';
-const googleProvider = new firebase.auth.GoogleAuthProvider();
-const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
 export const signUpService = (data) => {
     return request.post(`${SERVER_ADDRESS}/user/sign-up`, data);

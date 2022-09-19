@@ -6,7 +6,7 @@ const WelcomeToNewsletterApp = () => {
     return (
         <div className="welcome-to-newsletterapp-container">
             <section className="description-container">
-                <h3 className="title">Welcome to Newsletter-App!</h3>
+                <h3 className="title">Welcome to Letterbox!</h3>
                 
                 <p className="description">
                     That is how your screen looks like after signing up!

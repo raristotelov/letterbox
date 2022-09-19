@@ -6,6 +6,7 @@ import { getNewsletter } from '../../actions/newsletterActions';
 import transformNewsletterNews from '../../helpers/transformNewsletterNews';
 import newsActionOptions from '../../helpers/newsActionOptions';
 import { ViewContext } from '../../contexts/ViewContext';
+import { SearchContext } from '../../contexts/SearchContext';
 
 import ChangeViewDropDown from './ChangeViewDropDown';
 import TitleView from './TitleView';
@@ -30,6 +31,7 @@ const Main = ({
     const [isLoading, setIsLoading] = useState(false);
 
     const viewContextObject = useContext(ViewContext);
+    const searchContextObject = useContext(SearchContext);
 
     const { newsletterId } = match.params;
 
@@ -60,12 +62,12 @@ const Main = ({
             }
     
             return true;
-        })
+        }).filter((newsItem) => newsItem.title.toLowerCase().includes(searchContextObject.search.toLowerCase()))
 
         const data = transformNewsletterNews(filteredNews);
 
         setNews(data);
-    }, [newsletter, hiddenNews]);
+    }, [newsletter, hiddenNews, searchContextObject]);
 
     const viewStyle = {
         magazineView: MagazineView,

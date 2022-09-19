@@ -17,6 +17,8 @@ import { SearchProvider } from '../../../contexts/SearchContext';
 
 import './MainLayout.scss';
 
+const publicPaths = ['/how-it-works', '/sign-up', '/sign-in', '/signout', '/onboarding', '/forgotten-password'];
+
 const MainLayout = ({ 
     children,
     user,
@@ -54,7 +56,7 @@ const MainLayout = ({
         getReadNews
     ]);
 
-    if (!user || location.pathname.includes('/news')) {
+    if (!user || location.pathname.includes('/news') || publicPaths.includes(location.pathname)) {
         return children;
     }
 

@@ -56,13 +56,13 @@ const App = ({ verifyAuth, user }) => {
 
                             <Route exact path="/main/:newsletterId" component={Main} />
 
-                            <Route path="/news/:id" component={ReadNews} />
-
                             <Route path="/read-later" component={ReadLater} />
 
                             <Route path="/read-history" component={ReadHistory} />
 
                             <Route path="/hidden-news" component={HiddenNews} />
+
+                            <Route path="/news/:id" component={ReadNews} />
                         </Switch>
                     </MainLayout>
                 </SelectedViewProvider>

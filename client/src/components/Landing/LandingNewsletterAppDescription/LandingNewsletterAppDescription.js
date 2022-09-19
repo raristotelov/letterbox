@@ -5,8 +5,8 @@ const LandingNewsletterAppDescription = () => {
         <section className="landing-newsletterapp-description">
             <div className="description-text">
                 <div className="description-text-content">
-                    <h2 className="description-text-title">Why Newsletter-App?</h2>
-                    <a href="#" className="description-text-read-more">Read More</a>
+                    <h2 className="description-text-title">Why Letterbox?</h2>
+                    
                     <p className="description-text-desc">Company we are proud to deliver hight quality standarts. In natural enviroment production, delivery and flexibility. special production from our ... </p>
                 </div>
             </div>

@@ -59,7 +59,7 @@ const SignInForm = ({ signIn }) => {
 
     return (
         <form className='signIn-form'>
-            <h1 className="singin-header">Sign in to Newsletter-App</h1>
+            <h1 className="singin-header">Sign in to Letterbox</h1>
             {
                 errState.emailErr || errState.signInErr
                 ? <InputError id="email" placeholder={errState.emailErr ? errState.emailErr : errState.signInErr} value={stateForm.email} onChange={setValues} onBlur={emailValidation}/>

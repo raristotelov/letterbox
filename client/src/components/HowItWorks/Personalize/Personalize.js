@@ -6,7 +6,7 @@ const Personalize = () => {
     return (
         <div className="personalize-container">
             <section className="content-container">
-                <h3 className="title">Personalize your Newsletter-App!</h3>
+                <h3 className="title">Personalize your Letterbox!</h3>
 
                 <p className="description">
                     We should understand if you prefer to rename some categories, add folders and label them.

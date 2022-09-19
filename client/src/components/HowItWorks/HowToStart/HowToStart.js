@@ -5,7 +5,7 @@ import './HowToStart.scss';
 const HowToStart = () => {
     return (
         <div className="how-to-start-container">
-            <h2 className="title">How to start your Newsletter-App experience?</h2>
+            <h2 className="title">How to start your Letterbox experience?</h2>
 
             <section className="card-container">
                 <HowToStartCard
@@ -14,13 +14,13 @@ const HowToStart = () => {
                 />
 
                 <HowToStartCard
-                    title={'Check Your Newsletter-App'}
+                    title={'Check Your Letterbox'}
                     description={`You can use all features, even during the trial period. ${'\n'}Try them for FREE.`}
                 />
 
                 <HowToStartCard
                     title={'Start to enjoy'}
-                    description={`Subscribe to newsletters with your Newsletter-App email. Enjoy the world of newsletters.`}
+                    description={`Subscribe to newsletters with your Letterbox email. Enjoy the world of newsletters.`}
                 />
             </section>
 

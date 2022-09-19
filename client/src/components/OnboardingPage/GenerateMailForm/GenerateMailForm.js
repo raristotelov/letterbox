@@ -55,7 +55,7 @@ const GenerateMailForm = ({ user, createEmailMask }) => {
     return (
         <form className="generate-mail-form" onSubmit={submitForm}>
             <div className="header-container">
-                <h1>Newsletter-App mail</h1>
+                <h1>Letterbox mail</h1>
 
                 <h4>Subscribtions for newsletters will be made with this mail.</h4>
             </div>
@@ -86,9 +86,9 @@ const GenerateMailForm = ({ user, createEmailMask }) => {
 
             <div className="btn-container">
                 {stateInput.username && validated && !errState.usernameErr ? (
-                    <BtnFilledGreen className="sign-btn-green">Create Newsletter-App Mail</BtnFilledGreen>
+                    <BtnFilledGreen className="sign-btn-green">Create Letterbox Mail</BtnFilledGreen>
                 ) : (
-                    <BtnFilledGray className="sign-btn-gray">Create Newsletter-App Mail</BtnFilledGray>
+                    <BtnFilledGray className="sign-btn-gray">Create Letterbox Mail</BtnFilledGray>
                 )}
             </div>
         </form>

@@ -2,19 +2,19 @@ import { ReactComponent as LogOut } from './Assets/log-out.svg';
 
 import './SettingsDropDown.scss';
 
-const SettingsDropDown = ({ emailMask, handleSignOut }) => {
+const SettingsDropDown = ({ emailMask, handleSignOut, userInitials, userDisplayName }) => {
     return (
         <div className="settings-menu-container">
             <div className="user-info">
                 <div className="avatar-wrapper">
-                    <div className="circle">LB</div>
+                    <div className="circle">{userInitials}</div>
                 </div>
 
                 <div className="logo-emailmask-container">
-                    <span className="logo">Newsletter-App</span>
+                    <span className="logo">Letterbox</span>
                     
                     <span className="emailmask">
-                        {emailMask?.split('@')[0]}@<span className="underline">newsletterapp.io</span>
+                        {userDisplayName}
                     </span>
                 </div>
             </div>

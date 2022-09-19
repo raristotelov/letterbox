@@ -1,34 +1,39 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useContext } from 'react';
 import { connect } from 'react-redux';
+
+import { useClean } from '../../hooks';
 import { getFeed, clearFeed } from '../../actions/feedActions';
+import { SearchContext } from '../../contexts/SearchContext';
+
 import NewsletterList from './NewsletterList/NewsletterList';
 import { ReactComponent as AddIcon } from './assets/add-icon.svg';
 import AddToFeed from './AddToFeed/AddToFeed';
-import { useClean } from '../../hooks';
 import Loader from '../shared/Loader/Loader';
 
 import './SingleFeed.scss';
 
-const SingleFeed = ({ user, admin, feed, getFeed, clearFeed, match }) => {
+const SingleFeed = ({ user, idToken, admin, feed, getFeed, clearFeed, match }) => {
     const [open, setOpen] = useState(false);
     const [isLoadingFeed, setIsLoadingFeed] = useState(false);
+
+    const searchContextObject = useContext(SearchContext);
 
     useClean(clearFeed);
     
     const _id = match.params.feedId;
     useEffect(() => {
         if (user) {
-            user.getIdToken()
-                .then((idToken) => {
-                    setIsLoadingFeed(true);
+            setIsLoadingFeed(true);
 
-                    return getFeed(_id, idToken)
-                }).then(() => {
+            getFeed(_id, idToken)
+                .then(() => {
                     setIsLoadingFeed(false);
                 })
                 .catch((err) => console.log(err));
         }
-    }, [user, getFeed, _id]);
+    }, [user, getFeed, _id, idToken]);
+
+    const filteredNewsletters = feed.newsletters?.filter((newsletter) => newsletter.name.toLowerCase().includes(searchContextObject.search.toLowerCase()))
 
     return (
         <Fragment>
@@ -47,7 +52,7 @@ const SingleFeed = ({ user, admin, feed, getFeed, clearFeed, match }) => {
                                 </div>
                             </div>
     
-                            <NewsletterList newsletters={feed.newsletters} isLoading={isLoadingFeed} />
+                            <NewsletterList newsletters={filteredNewsletters} isLoading={isLoadingFeed} />
                         </Fragment>
                     ) : (
                         <div className='loader'>
@@ -63,6 +68,7 @@ const SingleFeed = ({ user, admin, feed, getFeed, clearFeed, match }) => {
 
 const mapStateToProps = (state) => ({
     user: state.user.user,
+    idToken: state.user.idToken,
     admin: state.user.admin,
     feed: state.feed.feed,
 });

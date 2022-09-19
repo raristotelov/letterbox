@@ -5,6 +5,7 @@ import transformReadLaterNews from '../../helpers/transformReadLaterNews';
 import newsActionOptions from '../../helpers/newsActionOptions';
 import { getHiddenNews } from '../../actions/userActions';
 import { ViewContext } from '../../contexts/ViewContext';
+import { SearchContext } from '../../contexts/SearchContext';
 
 import ChangeViewDropDown from '../Main/ChangeViewDropDown';
 import MagazineView from '../Main/MagazineView';
@@ -21,6 +22,7 @@ const HiddenNews = ({ user, idToken, hiddenNews, getHiddenNews }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const viewContextObject = useContext(ViewContext);
+    const searchContextObject = useContext(SearchContext);
 
     useEffect(() => {
         if (user && idToken) {
@@ -37,10 +39,13 @@ const HiddenNews = ({ user, idToken, hiddenNews, getHiddenNews }) => {
     }, [user, idToken, getHiddenNews])
 
     useEffect(() => {
-        const data = transformReadLaterNews(hiddenNews);
+        const filterednews = hiddenNews
+            .filter((newsItem) => newsItem.title.toLowerCase().includes(searchContextObject.search.toLowerCase()));
+
+        const data = transformReadLaterNews(filterednews);
 
         setReadHistoryNews(data);
-    }, [hiddenNews])
+    }, [hiddenNews, searchContextObject])
 
     useEffect(() => {
         window.scroll(0, 0);

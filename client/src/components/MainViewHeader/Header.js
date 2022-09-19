@@ -13,7 +13,7 @@ import copyToClipboard from './Helpers/CopyToClipboard';
 import { SearchContext } from '../../contexts/SearchContext';
 import './Header.scss';
 
-const Header = ({ emailMask, signOut }) => {
+const Header = ({ emailMask, signOut, user }) => {
     const { setSearch } = useContext(SearchContext);
     const [settingsState, setState] = useState(false);
     const history = useHistory();
@@ -36,6 +36,19 @@ const Header = ({ emailMask, signOut }) => {
         history.push('/sign-in');
     };
 
+    const firstName = user.displayName.split(' ')[0];
+    const lastName = user.displayName.split(' ')[1];
+
+    const userInitials = `${firstName?.substring(0, 1).toUpperCase()}${lastName?.substring(0, 1).toUpperCase()}`;
+
+    let formattedEmailMask = '';
+
+    if (emailMask.length > 24) {
+        formattedEmailMask = emailMask.substring(0, 24) + '...';
+    } else {
+        formattedEmailMask = emailMask;
+    }
+
     return (
         <div className="header">
             <div className="elements-wrapper">
@@ -45,8 +58,8 @@ const Header = ({ emailMask, signOut }) => {
 
                 <div className="profile-info">
                     <div className="email-wrapper">
-                        <label id="header-email" className="email-label">
-                            {emailMask}
+                        <label id="header-email" className="email-label" title={emailMask}>
+                            {formattedEmailMask}
                         </label>
 
                         <button className="copy-btn" onClick={() => copyToClipboard('header-email')}>
@@ -55,7 +68,7 @@ const Header = ({ emailMask, signOut }) => {
                     </div>
 
                     <div onClick={() => setState(true)} className="avatar-wrapper">
-                        <div className="circle">LB</div>
+                        <div className="circle">{userInitials}</div>
                     </div>
                 </div>
 
@@ -64,6 +77,8 @@ const Header = ({ emailMask, signOut }) => {
                         <SettingsDropDown
                             emailMask={emailMask}
                             handleSignOut={handleSignOut}
+                            userInitials={userInitials}
+                            userDisplayName={user.displayName}
                         />
                     </div>
                 ) : (

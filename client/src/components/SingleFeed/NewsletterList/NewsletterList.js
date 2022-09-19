@@ -1,17 +1,20 @@
 import { useContext, useEffect, useState } from 'react';
+
+import { SearchContext } from '../../../contexts/SearchContext';
+
 import NewsletterCard from './NewsletterCard/NewsletterCard';
 import AddToBoardModal from '../../Main/shared/AddToBoardModal';
 import AddLabelModal from '../../Main/shared/AddLabelModal';
-import { SearchContext } from '../../../contexts/SearchContext';
 import Loader from '../../shared/Loader/Loader';
 
 import './NewsletterList.scss';
 
 const NewsletterList = ({ newsletters, isLoading }) => {
-    const searchContextObject = useContext(SearchContext);
     const [filteredNewsletters, setFilterredNewsletters] = useState(null);
     const [addToLabelOpen, setAddToLabelOpen] = useState(false);
     const [createLabelOpen, setCreateLabelOpen] = useState(false);
+    
+    const searchContextObject = useContext(SearchContext);
 
     useEffect(() => {
         if (searchContextObject?.search) {

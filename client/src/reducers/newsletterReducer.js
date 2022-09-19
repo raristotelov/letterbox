@@ -1,7 +1,6 @@
 import {
     GET_NEWSLETTER,
     GET_NEWSLETTERS,
-    HIDE_NEWS,
     CLEAR_NEWSLETTER,
     SIGNOUT
 } from '../actions/actionTypes';

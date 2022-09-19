@@ -6,8 +6,8 @@ const LandingFeaturesContent = () => {
         <div className="landing-features-content">
             <div className="first-row">
                 <LandingFeature 
-                    title="Your Own Newsletter-App Email"
-                    description="Be part of Newsletter-App community.
+                    title="Your Own Letterbox Email"
+                    description="Be part of Letterbox community.
                     Join top experts for a chat on the topics and trends that matter to you."
                     />
 
@@ -19,7 +19,7 @@ const LandingFeaturesContent = () => {
 
             <div className="second-row">
                 <LandingFeature 
-                    title="Be part of Newsletter-App community"
+                    title="Be part of Letterbox community"
                     description="Join top experts for a chat on the topics and trends that m-atter to you."
                     />
 
