@@ -5,8 +5,7 @@ import './SignUpButton.scss';
 const SignUpButton = ({ formData, signUpErr }) => {
     return (
         <Fragment>
-            {   
-                formData.email      &&
+            {formData.email      &&
                 formData.password   &&
                 formData.firstName  &&
                 formData.lastName   &&
@@ -15,8 +14,11 @@ const SignUpButton = ({ formData, signUpErr }) => {
                 formData.day        &&
                 formData.country    &&
                 !signUpErr
-                    ? <BtnFilledGreen className="sign-btn-green">Sign up</BtnFilledGreen>
-                    : <BtnFilledGray className="sign-btn-gray">Sign up</BtnFilledGray>
+                ? (
+                    <BtnFilledGreen className="sign-btn-green">Sign up</BtnFilledGreen>
+                ) : (
+                    <BtnFilledGray className="sign-btn-gray">Sign up</BtnFilledGray>
+                )
             }
         </Fragment>
     )

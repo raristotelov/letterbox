@@ -60,6 +60,7 @@ const SignInForm = ({ signIn }) => {
     return (
         <form className='signIn-form'>
             <h1 className="singin-header">Sign in to Letterbox</h1>
+
             {
                 errState.emailErr || errState.signInErr
                 ? <InputError id="email" placeholder={errState.emailErr ? errState.emailErr : errState.signInErr} value={stateForm.email} onChange={setValues} onBlur={emailValidation}/>
@@ -72,11 +73,26 @@ const SignInForm = ({ signIn }) => {
                 : <Input type="password" id="password" placeholder="Enter your password" value={stateForm.password}  onChange={setValues} onBlur={clearErrState}/>
             }
             
-            {   
-                stateForm.email && stateForm.password && !errState.emailErr
-                    ? <BtnFilledGreen className="sign-btn-green" onClick={handleSignInFilledForm}>Sign in</BtnFilledGreen>
-                    : <BtnFilledGray className="sign-btn-gray" onClick={handleSignInUnFilledForm} >Sign in</BtnFilledGray>
-            }
+            <div className='button-wrapper'>
+                {stateForm.email && stateForm.password && !errState.emailErr
+                    ? (
+                        <BtnFilledGreen
+                            className="sign-btn-green"
+                            onClick={handleSignInFilledForm}
+                        >
+                            Sign in
+                        </BtnFilledGreen>
+                    ) : (
+                        <BtnFilledGray
+                            className="sign-btn-gray"
+                            onClick={handleSignInUnFilledForm}
+                        >
+                            Sign in
+                        </BtnFilledGray>
+                    )
+                }
+            </div>
+
 
             <Link to="/forgotten-password">Forgot password?</Link>
         </form>

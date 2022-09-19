@@ -15,6 +15,7 @@
     border: 0px;
     border-radius: 36px;
     background-color: #E8E8E8;
+    border: 2px solid #E8E8E8;
 
     @media #{$mq-small}{
         width: 357px;
@@ -22,7 +23,7 @@
 }
 
 .sign-btn-green {
-    width: 445px;
+    width: 450px;
 
     color:#FAF9F7;
     text-transform: uppercase;
@@ -36,6 +37,11 @@
     border: 0px;
     border-radius: 36px;
     background: #119C59;
+    border: 2px solid #119C59;
+  
+    &:hover {
+        opacity: 0.7;
+    }
 
     @media #{$mq-small}{
         width: 357px;
@@ -59,6 +65,10 @@
     border: 2px solid #FAF9F7;
     box-sizing: border-box;
     border-radius: 36px;
+
+    &:hover {
+        opacity: 0.7;
+    }
 }
 
 
@@ -79,4 +89,8 @@
     border: 2px solid #119C59;
     box-sizing: border-box;
     border-radius: 36px;
+
+    &:hover {
+        opacity: 0.7;
+    }
 }

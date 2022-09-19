@@ -24,8 +24,10 @@ const SignIn = () => {
                             <Logo />
                         </Link>
                     </div>
+                    
                     <div>
                         <SignInForm className='signin-form' />
+
                         <SocialMediaSignIn className="social-media-signin"/>
                     </div>
                 </div>
