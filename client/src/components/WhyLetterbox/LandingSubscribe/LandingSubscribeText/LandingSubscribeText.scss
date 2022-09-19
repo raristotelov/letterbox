@@ -1,0 +1,72 @@
+.landing-subscribe-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 472px;
+
+    .landing-subscribe-text-content {
+        width: 605px;
+        height: 366px;
+        padding: 2px 0px 0px 64px;
+
+        .landing-subscribe-text-title {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 42px;
+            align-items: flex-end;
+            letter-spacing: 0.1px;
+            color: #FAF9F7;
+        }
+        
+        .landing-subscribe-text-subtitle {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 26px;
+            letter-spacing: 0.2px;
+            color: #94DD8B;
+            margin-top: 12px;
+        }
+
+        .landing-subscribe-text-benefits {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.1px;
+            color: #FAF9F7;
+            margin-top: 40px;
+            
+            li {
+                display: flex;
+                list-style-type: none;
+                margin-bottom: 15px;
+            }
+
+            .check-icon {
+                margin-right: 13px;
+            }
+        }
+
+        .subscribe-btn {
+            width: 198px;
+            height: 58px;
+            border: none;
+            outline: none;
+            background-color: #119C59;
+            border-radius: 36px;
+            margin-top: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: 0.2px;
+            color: #FAF9F7;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+}

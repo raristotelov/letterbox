@@ -1,0 +1,51 @@
+.no-spam-solution-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100px;
+
+    .text-box-area {
+        background-color: #F4F3F1;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        height: 400px;
+        width: 1200px;
+    
+        h2 {
+            margin-top: 20px;
+            width: 800px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 44px;
+            line-height: 54px;
+            color: #25282B;
+        }
+
+        .how-it-works-btn {
+            width: 195px;
+            height: 54px;
+
+            background-color: #119C59;
+            color: white;
+            border: 2px solid #119C59;
+            border-radius: 36px;
+
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            transition: all 0.1s ease-in-out;
+
+            &:hover {
+                background-color: white;
+                color: #119C59;
+                border: 2px solid #119C59;
+            }
+        }
+    }
+}
+

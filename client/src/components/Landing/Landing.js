@@ -4,9 +4,9 @@ import LandingHeader from './LandingHeader';
 import LandingFeatures from './LandingFeatures';
 import LandingNewsletterAppDescription from './LandingNewsletterAppDescription';
 import LandingCategories from './LandingCategories';
-import LandingHappyUsers from './LandingHappyUsers';
 import LandingSubscribe from './LandingSubscribe';
 import LandingFooter from './LandingFooter';
+
 import './Landing.scss'
 
 const Landing = ({ user }) => {
@@ -26,8 +26,6 @@ const Landing = ({ user }) => {
                 <LandingNewsletterAppDescription />
 
                 <LandingCategories />
-
-                <LandingHappyUsers />
 
                 <LandingSubscribe />
                 

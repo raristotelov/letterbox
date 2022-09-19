@@ -1,0 +1,32 @@
+.landing-features-content {
+    background-image: url('./assets/boy-with-speaker.svg');
+    height: 1250px;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    .first-row,
+    .second-row,
+    .third-row {
+        display: grid;
+        grid-row-gap: 0px;
+        justify-content: center;
+    }
+
+    .first-row {
+        grid-column-gap: 430px;
+        grid-template-columns: repeat(2, 255px);
+        padding-top: 81px;
+    }
+
+    .second-row {
+        grid-column-gap: 610px;
+        grid-template-columns: repeat(2, 290px);
+        padding-top: 55px;
+    }
+
+    .third-row {
+        grid-column-gap: 430px;
+        grid-template-columns: repeat(2, 255px);
+        padding-top: 120px;
+    }
+}

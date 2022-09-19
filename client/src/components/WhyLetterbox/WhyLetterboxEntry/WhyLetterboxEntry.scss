@@ -1,0 +1,31 @@
+.how-it-works-entry-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 26px 35px 0 94px;
+
+    .description-container {
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+
+        .title {
+            font-weight: 300;
+            font-size: 52px;
+            line-height: 64px;
+            letter-spacing: 0.2px;
+            color: #25282b;
+        }
+
+        .description {
+            max-width: 402px;
+
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 26px;
+            letter-spacing: 0.2px;
+            color: #119c59;
+        }
+    }
+}

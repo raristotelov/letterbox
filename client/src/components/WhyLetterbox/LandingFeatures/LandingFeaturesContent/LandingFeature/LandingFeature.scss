@@ -1,0 +1,33 @@
+.landing-feature {
+    position: relative;
+    width: 270px;
+    height: 180px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: -16px;
+        top: 4px;
+        height: 46px;
+        width: 3px;
+        display: inline-block;
+        background-color: #119C59;
+    }
+
+    .feature-title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 26px;
+        letter-spacing: 0.2px;
+        color: #25282B;
+    }
+
+    .feature-description {
+        margin-top: 9px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        color: #52575C;
+    }
+}

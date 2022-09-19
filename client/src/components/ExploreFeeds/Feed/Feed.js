@@ -39,7 +39,7 @@ const Feed = ({ feedProps, user, admin, toggleHiddenState, removeFeed }) => {
             {editFeedOpen && <FeedFormModal action={'edit'} setOpen={setOpen} feed={feedProps} />}
             <Link to={singleFeedUrl}>
                 <div className="img-container">
-                    <img src="https://globalimpactnetwork.org/wp-content/themes/globalimpact/images/no-image-found-360x250.png" alt="logo"></img>
+                    <img src="/feed-logo.jpg" alt="logo"></img>
                 </div>
             </Link>
 
