@@ -25,7 +25,7 @@ function Card({ news, addToSelected, removeFromSelected , selected, newsActions}
         <article className="card-view-card">
             <div className="img-container">
                 <Link to={`/news/${news._id}`} className="link-not-decorated">
-                    <img src={news.image} alt=""></img>
+                    <img src={'/news-img.jpg'} alt=""></img>
                 </Link>
             </div>
 
