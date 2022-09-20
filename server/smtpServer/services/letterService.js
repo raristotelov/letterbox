@@ -4,7 +4,7 @@ const convertParsedDataToLetter = (parsed) => {
     const contentText = parsed.text;
     const contentTextAsHtml = parsed.textAsHtml;
     const date = parsed.date;
-    const newsletter = "NextDraft";
+    const newsletter = "Morning Brew";
     const username = parsed.to.text.split('@')[0];
     let imgUrl;
 
