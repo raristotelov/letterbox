@@ -53,7 +53,7 @@ const Header = ({ emailMask, signOut, user }) => {
         <div className="header">
             <div className="elements-wrapper">
                 <div className="search-wrapper">
-                    <Input onChange={(e) => setSearch(e.target.value)} id="search" type="text" placeholder="Search by topic, website, or RSS link" endText={<Search />} />
+                    <Input onChange={(e) => setSearch(e.target.value)} id="search" type="text" placeholder="Search by feed, newsletter or news title" endText={<Search />} />
                 </div>
 
                 <div className="profile-info">
@@ -62,7 +62,7 @@ const Header = ({ emailMask, signOut, user }) => {
                             {formattedEmailMask}
                         </label>
 
-                        <button className="copy-btn" onClick={() => copyToClipboard('header-email')}>
+                        <button className="copy-btn" onClick={() => copyToClipboard(emailMask)}>
                             <Copy />
                         </button>
                     </div>

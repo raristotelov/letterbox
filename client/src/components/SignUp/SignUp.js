@@ -46,7 +46,7 @@ const SignUp = () => {
 
                 <SignAside 
                     className='sign-aside' 
-                    title="Wellcome back!" 
+                    title="Welcome back!" 
                     firstRowText="To keep connected with us" 
                     secondRowText="please sign in" 
                     btnText="sign in"

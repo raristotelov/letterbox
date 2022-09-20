@@ -25,7 +25,7 @@ const AddToBoardModal = ({ isOpen, onCloseClick, setCreateLabelOpen }) => {
                     <div className="attach-to-board-header">
                         <button className="close-btn" onClick={onCloseClick}><CloseIcon /></button>
 
-                        <h3 className="attach-to-board-title">Add to board</h3>
+                        <h3 className="attach-to-board-title">Add to label</h3>
 
                         <div className="attach-to-board-search">
                             <Input

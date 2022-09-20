@@ -19,7 +19,7 @@ const AddToLabel = ({ user, search, labels, addNewsletterToLabel, removeNewslett
                     />
                 ))
                 : labels && labels
-                    .filter(label => label.name.includes(search.byName))
+                    .filter(label => label.name.toUpperCase().includes(search.byName.toUpperCase()))
                     .map(label => (
                         <Label
                             key={label._id}

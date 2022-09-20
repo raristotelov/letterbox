@@ -18,7 +18,7 @@ const WhyLetterboxSolutionFeatures = () => {
 
             <WhyLetterboxSolutionFeature 
                 icon={Hourglass}
-                header={'Sve your time'}
+                header={'Save your time'}
                 text={'Organize all your favorite newsletters into one application. Use all features to manage them. Control your feed.'}
             />
 

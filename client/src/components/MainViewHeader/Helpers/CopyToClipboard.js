@@ -1,5 +1,5 @@
-const copyToClipboard = (copiedElementId) => {
-    const textToCopy = document.getElementById(copiedElementId).innerText;
+const copyToClipboard = (textToCopy) => {
+    // const textToCopy = document.getElementById(copiedElementId).innerText;
     const textAreaEl = document.createElement('textarea');
     textAreaEl.value = textToCopy;
     textAreaEl.setAttribute('readonly', '');

@@ -25,7 +25,7 @@ const SocialMediaSignIn = ({ signInWithGoogle, signInWithFacebook, signInWithTwi
         <section className="social-media-signin">
             <p>or use account</p>
             
-            <BtnTwitter className="btn-twitter" onClick={handleTwitter} />
+            {/* <BtnTwitter className="btn-twitter" onClick={handleTwitter} /> */}
 
             <BtnFacebook className="btn-facebook" onClick={handleFacebook} />
 

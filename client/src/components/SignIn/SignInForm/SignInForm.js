@@ -23,7 +23,7 @@ const SignInForm = ({ signIn }) => {
             } catch (err) {
                 setErrValues((currentErrState) => ({
                     ...currentErrState,
-                    signInErr: "Email and password doesnt match!"
+                    signInErr: "Wrong email or password"
                 }))
             }
         }
