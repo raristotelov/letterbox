@@ -52,7 +52,7 @@ const MagazineViewCard = ({ addToSelected, removeFromSelected, news, selected, n
             </section>
 
             <section className="img-container">
-                <img src={'/asen.jpg'} alt="news img" />
+                <img src={news.image} alt="news img" />
             </section>
         </article>
     );
