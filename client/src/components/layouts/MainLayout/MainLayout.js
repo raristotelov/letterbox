@@ -33,7 +33,7 @@ const MainLayout = ({
     const location = useLocation();
 
     useEffect(() => {
-        if (user && idToken) {
+        if (user && idToken && !publicPaths.includes(location.pathname)) {
             setIsLoading(true);
 
             const promises = [

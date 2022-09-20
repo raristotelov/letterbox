@@ -67,7 +67,7 @@ const GenerateMailForm = ({ user, createEmailMask }) => {
                         type="text"
                         placeholder={errState.usernameErr}
                         value={stateInput.username}
-                        endText="@newsletterapp.io"
+                        endText="@letterbox.ga"
                         onChange={setUsernameValue}
                         autofocus={stateInput.username}
                     />
@@ -77,7 +77,7 @@ const GenerateMailForm = ({ user, createEmailMask }) => {
                         type="text"
                         placeholder="Enter your username"
                         value={stateInput.username ? stateInput.username : ''}
-                        endText="@newsletterapp.io"
+                        endText="@letterbox.ga"
                         onChange={setUsernameValue}
                         autofocus={stateInput.username}
                     />

@@ -11,7 +11,7 @@ export const createDbUserService = (data) => {
 }
 
 export const createEmailMaskService = (username, idToken) => {
-    const emailMask = `${username}@newsletterapp.io`;
+    const emailMask = `${username}@letterbox.ga`;
     
     return request.post(`${SERVER_ADDRESS}/user/create-email-mask`, { emailMask }, idToken);
 }
